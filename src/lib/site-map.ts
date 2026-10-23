@@ -12,16 +12,16 @@ const lines=(raw:string,defaultSource:string):ContentItem[]=>
  raw.trim().split("\n").map(row=>{const [slug,vi,en,source,summary,date]=row.split("|").map(s=>s.trim());return {slug,vi,en,source:source||defaultSource,summary:summary||"Nội dung gốc đang được đối chiếu để chuyển đầy đủ sang bản thiết kế mới.",status:source?"verified-page" as const:"index-only" as const,...(date?{date}:{})}});
 export const groups:Group[]=[
 {slug:"company",vi:"Giới thiệu",en:"Company",intro:"Lịch sử, tổ chức, lãnh đạo, hoạt động, thành tựu và thông tin môi trường của Liên doanh Việt – Nga Vietsovpetro.",source:p("GioiThieuCT"),items:lines(`
-overview|Tổng quan Vietsovpetro|Company overview|${p("GioiThieuCT")}|Liên doanh được thành lập năm 1981, hoạt động trong lĩnh vực tìm kiếm, thăm dò và khai thác dầu khí.
-history|Lịch sử hình thành|History & milestones|${p("lichsuhinhthanh")}|Các mốc phát triển từ năm 1981 đến 2021 trên trang gốc.
-structure|Cơ cấu tổ chức|Organizational structure|${p("CoCau")}|Bộ máy điều hành, các phòng ban và đơn vị trực thuộc.
-leadership|Ban lãnh đạo|Leadership|${p("lanhdao")}|Thông tin ban lãnh đạo trên website chính thức.
-activities|Lĩnh vực hoạt động|Fields of operation|${p("LinhVuc")}|Các lĩnh vực hoạt động của liên doanh.
-capacity|Năng lực hoạt động|Operational capabilities|${p("TiemNang")}|Năng lực kỹ thuật và sản xuất.
-achievements|Thành tựu nổi bật|Key achievements|${p("NhungThanhTuu")}|Các thành tựu và dấu mốc của doanh nghiệp.
-awards|Các danh hiệu|Awards & recognition|${p("cacDanhHieu")}|Danh hiệu và bằng khen được công bố.
+overview|Tổng quan Vietsovpetro|Company overview|https://www.vietsov.com.vn/Pages/GioiThieuCT.aspx|Liên doanh được thành lập năm 1981, hoạt động trong lĩnh vực tìm kiếm, thăm dò và khai thác dầu khí.
+history|Lịch sử hình thành|History & milestones|https://www.vietsov.com.vn/Pages/lichsuhinhthanh.aspx|Các mốc phát triển từ năm 1981 đến 2021 trên trang gốc.
+structure|Cơ cấu tổ chức|Organizational structure|https://www.vietsov.com.vn/Pages/CoCau.aspx|Bộ máy điều hành, các phòng ban và đơn vị trực thuộc.
+leadership|Ban lãnh đạo|Leadership|https://www.vietsov.com.vn/Pages/lanhdao.aspx|Thông tin ban lãnh đạo trên website chính thức.
+activities|Lĩnh vực hoạt động|Fields of operation|https://www.vietsov.com.vn/Pages/LinhVuc.aspx|Các lĩnh vực hoạt động của liên doanh.
+capacity|Năng lực hoạt động|Operational capabilities|https://www.vietsov.com.vn/Pages/TiemNang.aspx|Năng lực kỹ thuật và sản xuất.
+achievements|Thành tựu nổi bật|Key achievements|https://www.vietsov.com.vn/Pages/NhungThanhTuu.aspx|Các thành tựu và dấu mốc của doanh nghiệp.
+awards|Các danh hiệu|Awards & recognition|https://www.vietsov.com.vn/Pages/cacDanhHieu.aspx|Danh hiệu và bằng khen được công bố.
 archive|Hình ảnh tư liệu|Photo archive||Kho hình ảnh tư liệu lịch sử.
-hse|An toàn – Sức khỏe – Môi trường|HSE|${p("AnToanSKMT")}|Chính sách và hoạt động an toàn, sức khỏe, môi trường.
+hse|An toàn – Sức khỏe – Môi trường|HSE|https://www.vietsov.com.vn/Pages/AnToanSKMT.aspx|Chính sách và hoạt động an toàn, sức khỏe, môi trường.
 environment|Thông tin môi trường|Environmental information||Thông tin công khai về môi trường.
 `,p("GioiThieuCT"))},
 {slug:"units",vi:"Đơn vị trực thuộc",en:"Operating units",intro:"Danh mục các xí nghiệp, viện và trung tâm trực thuộc được nêu trên website gốc. Các đơn vị còn lại cần bổ sung trong giai đoạn kiểm kê.",source:p("DVTV"),items:lines(`
@@ -56,31 +56,31 @@ healthcare|Dịch vụ kiểm tra sức khỏe, khám chữa bệnh|Healthcare s
 heavy-transport|Vận tải ô tô, vận tải siêu trường siêu trọng|Road and heavy-haul transport
 `,p("SanPhamDV"))},
 {slug:"projects",vi:"Dự án – Đối tác",en:"Projects & partners",intro:"Phân nhóm dự án theo cách công bố của Vietsovpetro: thăm dò, vận hành mỏ, EPCI, chân đế, khối thượng tầng; đồng thời giữ danh mục đối tác.",source:p("DuAn"),items:lines(`
-exploration-production|Dự án nghiên cứu thăm dò – khai thác dầu khí|Exploration & production projects|${p("Nghiencuuthamdo")}
-field-operation|Dự án điều hành khai thác mỏ|Field operation projects|${p("DieuHanhKhaiThac")}
-epci|Dự án thiết kế, mua sắm, xây dựng, lắp đặt (EPCI)|EPCI projects|${p("CTKT")}
-jackets|Dự án lắp đặt chân đế|Jacket installation projects|${p("LapDatChanDe")}
-topsides|Dự án lắp đặt khối thượng tầng|Topside installation projects|${p("KhoiThuongTang")}
+exploration-production|Dự án nghiên cứu thăm dò – khai thác dầu khí|Exploration & production projects|https://www.vietsov.com.vn/Pages/Nghiencuuthamdo.aspx
+field-operation|Dự án điều hành khai thác mỏ|Field operation projects|https://www.vietsov.com.vn/Pages/DieuHanhKhaiThac.aspx
+epci|Dự án thiết kế, mua sắm, xây dựng, lắp đặt (EPCI)|EPCI projects|https://www.vietsov.com.vn/Pages/CTKT.aspx
+jackets|Dự án lắp đặt chân đế|Jacket installation projects|https://www.vietsov.com.vn/Pages/LapDatChanDe.aspx
+topsides|Dự án lắp đặt khối thượng tầng|Topside installation projects|https://www.vietsov.com.vn/Pages/KhoiThuongTang.aspx
 partners|Các đối tác tiêu biểu|Key partners
 `,p("DuAn"))},
 {slug:"resources",vi:"Nguồn lực",en:"Resources",intro:"Nguồn nhân lực, cơ sở vật chất và năng lực tài chính. Số liệu lịch sử cần được đối chiếu với nội dung mới nhất.",source:p("nguonnhanluc"),items:lines(`
-human-resources|Nguồn nhân lực|Human resources|${p("nguonnhanluc")}|Nguồn nhân lực và cơ cấu chuyên môn.
-facilities|Cơ sở vật chất|Facilities & equipment|${p("cosovatchat")}|Giàn khoan, công trình khai thác, khí, phương tiện và cơ sở hỗ trợ.
+human-resources|Nguồn nhân lực|Human resources|https://www.vietsov.com.vn/Pages/nguonnhanluc.aspx|Nguồn nhân lực và cơ cấu chuyên môn.
+facilities|Cơ sở vật chất|Facilities & equipment|https://www.vietsov.com.vn/Pages/cosovatchat.aspx|Giàn khoan, công trình khai thác, khí, phương tiện và cơ sở hỗ trợ.
 financial|Năng lực tài chính|Financial capabilities||Thông tin tài chính được nêu tại hệ thống nguồn lực gốc.
 `,p("nguonnhanluc"))},
 {slug:"news",vi:"Tin tức – Sự kiện",en:"News & events",intro:"Tin hoạt động sản xuất, công tác đào tạo, dự án và các chuyên mục khác; bài viết phải giữ nguyên ngày và đường dẫn gốc.",source:p("TinTuc"),items:lines(`
-management-training-2026|Bế giảng chương trình đào tạo nâng cao năng lực quản lý cấp cơ sở|Management training programme|${root}/Pages/Details.aspx?c=2&itemid=2115|Chương trình nâng cao năng lực quản lý cho đội ngũ quản lý cấp cơ sở.|19/10/2026
-kpi-preparation-2026|Tiếp tục chuẩn bị triển khai hệ thống KPI tại Bộ máy Điều hành|KPI implementation preparation|${root}/Pages/Details.aspx?c=2&itemid=2114|Thông tin về quá trình chuẩn bị triển khai hệ thống KPI.|05/10/2026
-bk24-2025|Khánh thành giàn đầu giếng BK-24|BK-24 platform inauguration|${root}/pages/Details.aspx?c=3&itemid=2058|Thông tin về dự án BK-24 tại mỏ Bạch Hổ.|08/11/2025
+management-training-2026|Bế giảng chương trình đào tạo nâng cao năng lực quản lý cấp cơ sở|Management training programme|https://www.vietsov.com.vn/Pages/Details.aspx?c=2&itemid=2115|Chương trình nâng cao năng lực quản lý cho đội ngũ quản lý cấp cơ sở.|19/10/2026
+kpi-preparation-2026|Tiếp tục chuẩn bị triển khai hệ thống KPI tại Bộ máy Điều hành|KPI implementation preparation|https://www.vietsov.com.vn/Pages/Details.aspx?c=2&itemid=2114|Thông tin về quá trình chuẩn bị triển khai hệ thống KPI.|05/10/2026
+bk24-2025|Khánh thành giàn đầu giếng BK-24|BK-24 platform inauguration|https://www.vietsov.com.vn/pages/Details.aspx?c=3&itemid=2058|Thông tin về dự án BK-24 tại mỏ Bạch Hổ.|08/11/2025
 `,p("TinTuc"))},
 {slug:"careers",vi:"Tuyển dụng – Đào tạo",en:"Careers & education",intro:"Đường dẫn tuyển dụng, tuyển sinh tại Liên bang Nga và hệ thống đào tạo hiện có. Không thu thập hồ sơ ứng tuyển trong concept.",source:p("tuyendung"),items:lines(`
-recruitment|Tuyển dụng|Recruitment|${p("tuyendung")}|Thông báo tuyển dụng theo nguồn chính thức, cần xác minh hạn nộp.
-admissions|Tuyển sinh đào tạo tại LB Nga|Admissions for training in Russia|${root}/TuyenSinh1/index.html|Cổng thông tin tuyển sinh.
+recruitment|Tuyển dụng|Recruitment|https://www.vietsov.com.vn/Pages/tuyendung.aspx|Thông báo tuyển dụng theo nguồn chính thức, cần xác minh hạn nộp.
+admissions|Tuyển sinh đào tạo tại LB Nga|Admissions for training in Russia|https://www.vietsov.com.vn/TuyenSinh1/index.html|Cổng thông tin tuyển sinh.
 training-platform|Hệ thống đào tạo|Training system|https://daotao.vietsov.com.vn/|Hệ thống hiện có, giữ liên kết chính thức.
 `,p("tuyendung"))},
 {slug:"contact",vi:"Liên hệ",en:"Contact",intro:"Thông tin liên hệ, văn phòng, các đơn vị và hệ thống công tác. Mọi kênh chính thức vẫn thuộc Vietsovpetro.",source:p("lienhe"),items:lines(`
-head-office|Văn phòng liên doanh|Head office|${p("lienhe")}|105 Lê Lợi, phường Vũng Tàu, TP. Hồ Chí Minh. Điện thoại +84 254 3839 871.
-management-office|Ban lãnh đạo và văn phòng|Management & administration|${p("lienhe")}|Thông tin liên lạc đã công bố.
+head-office|Văn phòng liên doanh|Head office|https://www.vietsov.com.vn/Pages/lienhe.aspx|105 Lê Lợi, phường Vũng Tàu, TP. Hồ Chí Minh. Điện thoại +84 254 3839 871.
+management-office|Ban lãnh đạo và văn phòng|Management & administration|https://www.vietsov.com.vn/Pages/lienhe.aspx|Thông tin liên lạc đã công bố.
 port-contacts|Liên hệ dịch vụ cảng|Port service enquiries|https://port.vietsov.com.vn/|Thông tin thương mại, dịch vụ cảng.
 `,p("lienhe"))}
 ];
