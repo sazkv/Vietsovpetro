@@ -1,0 +1,1 @@
+import type { Metadata } from "next"; import "./globals.css"; export const metadata:Metadata={title:"Vietsovpetro | Independent Concept",description:"Independent, unofficial redesign concept for Vietsovpetro.",robots:{index:false,follow:false}}; export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><body>{children}</body></html>}
