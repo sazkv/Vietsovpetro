@@ -36,7 +36,11 @@ gas-facilities|Xí nghiệp Khai thác các Công trình khí|Gas facilities div
 port-supply|Xí nghiệp Dịch vụ cảng và Cung ứng vật tư thiết bị|Port & supply division|https://www.vietsov.com.vn/Pages/xndvc.aspx|Thông tin từ website của đơn vị.
 safety-environment|Trung tâm An toàn và Bảo vệ môi trường|Safety & environment centre|https://www.vietsov.com.vn/Pages/ttat.aspx|Website của trung tâm.
 medical|Trung tâm Y tế|Medical centre|https://www.vietsov.com.vn/Pages/ttyt.aspx|Trang thông tin chính thức của đơn vị trực thuộc.
-it-communications|Trung tâm Công nghệ Thông tin và Liên lạc|IT & communications centre|https://www.vietsov.com.vn/Pages/cntt.aspx|Trang thông tin chính thức của đơn vị trực thuộc.\nresort|Khu nghỉ dưỡng Vietsovpetro|Vietsovpetro Resort|https://www.vietsov.com.vn/Pages/nghiduong.aspx|Thông tin về cơ sở nghỉ dưỡng.\nhotel|Khách sạn Vietsovpetro|Vietsovpetro Hotel|https://www.vietsov.com.vn/Pages/khachsan.aspx|Thông tin khách sạn và các dịch vụ lưu trú.\nsecurity|Đội Bảo vệ vũ trang|Armed protection team|https://www.vietsov.com.vn/Pages/bvvt.aspx|Thông tin về đội bảo vệ của đơn vị.\nhousing|Ban Đời sống nhà ở và Văn phòng làm việc|Housing and office administration|https://www.vietsov.com.vn/Pages/dsno.aspx|Thông tin về cơ sở vật chất, nhà ở và văn phòng.
+it-communications|Trung tâm Công nghệ Thông tin và Liên lạc|IT & communications centre|https://www.vietsov.com.vn/Pages/cntt.aspx|Trang thông tin chính thức của đơn vị trực thuộc.
+resort|Khu nghỉ dưỡng Vietsovpetro|Vietsovpetro Resort|https://www.vietsov.com.vn/Pages/nghiduong.aspx|Thông tin về cơ sở nghỉ dưỡng.
+hotel|Khách sạn Vietsovpetro|Vietsovpetro Hotel|https://www.vietsov.com.vn/Pages/khachsan.aspx|Thông tin khách sạn và các dịch vụ lưu trú.
+security|Đội Bảo vệ vũ trang|Armed protection team|https://www.vietsov.com.vn/Pages/bvvt.aspx|Thông tin về đội bảo vệ của đơn vị.
+housing|Ban Đời sống nhà ở và Văn phòng làm việc|Housing and office administration|https://www.vietsov.com.vn/Pages/dsno.aspx|Thông tin về cơ sở vật chất, nhà ở và văn phòng.
 `,p("DVTV"))},
 {slug:"services",vi:"Sản phẩm – Dịch vụ",en:"Products & services",intro:"Đầy đủ 15 nhóm dịch vụ từ danh mục hiện tại, без сокращения категорий.",source:p("SanPhamDV"),items:lines(`
 offshore-design|Thiết kế các công trình dầu khí biển|Offshore facility design
