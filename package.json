@@ -2,6 +2,7 @@
   "name": "vietsovpetro-concept",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,6 +10,8 @@
     "check:structure": "node --experimental-strip-types scripts/check-catalog.mjs"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.15.0",
     "next": "^15.5.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
@@ -23,3 +26,4 @@
     "node": ">=22"
   }
 }
+

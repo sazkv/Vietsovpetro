@@ -42,7 +42,7 @@ hotel|Khách sạn Vietsovpetro|Vietsovpetro Hotel|https://www.vietsov.com.vn/Pa
 security|Đội Bảo vệ vũ trang|Armed protection team|https://www.vietsov.com.vn/Pages/bvvt.aspx|Thông tin về đội bảo vệ của đơn vị.
 housing|Ban Đời sống nhà ở và Văn phòng làm việc|Housing and office administration|https://www.vietsov.com.vn/Pages/dsno.aspx|Thông tin về cơ sở vật chất, nhà ở và văn phòng.
 `,p("DVTV"))},
-{slug:"services",vi:"Sản phẩm – Dịch vụ",en:"Products & services",intro:"Đầy đủ 15 nhóm dịch vụ từ danh mục hiện tại, без сокращения категорий.",source:p("SanPhamDV"),items:lines(`
+{slug:"services",vi:"Sản phẩm – Dịch vụ",en:"Products & services",intro:"Đầy đủ 15 nhóm dịch vụ từ danh mục hiện tại, giữ nguyên các nhóm thông tin được công bố.",source:p("SanPhamDV"),items:lines(`
 offshore-design|Thiết kế các công trình dầu khí biển|Offshore facility design
 exploration|Nghiên cứu thăm dò và khai thác mỏ|Exploration and field development
 field-operations|Điều hành khai thác mỏ|Field operations
@@ -123,3 +123,4 @@ export const historicalMilestones=[
 {date:"25/01/2019",title:"Khai thác dầu đầu tiên tại mỏ Cá Tầm"},
 {date:"14/02/2021",title:"Khai thác tấn dầu thứ 240 triệu"}
 ];
+

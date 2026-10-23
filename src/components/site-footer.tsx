@@ -1,3 +1,21 @@
 import Link from "next/link";
-import {groups,serviceLinks} from "@/lib/site-map";
-export default function SiteFooter(){return <footer className="portal-footer"><div className="container"><div className="footer-columns"><div><Link href="/" className="footer-brand">VIETSOVPETRO<span>.</span></Link><p>Independent redesign proposal. This website is not operated by or affiliated with Vietsovpetro.</p><a href="https://www.vietsov.com.vn/" target="_blank" rel="noopener noreferrer">Truy cập website chính thức ↗</a></div><div><strong>Thông tin</strong>{groups.slice(0,4).map(g=><Link key={g.slug} href={"/"+g.slug}>{g.vi}</Link>)}</div><div><strong>Hoạt động</strong>{groups.slice(4).map(g=><Link key={g.slug} href={"/"+g.slug}>{g.vi}</Link>)}</div><div><strong>Liên hệ</strong><p>105 Lê Lợi, phường Vũng Tàu, TP. Hồ Chí Minh, Việt Nam</p><a href="tel:+842543839871">+84 254 3839 871</a><a href="mailto:vspadmin@vietsov.com.vn">vspadmin@vietsov.com.vn</a><Link href="/systems">Cổng dịch vụ / Liên kết</Link></div></div><div className="footer-bottom"><span>© Independent design study · 2026</span><span>Content verification in progress · Official source remains authoritative</span><span>{serviceLinks.length} service links mapped</span></div></div></footer>}
+import {groups} from "@/lib/site-map";
+
+export default function SiteFooter() {
+  return <footer className="site-footer">
+    <div className="container">
+      <div className="footer-main">
+        <div className="footer-intro">
+          <Link href="/" className="footer-wordmark">VIETSOVPETRO<span>.</span></Link>
+          <p>Hợp tác trên biển. Kiến tạo từ chiều sâu.</p>
+          <span>Bản đề xuất thiết kế độc lập. Không thuộc, không được Vietsovpetro ủy quyền hay vận hành.</span>
+        </div>
+        <div className="footer-link-column"><strong>Khám phá</strong>{groups.slice(0,4).map(group => <Link key={group.slug} href={"/" + group.slug}>{group.vi}</Link>)}</div>
+        <div className="footer-link-column"><strong>Thông tin</strong>{groups.slice(4).map(group => <Link key={group.slug} href={"/" + group.slug}>{group.vi}</Link>)}<Link href="/systems">Hệ thống & liên kết</Link></div>
+        <div className="footer-link-column"><strong>Liên hệ công bố</strong><span>105 Lê Lợi, phường Vũng Tàu,<br/>TP. Hồ Chí Minh, Việt Nam</span><a href="tel:+842543839871">+84 254 3839 871</a><a href="https://www.vietsov.com.vn/" target="_blank" rel="noopener noreferrer">Website chính thức ↗</a></div>
+      </div>
+      <div className="footer-bottom"><span>© 2026 · Independent design study</span><span>Nội dung gốc thuộc Vietsovpetro · Đang đối chiếu nguồn</span></div>
+    </div>
+  </footer>;
+}
+
