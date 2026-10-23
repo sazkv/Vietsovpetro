@@ -13,7 +13,7 @@ All original public-facing pages, documents, downloads, images, languages, news 
 | Existing section | Original URL | New route | Known detail coverage |
 | --- | --- | --- | --- |
 | Corporate overview | /Pages/GioiThieuCT.aspx | /company | 11 subtopics mapped |
-| Organizational units | /Pages/DVTV.aspx | /units | 12 units named on accessible index; official overview mentions 18 total |
+| Organizational units | /Pages/DVTV.aspx | /units | 16 units identified via subordinate-unit pages; official overview mentions 18 total |
 | Products and services | /Pages/SanPhamDV.aspx | /services | 15 groups mapped |
 | Projects and partners | /Pages/DuAn.aspx | /projects | 5 projects groups + partners |
 | Resources | /Pages/nguonnhanluc.aspx | /resources | HR, facilities, finance |
@@ -42,7 +42,7 @@ Photo archive and environmental-information link resolution remain open tasks.
 
 - Company profile, milestones, management roster, org structure and awards.
 - Fifteen original service categories and their detailed pages, technical specifications and materials.
-- All listed operating units and their associated sites. *The unit index displays 12 names, but the company overview refers to 18 units: reconcile before declaring the directory complete.*
+- All listed operating units and their associated sites. *The primary unit index initially displayed 12 entries; individual unit pages expose links to 16 entries. The company overview states 18. Reconcile the remaining two before declaring the directory complete.*
 - Projects tables, client names, scope of work, photos and source documents.
 - HR, facilities, financial-resource information.
 - News article bodies, original publication dates, related news, categories, tags and media.
