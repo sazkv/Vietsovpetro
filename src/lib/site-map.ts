@@ -24,19 +24,19 @@ archive|Hình ảnh tư liệu|Photo archive||Kho hình ảnh tư liệu lịch 
 hse|An toàn – Sức khỏe – Môi trường|HSE|https://www.vietsov.com.vn/Pages/AnToanSKMT.aspx|Chính sách và hoạt động an toàn, sức khỏe, môi trường.
 environment|Thông tin môi trường|Environmental information||Thông tin công khai về môi trường.
 `,p("GioiThieuCT"))},
-{slug:"units",vi:"Đơn vị trực thuộc",en:"Operating units",intro:"Danh mục các xí nghiệp, viện và trung tâm trực thuộc được nêu trên website gốc. Các đơn vị còn lại cần bổ sung trong giai đoạn kiểm kê.",source:p("DVTV"),items:lines(`
-oil-production|Xí nghiệp Khai thác Dầu khí|Oil production division
-construction|Xí nghiệp Xây lắp, Khảo sát và Sửa chữa công trình dầu khí|Offshore construction division
-marine-diving|Xí nghiệp Vận tải biển và Công tác lặn|Marine transport & diving division
-research-design|Viện Nghiên cứu Khoa học và Thiết kế Dầu khí biển|Research & design institute
-well-logging|Xí nghiệp Địa vật lý Giếng khoan|Well logging division
-electro-mechanical|Xí nghiệp Cơ điện|Electro-mechanical division
-drilling|Xí nghiệp Khoan và Sửa giếng|Drilling and well repair division
-gas-facilities|Xí nghiệp Khai thác các Công trình khí|Gas facilities division|https://gas.vietsov.com.vn/Pages/home.aspx|Thông tin chi tiết từ website đơn vị khí.
-port-supply|Xí nghiệp Dịch vụ cảng và Cung ứng vật tư thiết bị|Port & supply division|https://port.vietsov.com.vn/|Thông tin từ website của đơn vị.
-safety-environment|Trung tâm An toàn và Bảo vệ môi trường|Safety & environment centre|https://sepdvsp.com.vn/|Website của trung tâm.
-medical|Trung tâm Y tế|Medical centre
-it-communications|Trung tâm Công nghệ Thông tin và Liên lạc|IT & communications centre
+{slug:"units",vi:"Đơn vị trực thuộc",en:"Operating units",intro:"Danh mục 16 đơn vị được xác định từ các trang thông tin đơn vị trực thuộc. Hồ sơ giới thiệu nói đến 18 đơn vị; cần đối chiếu 2 đơn vị chưa xác định.",source:p("DVTV"),items:lines(`
+oil-production|Xí nghiệp Khai thác Dầu khí|Oil production division|https://www.vietsov.com.vn/Pages/xnkt.aspx|Trang thông tin chính thức của đơn vị trực thuộc.
+construction|Xí nghiệp Xây lắp, Khảo sát và Sửa chữa công trình dầu khí|Offshore construction division|https://www.vietsov.com.vn/Pages/xnxl.aspx|Trang thông tin chính thức của đơn vị trực thuộc.
+marine-diving|Xí nghiệp Vận tải biển và Công tác lặn|Marine transport & diving division|https://www.vietsov.com.vn/Pages/xnvtb.aspx|Trang thông tin chính thức của đơn vị trực thuộc.
+research-design|Viện Nghiên cứu Khoa học và Thiết kế Dầu khí biển|Research & design institute|https://www.vietsov.com.vn/Pages/vien.aspx|Trang thông tin chính thức của đơn vị trực thuộc.
+well-logging|Xí nghiệp Địa vật lý Giếng khoan|Well logging division|https://www.vietsov.com.vn/Pages/xndvl.aspx|Trang thông tin chính thức của đơn vị trực thuộc.
+electro-mechanical|Xí nghiệp Cơ điện|Electro-mechanical division|https://www.vietsov.com.vn/Pages/xncd.aspx|Trang thông tin chính thức của đơn vị trực thuộc.
+drilling|Xí nghiệp Khoan và Sửa giếng|Drilling and well repair division|https://www.vietsov.com.vn/Pages/xnkhoan.aspx|Trang thông tin chính thức của đơn vị trực thuộc.
+gas-facilities|Xí nghiệp Khai thác các Công trình khí|Gas facilities division|https://www.vietsov.com.vn/Pages/xnk.aspx|Thông tin chi tiết từ website đơn vị khí.
+port-supply|Xí nghiệp Dịch vụ cảng và Cung ứng vật tư thiết bị|Port & supply division|https://www.vietsov.com.vn/Pages/xndvc.aspx|Thông tin từ website của đơn vị.
+safety-environment|Trung tâm An toàn và Bảo vệ môi trường|Safety & environment centre|https://www.vietsov.com.vn/Pages/ttat.aspx|Website của trung tâm.
+medical|Trung tâm Y tế|Medical centre|https://www.vietsov.com.vn/Pages/ttyt.aspx|Trang thông tin chính thức của đơn vị trực thuộc.
+it-communications|Trung tâm Công nghệ Thông tin và Liên lạc|IT & communications centre|https://www.vietsov.com.vn/Pages/cntt.aspx|Trang thông tin chính thức của đơn vị trực thuộc.\nresort|Khu nghỉ dưỡng Vietsovpetro|Vietsovpetro Resort|https://www.vietsov.com.vn/Pages/nghiduong.aspx|Thông tin về cơ sở nghỉ dưỡng.\nhotel|Khách sạn Vietsovpetro|Vietsovpetro Hotel|https://www.vietsov.com.vn/Pages/khachsan.aspx|Thông tin khách sạn và các dịch vụ lưu trú.\nsecurity|Đội Bảo vệ vũ trang|Armed protection team|https://www.vietsov.com.vn/Pages/bvvt.aspx|Thông tin về đội bảo vệ của đơn vị.\nhousing|Ban Đời sống nhà ở và Văn phòng làm việc|Housing and office administration|https://www.vietsov.com.vn/Pages/dsno.aspx|Thông tin về cơ sở vật chất, nhà ở và văn phòng.
 `,p("DVTV"))},
 {slug:"services",vi:"Sản phẩm – Dịch vụ",en:"Products & services",intro:"Đầy đủ 15 nhóm dịch vụ từ danh mục hiện tại, без сокращения категорий.",source:p("SanPhamDV"),items:lines(`
 offshore-design|Thiết kế các công trình dầu khí biển|Offshore facility design
