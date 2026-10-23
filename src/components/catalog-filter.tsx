@@ -1,0 +1,5 @@
+"use client";
+import {useMemo,useState} from "react";
+import Link from "next/link";
+import type {ContentItem} from "@/lib/site-map";
+export default function CatalogFilter({items,section}:{items:ContentItem[],section:string}){const[query,setQuery]=useState("");const filtered=useMemo(()=>items.filter(it=>(it.vi+" "+it.en+" "+it.summary).toLocaleLowerCase("vi").includes(query.toLocaleLowerCase("vi").trim())),[items,query]);return <div><div className="filter-bar"><label htmlFor="category-search">Tìm trong danh mục</label><input id="category-search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Tên dịch vụ, dự án, đơn vị..." /><span>{filtered.length} / {items.length}</span></div><div className="directory-grid">{filtered.map((item,i)=><Link className="directory-item" key={item.slug} href={`/${section}/${item.slug}`}><span className="directory-no">{String(items.indexOf(item)+1).padStart(2,"0")}</span><div><h2>{item.vi}</h2><p>{item.en}</p></div><span className="directory-arrow" aria-hidden>↗</span></Link>)}</div>{!filtered.length&&<p role="status">Không có kết quả phù hợp. Hãy thử một từ khóa khác.</p>}</div>}
