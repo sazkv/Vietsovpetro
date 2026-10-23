@@ -88,6 +88,11 @@ export const groupBySlug=Object.fromEntries(groups.map(g=>[g.slug,g])) as Record
 export const allContent=groups.flatMap(g=>g.items.map(item=>({...item,group:g.slug,groupTitle:g.vi})));
 export const serviceLinks=[
 {label:"eOffice",url:"https://eoffice.vietsov.com.vn/"},
+{label:"Cẩm nang văn hóa Vietsovpetro",url:"https://www.vietsov.com.vn/FlipBook/mobile/home.html"},
+{label:"Virtual heritage room (3D)",url:"https://3dscanning.vn/360/matterport/index.html"},
+{label:"Flight schedule / Lịch Bay",url:"https://www.vietsov.com.vn/Pages/LichBay.aspx"},
+{label:"Vessel schedule / Lịch Tàu",url:"https://www.vietsov.com.vn/LichTau/Forms/AllItems.aspx"},
+{label:"Corporate certificate download",url:"https://www.vietsov.com.vn/Documents/VietsovPetroRootCertificate.crt"},
 {label:"Vietsovpetro Mail",url:"https://mail.vietsov.com.vn/"},
 {label:"Tenders / Hồ sơ mời thầu",url:"https://tender.vietsov.com.vn/"},
 {label:"General safety test",url:"https://ktat.vietsov.com.vn/"},
