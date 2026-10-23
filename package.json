@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "check:structure": "node --experimental-strip-types scripts/check-catalog.mjs"
   },
   "dependencies": {
     "next": "^15.5.0",
@@ -17,5 +18,8 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
