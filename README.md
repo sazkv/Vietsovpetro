@@ -7,7 +7,7 @@ A source-mapped Vietnamese-first Next.js website concept for an industrial corpo
 ## Current implementation
 
 - Responsive industrial-style homepage, mobile nav and deep section dropdown navigation.
-- 56 mapped public content-route records organized under company, operating units, products and services, projects, resources, news, careers and contact.
+- 60 mapped public content-route records organized under company, operating units, products and services, projects, resources, news, careers and contact.
 - Search by directory titles and categories.
 - Detail-page templates with canonical source links, original date where known, migration status and navigation to related pages.
 - Historical milestone timeline, corporate contact information and external systems directory.
