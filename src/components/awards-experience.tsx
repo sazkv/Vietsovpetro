@@ -130,7 +130,7 @@ export default function AwardsExperience({items,locale="vi"}:{items:AwardItem[];
        className={"museum-album-item "+(item.id===picked.id?"museum-album-item-active":"")}
        aria-pressed={item.id===picked.id} onClick={()=>select(item.id)} aria-label={awardName(item)}>
         <span className="museum-album-image">
-         {thumb?<img src={thumb} loading={index<6?"eager":"lazy"} decoding="async" alt="" onError={()=>setFailed(prev=>[...prev,thumb])}/>:<span>{item.year||"—"}</span>}
+         {thumb?<img src={thumb} loading="lazy" decoding="async" alt="" onError={()=>setFailed(prev=>[...prev,thumb])}/>:<span>{item.year||"—"}</span>}
         </span>
         <span className="museum-album-name">{awardName(item)}</span>
         <small>{item.year||"—"}</small>
