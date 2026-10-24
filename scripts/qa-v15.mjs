@@ -44,7 +44,7 @@ try{
    assert(await page.locator(".r-utility-signin").isVisible(),"Staff login icon not visible");
    await page.locator(".r-utility-dropdown summary").click();
    assert(await page.locator(".r-utility-panel").isVisible(),"Employee links dropdown missing");
-   assert.equal(await page.locator(".r-utility-panel-grid a").count(),11,"Public employee URLs must be preserved");
+   assert.equal(await page.locator(".r-utility-panel-grid a").count(),13,"All original employee URLs must be preserved");
    await page.locator(".r-utility-dropdown summary").click();
    assert(!(await page.locator(".r-utility-panel").isVisible()),"Employee menu should close");
    await page.screenshot({path:captures+"/"+label+"-"+locale+"-hero.png",fullPage:false});
