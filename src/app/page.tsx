@@ -9,6 +9,6 @@ import {sectionOrder,sectionPages} from "@/lib/original-content";
 
 export default function HomePage() {
   setRequestLocale("vi");
-  const preview=Object.fromEntries(sectionOrder.vi.filter(section=>section!=="news").map(section=>[section,sectionPages("vi",section).filter(page=>page.route!==`/vi/${section}/`).slice(0,10).map(page=>({title:displayTitle(page),route:page.route}))]));
+  const preview=Object.fromEntries(sectionOrder.vi.filter(section=>section!=="news").map(section=>[section,sectionPages("vi",section).filter(page=>page.route!==`/vi/${section}/`&&!(section==="company"&&page.slug==="image")).slice(0,10).map(page=>({title:displayTitle(page),route:page.route})).concat(section==="company"?[{title:"Hình ảnh tư liệu",route:`/${"vi"}/company/gallery/`}]:[])]));
   return <NextIntlClientProvider locale="vi" messages={messages.vi}><SourceNavigation locale="vi" preview={preview}/><SourceHome locale="vi"/><SourceFooter locale="vi"/></NextIntlClientProvider>;
 }
