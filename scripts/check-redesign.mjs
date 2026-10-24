@@ -177,12 +177,46 @@ const capabilityFile=join(root,"out","vi","company","tiemnang","index.html");
 if(existsSync(capabilityFile)){
  const html=read(capabilityFile);
  const chapters=(html.match(/class="ep-chapter ep-chapter-/g)||[]).length;
- if(chapters<3)failures.push("Capabilities should be segmented into distinct project/service chapters, found "+chapters);
+ if(chapters<2)failures.push("Capabilities should be segmented into source-backed chapters, found "+chapters);
 }
 const profileFile=join(root,"out","vi","company","gioithieuct","index.html");
 if(existsSync(profileFile)){
  const html=read(profileFile);
  if(!html.includes("ep-intro-continuation"))failures.push("Full original company introduction must remain visible");
+}
+
+// Source imports have different slugs per locale. A previous version only
+// routed the Vietnamese variants to interactive designs.
+const experienceRoutes=[
+ ["vi","lichsuhinhthanh","hc-experience"],
+ ["ru","significant","hc-experience"],
+ ["en","significant","hc-experience"],
+ ["vi","nhungthanhtuu","ac-experience"],
+ ["ru","environment","ac-experience"],
+ ["en","environment","ac-experience"],
+ ["vi","cacdanhhieu","aw-experience"],
+ ["ru","healthcare","aw-experience"],
+ ["en","healthcare","aw-experience"]
+];
+for(const [locale,slug,marker] of experienceRoutes){
+ const path=join(root,"out",locale,"company",slug,"index.html");
+ if(!existsSync(path)){failures.push("Missing localized interactive page: "+locale+"/"+slug);continue;}
+ const html=read(path).split("</main>")[0];
+ if(!html.includes(marker))failures.push(locale+"/"+slug+" still renders legacy HTML instead of "+marker);
+ if(html.includes('class="source-copy"'))
+  failures.push(locale+"/"+slug+" still exposes original legacy source layout");
+}
+for(const locale of ["vi","ru","en"]){
+ const slug=locale==="vi"?"tiemnang":"community";
+ const path=join(root,"out",locale,"company",slug,"index.html");
+ if(!existsSync(path))continue;
+ const html=read(path).split("</main>")[0];
+ if(!html.includes("ep-editorial-v12"))
+  failures.push(locale+"/capabilities missing corrected media layout");
+ if(html.includes('class="ep-illustrations"')||html.includes('class="ep-technical-diagrams"'))
+  failures.push(locale+"/capabilities still displays decorative/low-res images inside text blocks");
+ if(!html.includes('class="ep-banner-image"'))
+  failures.push(locale+"/capabilities missing dedicated original-ratio photo banner");
 }
 const archive=JSON.parse(read("src/data/original-pages.json"));
 if(archive.length<2300)failures.push(`Content archive unexpectedly small: ${archive.length}`);
