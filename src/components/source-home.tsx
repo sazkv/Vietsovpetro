@@ -95,7 +95,7 @@ export default function SourceHome({locale}:{locale:Locale}){
      <div className="r-home-projects-visual"><img src={`${base}/brand/hero-offshore-2.jpg`} alt="" loading="lazy"/></div>
      <div className="r-home-projects-list">
       <h2>{t.projectSection}</h2>
-      <div>{projects.map((p,i)=><Link key={p.href||p.title} href={p.href||`/${locale}/projects/`}><span>{String(i+1).padStart(2,"0")}</span><strong>{p.title}</strong><Arrow/></Link>)}</div>
+      <div>{projects.map((p,i)=><Link key={p.href||p.title} href={p.href||`/${locale}/projects/`}><span>{String(i+1).padStart(2,"0")}</span><strong>{pages.find(item=>item.route===p.href)?displayTitle(pages.find(item=>item.route===p.href)!):p.title}</strong><Arrow/></Link>)}</div>
       <Link className="r-arrow-link r-arrow-link-light" href={`/${locale}/projects/`}>{t.projectAll}<Arrow/></Link>
      </div>
     </div>
