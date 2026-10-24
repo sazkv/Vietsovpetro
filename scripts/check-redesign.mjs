@@ -50,7 +50,7 @@ for(const [section,slug,expected] of [
 ]){
  const p=join(root,"out","vi",section,slug,"index.html");
  if(!existsSync(p)){failures.push(`Missing detail: ${section}/${slug}`);continue;}
- const h=(read(p).match(/<h1[^>]*>([\\s\\S]*?)<\\/h1>/i)||[])[1]||"";
+ const h=(read(p).match(/<h1[^>]*>(.*?)<\/h1>/is)||[])[1]||"";
  if(!h.includes(expected))failures.push(`Unresolved source title on ${section}/${slug}`);
 }
 if(existsSync(page("company"))){
