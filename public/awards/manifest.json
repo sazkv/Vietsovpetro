@@ -1,0 +1,262 @@
+{
+  "danhhieu/sv.png": {
+    "asset": "/awards/sv.png",
+    "original": "https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/danhhieu/sv.png",
+    "originalPx": [
+      207,
+      352
+    ],
+    "outputPx": [
+      600,
+      1056
+    ],
+    "backgroundRemoved": true,
+    "removedCoverage": 0.589,
+    "backgroundRGB": [
+      255,
+      255,
+      255
+    ],
+    "bytes": 419008
+  },
+  "danhhieu/hcm.jpg": {
+    "asset": "/awards/hcm.png",
+    "original": "https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/danhhieu/hcm.jpg",
+    "originalPx": [
+      208,
+      354
+    ],
+    "outputPx": [
+      561,
+      1062
+    ],
+    "backgroundRemoved": true,
+    "removedCoverage": 0.542,
+    "backgroundRGB": [
+      255,
+      255,
+      255
+    ],
+    "bytes": 682645
+  },
+  "danhhieu/ld1.jpg": {
+    "asset": "/awards/ld1.png",
+    "original": "https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/danhhieu/ld1.jpg",
+    "originalPx": [
+      208,
+      354
+    ],
+    "outputPx": [
+      624,
+      1062
+    ],
+    "backgroundRemoved": true,
+    "removedCoverage": 0.419,
+    "backgroundRGB": [
+      255,
+      252,
+      223
+    ],
+    "bytes": 574502
+  },
+  "danhhieu/ld2.jpg": {
+    "asset": "/awards/ld2.png",
+    "original": "https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/danhhieu/ld2.jpg",
+    "originalPx": [
+      208,
+      354
+    ],
+    "outputPx": [
+      624,
+      1062
+    ],
+    "backgroundRemoved": false,
+    "removedCoverage": 0,
+    "backgroundRGB": [
+      30,
+      89,
+      144
+    ],
+    "bytes": 586658
+  },
+  "danhhieu/ld3.jpg": {
+    "asset": "/awards/ld3.png",
+    "original": "https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/danhhieu/ld3.jpg",
+    "originalPx": [
+      208,
+      354
+    ],
+    "outputPx": [
+      612,
+      1047
+    ],
+    "backgroundRemoved": true,
+    "removedCoverage": 0.544,
+    "backgroundRGB": [
+      255,
+      255,
+      255
+    ],
+    "bytes": 615680
+  },
+  "danhhieu/dl.jpg": {
+    "asset": "/awards/dl.png",
+    "original": "https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/danhhieu/dl.jpg",
+    "originalPx": [
+      208,
+      354
+    ],
+    "outputPx": [
+      624,
+      1062
+    ],
+    "backgroundRemoved": true,
+    "removedCoverage": 0.542,
+    "backgroundRGB": [
+      255,
+      255,
+      255
+    ],
+    "bytes": 761077
+  },
+  "danhhieu/dl2.jpg": {
+    "asset": "/awards/dl2.png",
+    "original": "https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/danhhieu/dl2.jpg",
+    "originalPx": [
+      208,
+      354
+    ],
+    "outputPx": [
+      624,
+      1062
+    ],
+    "backgroundRemoved": true,
+    "removedCoverage": 0.531,
+    "backgroundRGB": [
+      225,
+      227,
+      228
+    ],
+    "bytes": 766760
+  },
+  "danhhieu/dl3.jpg": {
+    "asset": "/awards/dl3.png",
+    "original": "https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/danhhieu/dl3.jpg",
+    "originalPx": [
+      208,
+      354
+    ],
+    "outputPx": [
+      543,
+      1062
+    ],
+    "backgroundRemoved": true,
+    "removedCoverage": 0.646,
+    "backgroundRGB": [
+      255,
+      255,
+      255
+    ],
+    "bytes": 594342
+  },
+  "danhhieu/qc.jpg": {
+    "asset": "/awards/qc.png",
+    "original": "https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/danhhieu/qc.jpg",
+    "originalPx": [
+      118,
+      200
+    ],
+    "outputPx": [
+      437,
+      740
+    ],
+    "backgroundRemoved": true,
+    "removedCoverage": 0.446,
+    "backgroundRGB": [
+      255,
+      255,
+      255
+    ],
+    "bytes": 292491
+  },
+  "danhhieu/bv.jpg": {
+    "asset": "/awards/bv.png",
+    "original": "https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/danhhieu/bv.jpg",
+    "originalPx": [
+      118,
+      200
+    ],
+    "outputPx": [
+      450,
+      740
+    ],
+    "backgroundRemoved": true,
+    "removedCoverage": 0.509,
+    "backgroundRGB": [
+      255,
+      255,
+      255
+    ],
+    "bytes": 216163
+  },
+  "danhhieu/cc1.jpg": {
+    "asset": "/awards/cc1.png",
+    "original": "https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/danhhieu/cc1.jpg",
+    "originalPx": [
+      208,
+      354
+    ],
+    "outputPx": [
+      543,
+      1050
+    ],
+    "backgroundRemoved": true,
+    "removedCoverage": 0.63,
+    "backgroundRGB": [
+      255,
+      255,
+      255
+    ],
+    "bytes": 514414
+  },
+  "danhhieu/cc3.jpg": {
+    "asset": "/awards/cc3.png",
+    "original": "https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/danhhieu/cc3.jpg",
+    "originalPx": [
+      208,
+      354
+    ],
+    "outputPx": [
+      543,
+      1062
+    ],
+    "backgroundRemoved": true,
+    "removedCoverage": 0.611,
+    "backgroundRGB": [
+      255,
+      255,
+      255
+    ],
+    "bytes": 533578
+  },
+  "lanhdao/ahld.jpg": {
+    "asset": "/awards/ahld.png",
+    "original": "https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/lanhdao/ahld.jpg",
+    "originalPx": [
+      200,
+      267
+    ],
+    "outputPx": [
+      549,
+      801
+    ],
+    "backgroundRemoved": true,
+    "removedCoverage": 0.662,
+    "backgroundRGB": [
+      254,
+      254,
+      254
+    ],
+    "bytes": 397717
+  }
+}
