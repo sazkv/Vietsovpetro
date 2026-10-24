@@ -2,6 +2,8 @@ import UIIcon from "@/components/ui-icon";
 import Link from "next/link";
 import SourceCopy from "@/components/source-copy";
 import {parseHistory,parseAwards,parseAchievements} from "@/lib/structured-content";
+import HistoryExperience from "@/components/history-experience";
+import AchievementExperience from "@/components/achievement-experience";
 import {sectionPages,type SourcePage,type Locale} from "@/lib/original-content";
 
 const base=process.env.NEXT_PUBLIC_BASE_PATH||"";
@@ -17,13 +19,7 @@ export default function CompanyDetail({page}:{page:SourcePage}){
 
   if(locale==="vi"&&slug==="lichsuhinhthanh"){
     const events=parseHistory(html);
-    if(events.length)return <ol className="v-history">
-      {events.map((event,i)=><li className="v-history-event" key={event.date+"-"+i}>
-        <span className="v-history-year">{event.year}</span>
-        <div className="v-history-story"><time>{event.date}</time><p>{event.description}</p></div>
-        {event.image&&<div className="v-history-photo"><img src={event.image} loading="lazy" alt=""/></div>}
-      </li>)}
-    </ol>;
+    if(events.length)return <HistoryExperience events={events} locale={locale}/>;
   }
 
   if(locale==="vi"&&slug==="cacdanhhieu"){
@@ -38,13 +34,7 @@ export default function CompanyDetail({page}:{page:SourcePage}){
   
   if(locale==="vi"&&slug==="nhungthanhtuu"){
     const achievements=parseAchievements(html);
-    if(achievements.length)return <div className="v-achievement-grid">
-      {achievements.map((item,i)=><article className="v-achievement" key={i}>
-        <strong>{item.number}</strong>
-        {item.label&&<span>{item.label}</span>}
-        <p>{item.description}</p>
-      </article>)}
-    </div>;
+    if(achievements.length)return <AchievementExperience items={achievements}/>;
   }
 
   if(["cocau","organization"].includes(slug)){
