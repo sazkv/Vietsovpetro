@@ -17,6 +17,7 @@ export function ResourceIndex({locale,page}:{locale:Locale;page?:SourcePage}){
  const t=words[locale];
  const related=sectionPages(locale,"resources").filter(p=>p.route!==`/${locale}/resources/`);
  const facilities=related.find(p=>p.slug==="cosovatchat");
+ const capabilityList=facilities?parseFacilities(facilities.html).slice(0,6):[];
  const statements=page?[...page.html.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li\s*>/gi)]
    .map(m=>textOf(m[1])).filter(Boolean):[];
  return <div className="v-resource-index shell">
@@ -32,12 +33,21 @@ export function ResourceIndex({locale,page}:{locale:Locale;page?:SourcePage}){
        <span>{String(i+1).padStart(2,"0")}</span><p>{statement}</p>
      </div>)}
    </div>}
-   {facilities&&<Link className="v-resource-facility-entry" href={facilities.route}>
-     <div className="v-resource-facility-photo">{facilities.images?.[0]?<img src={facilities.images[0]} loading="lazy" alt=""/>:<img src={`${base}/brand/hero-offshore-2.jpg`} loading="lazy" alt=""/>}</div>
-     <div className="v-resource-facility-link">
-       <h2>{t.facilities}</h2><span aria-hidden="true"><UIIcon name="up-right" size={18}/></span>
+   {facilities&&<section className="v-resource-equipment">
+     <div className="v-resource-equipment-heading">
+       <h2>{t.facilities}</h2>
+       <Link href={facilities.route}>{t.all} <UIIcon name="up-right" size={19}/></Link>
      </div>
-   </Link>}
+     <Link className="v-resource-equipment-feature" href={facilities.route}>
+       <img src={facilities.images?.[0]||`${base}/brand/hero-offshore-2.jpg`} alt="" loading="lazy"/>
+       <span>{t.all}<UIIcon name="up-right" size={23}/></span>
+     </Link>
+     {capabilityList.length>0&&<div className="v-resource-equipment-grid">
+       {capabilityList.map((item,i)=><Link href={`${facilities.route}#facility-${i+1}`} key={item.title}>
+         <strong>{item.title}</strong><UIIcon name="up-right" size={20}/>
+       </Link>)}
+     </div>}
+   </section>}
    {related.filter(p=>p.route!==facilities?.route).map(p=><Link key={p.route} className="v-resource-extra" href={p.route}>{displayTitle(p)} <span aria-hidden="true"><UIIcon name="up-right" size={18}/></span></Link>)}
  </div>;
 }
@@ -46,7 +56,7 @@ export function FacilityDetail({page}:{page:SourcePage}){
  const facilities=parseFacilities(page.html);
  if(!facilities.length)return <div className="v-facility-fallback"><SourceCopy html={page.html} title={page.title}/></div>;
  return <div className="v-facilities">
-    {facilities.map((facility,i)=><section className="v-facility" key={facility.title}>
+    {facilities.map((facility,i)=><section className="v-facility" id={`facility-${i+1}`} key={facility.title}>
       <div className="v-facility-image">
         {facility.image?<img src={facility.image} alt="" loading="lazy"/>:<span aria-hidden="true">{String(i+1).padStart(2,"0")}</span>}
       </div>
