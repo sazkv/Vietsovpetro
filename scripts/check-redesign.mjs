@@ -61,9 +61,9 @@ if(existsSync(page("company"))){
 }
 
 for(const [slug,marker] of [
- ["lichsuhinhthanh","v-history-event"],
+ ["lichsuhinhthanh","hx-story"],
  ["cacdanhhieu","v-awards-grid"],
- ["nhungthanhtuu","v-achievement-grid"],
+ ["nhungthanhtuu","ax-experience"],
  ["cocau","v-organization"],
  ["lanhdao","v-leadership-grid"]
 ]){
@@ -106,6 +106,21 @@ if(existsSync(leadershipFile)){
   const num=(html.match(/class="v-leadership-card"/g)||[]).length;
   const photos=(html.match(/class="v-leadership-portrait"/g)||[]).length;
   if(num!==11||photos!==11)failures.push(`Expected 11 real, consistently framed portrait cards, found ${num} cards and ${photos} photos`);
+}
+
+const historyFile=join(root,"out","vi","company","lichsuhinhthanh","index.html");
+if(existsSync(historyFile)){
+ const html=read(historyFile);
+ const buttons=(html.match(/class="hx-rail-item/g)||[]).length;
+ if(buttons<15)failures.push("Interactive timeline must expose all original history events, found "+buttons);
+ if(!html.includes('role="progressbar"')||!html.includes("hx-stage-media"))
+  failures.push("Timeline requires progress and large photographic stage");
+}
+const achievementsFile=join(root,"out","vi","company","nhungthanhtuu","index.html");
+if(existsSync(achievementsFile)){
+ const html=read(achievementsFile);
+ if(!html.includes("ax-hero")||!html.includes("ax-duo")||!html.includes("ax-output"))
+  failures.push("Achievements page must render complete editorial data-wall hierarchy");
 }
 const archive=JSON.parse(read("src/data/original-pages.json"));
 if(archive.length<2300)failures.push(`Content archive unexpectedly small: ${archive.length}`);
