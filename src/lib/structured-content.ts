@@ -62,8 +62,9 @@ export function parseAchievements(html:string):Achievement[]{
     const detail=content.match(/<h4\b[^>]*>([\s\S]*?)<\/h4\s*>/i);
     const number=textOf(main?.[1]||"");
     const description=textOf(detail?.[1]||"");
-    const label=textOf(content.slice((main?.index||0)+(main?.[0].length||0),detail?.index||content.length))
-      .replace(/^\d+\s*/,"").slice(0,92);
+    const after=content.slice((main?.index||0)+(main?.[0].length||0),detail?.index||content.length);
+    const firstText=after.match(/^([\s\S]*?)(?:<\/div\s*>|<h[1-6]\b)/i)?.[1]||after;
+    const label=textOf(firstText).replace(/^\d+\s*/,"").slice(0,92);
     return {number,label,description};
   }).filter(x=>x.number&&x.description);
 }
@@ -78,8 +79,8 @@ export function parseFacilities(html:string):Facility[]{
   return heads.map((h,i)=>{
     const next=heads[i+1]?.offset||html.length;
     const slice=html.slice(h.end,next);
-    const items=[...slice.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li\s*>/gi)]
-     .map(m=>textOf(m[1])).filter(t=>t.length>7);
+    const items=[...new Set([...slice.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li\s*>/gi)]
+     .map(m=>textOf(m[1])).filter(t=>t.length>7))];
     const intro=slice.slice(0,slice.indexOf("<ul")>=0?slice.indexOf("<ul"):slice.length);
     const summary=textOf(intro).replace(/Xem thêm/gi,"").trim();
     const prior=imgs.filter(img=>img.offset<h.offset).at(-1);
