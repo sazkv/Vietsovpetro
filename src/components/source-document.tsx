@@ -12,13 +12,13 @@ function isPartners(page:SourcePage){
  return /\/doitac\.aspx(?:\?|$)/i.test(page.sourceUrl)||page.slug.toLowerCase()==="doitac";
 }
 function isLeadership(page:SourcePage){
- return /\/lanhdao\.aspx(?:\?|$)/i.test(page.sourceUrl)||page.slug.toLowerCase()==="lanhdao";
+ return /\/(?:lanhdao|board5|board_old)\.aspx(?:\?|$)/i.test(page.sourceUrl)||["lanhdao","board5","board-old"].includes(page.slug.toLowerCase());
 }
 export default function SourceDocument({page}:{page:SourcePage}){
  const m=messageSet(page.locale);
  const section:Section=page.section==="home"?"pages":page.section;
  const partners=isPartners(page);
- const leadership=isLeadership(page)&&page.locale==="vi";
+ const leadership=isLeadership(page);
  const company=section==="company";
  const resource=section==="resources";
  const facilities=resource&&(page.slug==="cosovatchat"||/cosovatchat\.aspx/i.test(page.sourceUrl));
