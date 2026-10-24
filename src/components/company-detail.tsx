@@ -1,5 +1,3 @@
-import UIIcon from "@/components/ui-icon";
-import Link from "next/link";
 import SourceCopy from "@/components/source-copy";
 import {parseHistory,parseAwards,parseAchievements} from "@/lib/structured-content";
 import HistoryExperience from "@/components/history-experience";
@@ -8,53 +6,49 @@ import AwardsExperience from "@/components/awards-experience";
 import CompanyEditorial from "@/components/company-editorial";
 import OrganizationExperience from "@/components/organization-experience";
 import ArchivalGallery from "@/components/archival-gallery";
-import {sectionPages,type SourcePage,type Locale} from "@/lib/original-content";
+import {type SourcePage} from "@/lib/original-content";
+import {displayTitle} from "@/lib/site-titles";
 
-const base=process.env.NEXT_PUBLIC_BASE_PATH||"";
-const localized={
-  vi:{history:"Lịch sử hình thành",awards:"Danh hiệu",achievements:"Thành tựu",structure:"Cơ cấu tổ chức",offices:"Phòng ban trong bộ máy điều hành",units:"Đơn vị trực thuộc",unitsLink:"Đơn vị trực thuộc",sourceNote:"Số liệu theo trang giới thiệu được công bố",},
-  ru:{history:"История",awards:"Награды",achievements:"Достижения",structure:"Организационная структура",offices:"Подразделений центрального аппарата",units:"Производственных подразделений",unitsLink:"Подразделения",sourceNote:"По данным опубликованной структуры предприятия"},
-  en:{history:"History",awards:"Recognition",achievements:"Achievements",structure:"Organization",offices:"Head office departments",units:"Operating units",unitsLink:"Operating units",sourceNote:"Based on the published organizational overview"}
+/**
+ * Original import uses distinct slugs in VI vs RU/EN.
+ * Route all three localized source pages to the SAME finished experiences.
+ * Never fall back to raw source HTML for core company showcase pages.
+ */
+const interactiveSlugs={
+ history:new Set(["lichsuhinhthanh","significant"]),
+ awards:new Set(["cacdanhhieu","healthcare"]),
+ achievements:new Set(["nhungthanhtuu","environment"]),
+ organization:new Set(["cocau","organization"]),
+ archive:new Set(["hinhanh","image"]),
+ editorial:new Set(["gioithieuct","introduction","antoanskmt","safety","tiemnang","community","linhvuc","activity"])
 };
+
 export default function CompanyDetail({page}:{page:SourcePage}){
-  const {locale,slug,html}=page;
-  const t=localized[locale];
-  const photo=page.images?.[0];
-
-  if(locale==="vi"&&slug==="lichsuhinhthanh"){
-    const events=parseHistory(html);
-    if(events.length)return <HistoryExperience events={events} locale={locale}/>;
-  }
-
-  if(locale==="vi"&&slug==="cacdanhhieu"){
-    const awards=parseAwards(html);
-    if(awards.length)return <AwardsExperience items={awards} locale={locale}/>;
-  }
-
-  if(locale==="vi"&&slug==="nhungthanhtuu"){
-    const achievements=parseAchievements(html);
-    if(achievements.length)return <AchievementExperience items={achievements}/>;
-  }
-
-  if(["cocau","organization"].includes(slug)){
-    return <OrganizationExperience locale={locale}/>;
-  }
-
-  if(["hinhanh","image"].includes(slug)){
-    const fallback=Array.from({length:20},(_,index)=>
-      `https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/hinhanhtulieu/${index+1}.jpg`);
-    return <ArchivalGallery images={page.images?.length?page.images:fallback} locale={locale}/>;
-  }
-
-  if(["gioithieuct","introduction","antoanskmt","safety","tiemnang","community","linhvuc","activity"].includes(slug)){
-    return <CompanyEditorial page={page}/>;
-  }
-
-  const hasEmbeddedVisuals=/<(?:img|table|iframe)\b/i.test(html.replace(/<img\b[^>]*>/i,""));
-  return <div className={`v-company-prose ${hasEmbeddedVisuals?"v-company-prose--rich":"v-company-prose--text"}`}>
-    {photo&&<div className="v-company-prose-photo"><img src={photo} alt="" loading="lazy"/></div>}
-    <div className="v-company-prose-content">
-      <SourceCopy html={html} title={page.title} omitFirstImage={Boolean(photo)}/>
-    </div>
-  </div>;
+ const {locale,slug,html}=page;
+ const key=slug.toLowerCase();
+ if(interactiveSlugs.history.has(key)){
+   const events=parseHistory(html);
+   return events.length?<HistoryExperience locale={locale} events={events}/>:<div className="v-source-empty">{displayTitle(page)}</div>;
+ }
+ if(interactiveSlugs.awards.has(key)){
+   const awards=parseAwards(html);
+   return awards.length?<AwardsExperience locale={locale} items={awards}/>:<div className="v-source-empty">{displayTitle(page)}</div>;
+ }
+ if(interactiveSlugs.achievements.has(key)){
+   const achievements=parseAchievements(html);
+   return achievements.length?<AchievementExperience locale={locale} items={achievements}/>:<div className="v-source-empty">{displayTitle(page)}</div>;
+ }
+ if(interactiveSlugs.organization.has(key))return <OrganizationExperience locale={locale}/>;
+ if(interactiveSlugs.archive.has(key)){
+   const originals=Array.from({length:20},(_,i)=>
+     `https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/hinhanhtulieu/${i+1}.jpg`);
+   return <ArchivalGallery images={page.images?.length?page.images:originals} locale={locale}/>;
+ }
+ if(interactiveSlugs.editorial.has(key))return <CompanyEditorial page={page}/>;
+ // Preserve other legacy company articles without inventing replacement content.
+ return <article className="v-company-prose v-company-prose--text">
+   <div className="v-company-prose-content">
+     <SourceCopy html={html} title={displayTitle(page)}/>
+   </div>
+ </article>;
 }
