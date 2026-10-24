@@ -10,7 +10,7 @@ const base=process.env.NEXT_PUBLIC_BASE_PATH||"";
 const copy={
  vi:{
  heroTop:"Liên doanh Việt – Nga",
- hero:"Năng lượng từ biển Việt Nam.",
+ hero:"Năng lượng ngoài khơi. Năng lực vững vàng.",
  heroCopy:"Nghiên cứu, thăm dò, khai thác dầu khí và phát triển các công trình ngoài khơi từ năm 1981.",
  overview:"Liên doanh Vietsovpetro",
  about:"Thành lập năm 1981, Vietsovpetro hoạt động trong lĩnh vực tìm kiếm, thăm dò, phát triển mỏ và khai thác dầu khí tại thềm lục địa Việt Nam.",
@@ -50,7 +50,7 @@ export default function SourceHome({locale}:{locale:Locale}){
    <div className="r-hero-image" style={{backgroundImage:`url("${base}/brand/hero-offshore-1.jpg")`}} aria-hidden="true"/>
    <div className="shell r-hero-content">
     <span className="r-hero-identity">{t.heroTop}</span>
-    <h1>{t.hero}</h1>
+    <h1 className={"r-hero-headline r-hero-headline--"+locale}>{locale==="en"?<><span className="r-hero-line">Offshore energy.</span><span className="r-hero-line">Proven expertise.</span></>:locale==="vi"?<><span className="r-hero-line">Năng lượng ngoài khơi.</span><span className="r-hero-line">Năng lực vững vàng.</span></>:t.hero}</h1>
     <p>{t.heroCopy}</p>
     <div className="r-hero-actions">
      <Link href={`/${locale}/company/`} className="r-btn r-btn-light">{t.aboutLink}<Arrow/></Link>
