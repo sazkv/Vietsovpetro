@@ -43,7 +43,7 @@
 .hx-rail{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity;scroll-behavior:smooth;position:relative;border-top:1px solid #c9d7dc}
 .hx-rail::-webkit-scrollbar{display:none}
 .hx-rail-item{position:relative;flex:0 0 98px;display:flex;flex-direction:column;align-items:start;gap:15px;min-height:85px;padding:16px 7px 10px 0;border:0;background:transparent;color:#8b9ca6;text-align:left;cursor:pointer;scroll-snap-align:center;transition:color .2s}
-.hx-rail-dot{height:8px;width:8px;background:#becdd5;border:2px solid #fff;box-shadow:0 0 0 1px #a8b9c3;transition:transform .2s,background .2s,box-shadow .2s}
+.hx-rail-dot{height:8px;width:8px;border-radius:50%;background:#becdd5;border:2px solid #fff;box-shadow:0 0 0 1px #a8b9c3;transition:transform .2s,background .2s,box-shadow .2s}
 .hx-rail-year{font-size:16px;letter-spacing:-.03em;font-weight:700;font-variant-numeric:tabular-nums}
 .hx-rail-item:hover{color:#1f4356}
 .hx-rail-item-active{color:#a6322d}
@@ -166,10 +166,10 @@
  .ax-duo-number{font-size:112px;margin:10px 0}
  .ax-duo-panel>p{font-size:14px}
  .ax-output{margin-top:50px}
- .ax-output-item{min-height:238px;padding:21px 16px}
- .ax-output-unit{font-size:11px;min-height:35px}
+ .ax-output-item{min-height:260px;padding:22px 14px}
+ .ax-output-unit{font-size:12px;line-height:1.4;min-height:39px}
  .ax-output-value{font-size:clamp(50px,11vw,67px);margin:23px 0}
- .ax-output-item>p{font-size:11px;line-height:1.55}
+ .ax-output-item>p{font-size:12px;line-height:1.55}
  .ax-output-marker{margin-top:20px}
 }
 @media(prefers-reduced-motion:reduce){
