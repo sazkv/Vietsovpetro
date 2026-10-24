@@ -1,45 +1,32 @@
-import type {ReactNode} from "react";
-
 /**
- * Fifteen original technical pictograms, in the EXACT order of home-content.json.
- * One system: 64px artboard, 1.85px round strokes, no enclosure, no old pentagons.
+ * Cohesive Lucide icon system, names ordered to match Vietsovpetro's
+ * 15 published service categories. Individual path data from lucide-icons/lucide
+ * (ISC License). https://lucide.dev/license
+ * Each symbol is a true 24x24, 2px stroke, round-cap pictogram.
  */
-const glyphs:ReactNode[]=[
-  // 01 Offshore structural design: platform elevation + blueprint axis.
-  <><path d="M7 49h50M14 49l4-19h28l4 19M19 30l13 9 13-9M24 30v19M40 30v19M13 30h38M23 23h22M28 23V9h9v14M37 13h8M45 13v10"/><path className="v-icon-highlight" d="M9 55h46M32 7v-4"/></>,
-  // 02 Exploration and reservoir survey: actual strata and sensor scan.
-  <><path d="M7 17c8-5 15-5 23-1 9 5 18 5 27-1M7 29c8-5 15-5 23-1 9 5 18 5 27-1M7 42c8-5 15-5 23-1 9 5 18 5 27-1"/><path d="M14 8v6M14 4h13M27 4l5 4-5 4M30 17v21"/><path className="v-icon-highlight" d="M30 35l-5 8m5-8 5 8M8 53h48"/></>,
-  // 03 Field operation: piping network + flow control.
-  <><path d="M6 43h16V19h21v24h15M14 43V31M50 43V31M22 31h21M32 19V8M25 8h14M12 54h40"/><circle cx="32" cy="31" r="7"/><path className="v-icon-highlight" d="M32 26v10M28 31h8"/></>,
-  // 04 Well drilling and logging: rig with vertical drill string.
-  <><path d="M9 54h46M21 54 32 8l11 46M26 37h12M29 24h6M17 54v-9h30v9M32 8V4M14 45h6M44 45h6M32 37v17"/><path className="v-icon-highlight" d="m27 41 5 5 5-5"/></>,
-  // 05 Gas: pipelines, compression impeller, pressure dial.
-  <><path d="M7 44h13l8-8h9l8 8h12M9 55v-11M55 55V44M18 23h28M18 23V9h28v14M31 9V4"/><circle cx="33" cy="36" r="8"/><path className="v-icon-highlight" d="M33 36l4-5M30 36h6"/></>,
-  // 06 Operation / maintenance: hex-free impeller and wrench.
-  <><circle cx="21" cy="34" r="11"/><circle cx="21" cy="34" r="4"/><path d="M21 23v-6m-11 17H4m17 11v6m11-17h6m-25-8-4-4m20 20 4 4m-4-20 4-4M13 42l-4 4"/><path d="M46 9a11 11 0 0 0-8 15l12 12 7-7-12-12a11 11 0 0 0 1-8Z"/><path className="v-icon-highlight" d="m50 37 9 9-7 7-9-9"/></>,
-  // 07 Marine transportation and diving: vessel and dive flag.
-  <><path d="M7 38h50l-8 13H15L7 38ZM20 38V24h21v14M25 24v-9h12v9M37 14h12v10H37M9 57c6-3 12-3 18 0s12 3 18 0 9-3 12-1"/><path className="v-icon-highlight" d="M43 14v-9m0 0h10m-10 0 10 9"/></>,
-  // 08 Technical and language training: book + mechanical caliper.
-  <><path d="M7 16c9-4 17-3 25 2 8-5 16-6 25-2v34c-9-4-17-3-25 2-8-5-16-6-25-2V16ZM32 18v34M13 25c5-1 9 0 13 2M38 27c4-2 8-3 13-2M13 35h13M38 35h13"/><path className="v-icon-highlight" d="M19 44h7m12 0h7"/></>,
-  // 09 Oil spill response: containment boom deployed on waves.
-  <><path d="M5 40c7-4 13-4 20 0s14 4 21 0 9-3 13-1M5 52c7-4 13-4 20 0s14 4 21 0 9-3 13-1M9 30l46-6M15 29l3 13M25 27l3 15M36 26l3 16M47 24l3 17"/><path className="v-icon-highlight" d="M30 5c0 8-7 11-7 18a7 7 0 0 0 14 0c0-7-7-10-7-18Z"/></>,
-  // 10 Port cargo and supplies: crane loading pallet.
-  <><path d="M9 54h47M14 54V12h29M16 18h27M31 12l11 6M43 18v17M43 35v6M39 41h8M9 39h18v15M27 45h14v9M11 39v-9h18v9M18 30V17"/><path className="v-icon-highlight" d="M43 41v5m-9 8V41m0 0h18"/></>,
-  // 11 Laboratory analysis: sample chemistry and calibrated flask.
-  <><path d="M20 8h24M24 8v18L12 48a8 8 0 0 0 7 12h26a8 8 0 0 0 7-12L40 26V8M19 43h26M27 35h10"/><circle cx="27" cy="49" r="2"/><circle cx="38" cy="53" r="2"/><path className="v-icon-highlight" d="M30 19h4m-4 7h4"/></>,
-  // 12 IT communications: network transceiver / satellite links.
-  <><rect x="8" y="30" width="18" height="22" rx="2"/><rect x="38" y="30" width="18" height="22" rx="2"/><path d="M13 37h8M13 43h8M43 37h8M43 43h8M26 41h12M32 30V17M32 17l-8-8M32 17l8-8M32 9V4"/><path className="v-icon-highlight" d="M19 15c-4 5-4 10 0 14M45 15c4 5 4 10 0 14M12 11c-7 9-7 18 0 26M52 11c7 9 7 18 0 26"/></>,
-  // 13 Medical: monitor, pulse and clinical cross.
-  <><path d="M8 18h48v34H8V18ZM15 43h34M15 34h8l5-10 8 20 5-10h8"/><path className="v-icon-highlight" d="M32 8v8M28 12h8"/></>,
-  // 14 EPCI offshore engineering: heavy-lift crane and jacket.
-  <><path d="M5 54h54M16 54 24 29h18l8 25M18 45h30M24 29l12 25 6-25M30 29V9h23M53 9v25m-5 0h10M30 9l10 8M42 9v20"/><path className="v-icon-highlight" d="M53 34v7m-5 0h10M30 8V4"/></>,
-  // 15 Road and abnormal-load freight: flatbed truck.
-  <><path d="M5 23h35v28H5V23ZM40 35h12l8 10v6H40V35ZM46 35v10h14M11 29h23M11 36h23M9 51v5M57 51v5"/><circle cx="16" cy="53" r="5"/><circle cx="50" cy="53" r="5"/><path className="v-icon-highlight" d="M14 15h26v8M19 15V9h16v6"/></>
-];
+const symbols = [
+  "<path d=\"m12.99 6.74 1.93 3.44\" />\n  <path d=\"M19.136 12a10 10 0 0 1-14.271 0\" />\n  <path d=\"m21 21-2.16-3.84\" />\n  <path d=\"m3 21 8.02-14.26\" />\n  <circle cx=\"12\" cy=\"5\" r=\"2\" />",
+  "<path d=\"M3 7V5a2 2 0 0 1 2-2h2\" />\n  <path d=\"M17 3h2a2 2 0 0 1 2 2v2\" />\n  <path d=\"M21 17v2a2 2 0 0 1-2 2h-2\" />\n  <path d=\"M7 21H5a2 2 0 0 1-2-2v-2\" />\n  <circle cx=\"12\" cy=\"12\" r=\"3\" />\n  <path d=\"m16 16-1.9-1.9\" />",
+  "<path d=\"m12 14 4-4\" />\n  <path d=\"M3.34 19a10 10 0 1 1 17.32 0\" />",
+  "<path d=\"M10 18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a3 3 0 0 1-3-3 1 1 0 0 1 1-1z\" />\n  <path d=\"M13 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1l-.81 3.242a1 1 0 0 1-.97.758H8\" />\n  <path d=\"M14 4h3a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-3\" />\n  <path d=\"M18 6h4\" />\n  <path d=\"m5 10-2 8\" />\n  <path d=\"m7 18 2-8\" />",
+  "<path d=\"M12 16h.01\" />\n  <path d=\"M16 16h.01\" />\n  <path d=\"M3 19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a.5.5 0 0 0-.769-.422l-4.462 2.844A.5.5 0 0 1 15 10.5v-2a.5.5 0 0 0-.769-.422L9.77 10.922A.5.5 0 0 1 9 10.5V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z\" />\n  <path d=\"M8 16h.01\" />",
+  "<path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z\" />",
+  "<path d=\"M12 2v2\" />\n  <path d=\"M12 9.189V13\" />\n  <path d=\"M19 12V6a2 2 0 00-2-2H7a2 2 0 00-2 2v6\" />\n  <path d=\"M19.38 19A11.6 11.6 0 0021 13l-8.188-3.639a2 2 0 00-1.624 0L3 13.001a11.6 11.6 0 002.81 7.76\" />\n  <path d=\"M2 20c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1\" />",
+  "<path d=\"M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z\" />\n  <path d=\"M22 10v6\" />\n  <path d=\"M6 12.5V16a6 3 0 0 0 12 0v-3.5\" />",
+  "<path d=\"M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z\" />\n  <path d=\"M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97\" />",
+  "<path d=\"M22 7.7c0-.6-.4-1.2-.8-1.5l-6.3-3.9a1.72 1.72 0 0 0-1.7 0l-10.3 6c-.5.2-.9.8-.9 1.4v6.6c0 .5.4 1.2.8 1.5l6.3 3.9a1.72 1.72 0 0 0 1.7 0l10.3-6c.5-.3.9-1 .9-1.5Z\" />\n  <path d=\"M10 21.9V14L2.1 9.1\" />\n  <path d=\"m10 14 11.9-6.9\" />\n  <path d=\"M14 19.8v-8.1\" />\n  <path d=\"M18 17.5V9.4\" />",
+  "<path d=\"M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2\" />\n  <path d=\"M6.453 15h11.094\" />\n  <path d=\"M8.5 2h7\" />",
+  "<path d=\"M4.9 16.1C1 12.2 1 5.8 4.9 1.9\" />\n  <path d=\"M7.8 4.7a6.14 6.14 0 0 0-.8 7.5\" />\n  <circle cx=\"12\" cy=\"9\" r=\"2\" />\n  <path d=\"M16.2 4.8c2 2 2.26 5.11.8 7.47\" />\n  <path d=\"M19.1 1.9a9.96 9.96 0 0 1 0 14.1\" />\n  <path d=\"M9.5 18h5\" />\n  <path d=\"m8 22 4-11 4 11\" />",
+  "<path d=\"M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5\" />\n  <path d=\"M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27\" />",
+  "<path d=\"M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5\" />\n  <path d=\"M14 6a6 6 0 0 1 6 6v3\" />\n  <path d=\"M4 15v-3a6 6 0 0 1 6-6\" />\n  <rect x=\"2\" y=\"15\" width=\"20\" height=\"4\" rx=\"1\" />",
+  "<path d=\"M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2\" />\n  <path d=\"M15 18H9\" />\n  <path d=\"M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14\" />\n  <circle cx=\"17\" cy=\"18\" r=\"2\" />\n  <circle cx=\"7\" cy=\"18\" r=\"2\" />"
+] as const;
+export const serviceIconNames = ["drafting-compass","scan-search","gauge","drill","factory","wrench","ship","graduation-cap","droplets","container","flask-conical","radio-tower","heart-pulse","hard-hat","truck"] as const;
 export default function ServiceIcon({index,className=""}:{index:number;className?:string}){
- return <svg className={className} width="64" height="64" viewBox="0 0 64 64"
-  fill="none" stroke="currentColor" strokeWidth="1.85"
-  strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
-  {glyphs[index%glyphs.length]}
- </svg>;
+  const safeIndex=Number.isFinite(index)?Math.max(0,Math.min(symbols.length-1,Math.trunc(index))):0;
+  return <svg className={className} viewBox="0 0 24 24" width="48" height="48"
+    fill="none" stroke="currentColor" strokeWidth="1.65"
+    strokeLinecap="round" strokeLinejoin="round"
+    aria-hidden="true" focusable="false"
+    dangerouslySetInnerHTML={{__html:symbols[safeIndex]}}/>;
 }

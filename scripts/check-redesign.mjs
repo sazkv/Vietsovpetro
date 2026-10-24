@@ -82,7 +82,24 @@ for(const [section,slug,marker] of [
  if(!html.includes(marker))failures.push(`Missing structured layout: ${section}/${slug||""} ${marker}`);
 }
 const svc=read("src/components/service-icon.tsx");
-if((svc.match(/\/\/ \d\d /g)||[]).length!==15)failures.push("Expected 15 unique service SVG designs");
+if((svc.match(/<path|<circle|<rect/g)||[]).length>0 && !svc.includes("lucide-icons"))failures.push("Professional icon system missing");
+if(!svc.includes("serviceIconNames")||!svc.includes("Lucide"))failures.push("Expected professional Lucide icon package mapping");
+
+const serviceSource=read("src/components/service-icon.tsx");
+const named=serviceSource.match(/export const serviceIconNames = (\[[^\n]*\])/);
+if(!named||JSON.parse(named[1]).length!==15)
+ failures.push("Service icons must be a complete 15-item professional icon pack");
+for(const path of [
+ "src/components/source-home.tsx",
+ "src/components/source-section.tsx",
+ "src/components/source-navigation.tsx",
+ "src/components/source-footer.tsx",
+ "src/components/news-archive.tsx",
+ "src/components/resource-pages.tsx"
+]){
+ const content=read(path);
+ if(/[↗☰✕⌕＋]/u.test(content))failures.push(`Emoji-like Unicode glyph remains in ${path}`);
+}
 const archive=JSON.parse(read("src/data/original-pages.json"));
 if(archive.length<2300)failures.push(`Content archive unexpectedly small: ${archive.length}`);
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}
