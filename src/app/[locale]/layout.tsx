@@ -15,6 +15,6 @@ export default async function LocaleLayout({children, params}: {children: React.
   const {locale} = await params;
   if (!isLocale(locale)) notFound();
   setRequestLocale(locale);
-  const preview=Object.fromEntries(sectionOrder[locale].filter(section=>section!=="news").map(section=>[section,sectionPages(locale,section).filter(page=>page.route!==`/${locale}/${section}/`).slice(0,10).map(page=>({title:displayTitle(page),route:page.route}))]));
+  const preview=Object.fromEntries(sectionOrder[locale].filter(section=>section!=="news").map(section=>[section,sectionPages(locale,section).filter(page=>page.route!==`/${locale}/${section}/`&&!(section==="company"&&page.slug==="image")).slice(0,10).map(page=>({title:displayTitle(page),route:page.route})).concat(section==="company"?[{title:locale==="vi"?"Hình ảnh tư liệu":locale==="ru"?"Фотоархив":"Photo archive",route:`/${locale}/company/gallery/`}]:[])]));
   return <NextIntlClientProvider locale={locale} messages={messageSet(locale)}><LocaleAttributes locale={locale}/><SourceNavigation locale={locale} preview={preview}/>{children}<SourceFooter locale={locale}/></NextIntlClientProvider>;
 }
