@@ -6,10 +6,10 @@ const read=p=>readFileSync(isAbsolute(p)?p:join(root,p),"utf8");
 const failures=[];
 const page=(section,locale="vi")=>`out/${locale}/${section}/index.html`;
 const tests=[
- ["company","v-company-columns"],
+ ["company","v-about-feature"],
  ["units","v-unit-grid"],
  ["projects","v-projects-editorial"],
- ["resources","v-resources-feature"],
+ ["resources","v-resource-index"],
  ["services","v-service-grid"],
  ["contact","v-contact-main"],
  ["news","r-news"]
