@@ -1,5 +1,5 @@
 /** Shared UI glyphs, drawn on the same 24px grid as service icons. */
-type IconName="up-right"|"left"|"down"|"search"|"menu"|"close"|"plus"|"chevron-down";
+type IconName="up-right"|"left"|"down"|"search"|"menu"|"close"|"plus"|"chevron-down"|"user";
 const paths:Record<IconName,string>={
  "up-right":'<path d="M7 17 17 7M7 7h10v10"/>',
  "left":'<path d="m12 19-7-7 7-7M5 12h14"/>',
@@ -8,6 +8,7 @@ const paths:Record<IconName,string>={
  "menu":'<path d="M4 7h16M4 12h16M4 17h16"/>',
  "close":'<path d="M18 6 6 18M6 6l12 12"/>',
  "plus":'<path d="M12 5v14M5 12h14"/>',
+ "user":'<circle cx="12" cy="8" r="3.5"/><path d="M5.5 20v-2a6.5 6.5 0 0 1 13 0v2"/>',
  "chevron-down":'<path d="m6 9 6 6 6-6"/>'
 };
 export default function UIIcon({name,size=18,className=""}:{name:IconName;size?:number;className?:string}){
