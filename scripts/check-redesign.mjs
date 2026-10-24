@@ -39,6 +39,25 @@ for(const project of projectData.vi.projects){
  const htmlPath=join(root,"out",route,"index.html");
  if(!existsSync(htmlPath))failures.push(`Original project route unavailable: ${route}`);
 }
+
+const partnerPage=join(root,"out","vi","projects","partners","index.html");
+if(!existsSync(partnerPage))failures.push("Missing dedicated partner/client page");
+for(const [section,slug,expected] of [
+ ["projects","ctkt","EPCI"],
+ ["projects","khoithuongtang","thượng tầng"],
+ ["company","cocau","Cơ cấu tổ chức"],
+ ["company","lanhdao","Ban lãnh đạo"]
+]){
+ const p=join(root,"out","vi",section,slug,"index.html");
+ if(!existsSync(p)){failures.push(`Missing detail: ${section}/${slug}`);continue;}
+ const h=(read(p).match(/<h1[^>]*>([\\s\\S]*?)<\\/h1>/i)||[])[1]||"";
+ if(!h.includes(expected))failures.push(`Unresolved source title on ${section}/${slug}`);
+}
+if(existsSync(page("company"))){
+ const html=read(page("company"));
+ const sample="Liên doanh Vietsovpetro (gọi tắt là Vietsovpetro)";
+ if(html.split(sample).length>2)failures.push("Company intro is duplicated");
+}
 const archive=JSON.parse(read("src/data/original-pages.json"));
 if(archive.length<2300)failures.push(`Content archive unexpectedly small: ${archive.length}`);
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}
