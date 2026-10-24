@@ -13,14 +13,24 @@ const companyTitles:Record<Locale,Record<string,string>>={
   antoanskmt:"Охрана труда, здоровье и экология",gioithieuct:"О предприятии",
   tiemnang:"Производственные возможности",cacdanhhieu:"Награды и звания",
   linhvuc:"Направления деятельности",lanhdao:"Руководство",
-  nhungthanhtuu:"Достижения"
+  nhungthanhtuu:"Достижения",
+  activity:"Сфера деятельности",healthcare:"Награды и звания",
+  introduction:"О предприятии",organization:"Организационная структура",
+  significant:"История предприятия",safety:"Охрана труда и экология",
+  environment:"Достижения","board-old":"Руководство",community:"Производственные возможности",
+  image:"Фотогалерея"
  },
  en:{
   cocau:"Organization",lichsuhinhthanh:"Company history",
   antoanskmt:"Health, Safety & Environment",gioithieuct:"Company overview",
   tiemnang:"Capabilities",cacdanhhieu:"Awards",
   linhvuc:"Areas of operation",lanhdao:"Leadership",
-  nhungthanhtuu:"Achievements"
+  nhungthanhtuu:"Achievements",
+  activity:"Areas of operation",healthcare:"Awards & recognition",
+  introduction:"Company overview",organization:"Organization",
+  significant:"Company history",safety:"Health, Safety & Environment",
+  environment:"Achievements",board5:"Board of management",community:"Capabilities",
+  image:"Photo archive"
  }
 };
 
