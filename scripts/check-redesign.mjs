@@ -62,7 +62,7 @@ if(existsSync(page("company"))){
 
 for(const [slug,marker] of [
  ["lichsuhinhthanh","hc-experience"],
- ["cacdanhhieu","aw-experience"],
+ ["cacdanhhieu","museum-v15"],
  ["nhungthanhtuu","ac-experience"],
  ["cocau","og-experience"],
  ["lanhdao","v-leadership-grid"]
@@ -194,9 +194,9 @@ const experienceRoutes=[
  ["vi","nhungthanhtuu","ac-experience"],
  ["ru","environment","ac-experience"],
  ["en","environment","ac-experience"],
- ["vi","cacdanhhieu","aw-experience"],
- ["ru","healthcare","aw-experience"],
- ["en","healthcare","aw-experience"]
+ ["vi","cacdanhhieu","museum-v15"],
+ ["ru","healthcare","museum-v15"],
+ ["en","healthcare","museum-v15"]
 ];
 for(const [locale,slug,marker] of experienceRoutes){
  const path=join(root,"out",locale,"company",slug,"index.html");
