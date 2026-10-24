@@ -122,8 +122,8 @@
 .museum-v15-modal{display:flex;flex-direction:column;position:relative;min-width:0;width:min(950px,100%);max-height:calc(100dvh - 28px);background:#f0f3f1;box-shadow:0 24px 65px #0006}
 .museum-v15-close{position:absolute;z-index:5;top:15px;right:16px;width:45px;height:45px;display:grid;place-items:center;background:white;border:1px solid #cbd7d9;color:#173d51}
 .museum-v15-close:hover{background:#e6ebeb}
-.museum-v15-modal-image{flex:1 1 auto;min-height:0;height:min(66dvh,580px);max-height:calc(100dvh - 158px);margin:0;padding:42px 36px 20px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.museum-v15-modal-image img{display:block;flex:0 1 auto;width:auto!important;height:auto!important;max-height:min(420px,45dvh)!important;max-width:100%!important;object-fit:contain!important;object-position:center!important;filter:none!important;transform:none!important}
+.museum-v15-modal-image{flex:1 1 auto;min-height:0;height:min(74dvh,650px);max-height:calc(100dvh - 158px);margin:0;padding:28px 30px 16px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.museum-v15-modal-image img{display:block;flex:0 1 auto;width:auto!important;height:auto!important;max-height:min(610px,calc(100dvh - 205px))!important;max-width:100%!important;object-fit:contain!important;object-position:center!important;filter:none!important;transform:none!important}
 .museum-v15-modal-bottom{flex:0 0 auto;min-height:103px;padding:19px clamp(17px,3vw,35px);display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:22px;align-items:center;background:#fff;border-top:1px solid #d8e2e4}
 .museum-v15-modal-bottom>button{display:grid;place-items:center;width:44px;height:44px;border:1px solid #c7d7de;color:#183e52;background:transparent}
 .museum-v15-modal-bottom>button:hover{background:#163d51;color:white}
@@ -154,7 +154,7 @@
  .museum-album-item{flex-basis:142px}
  .museum-album-image{height:135px;padding:12px}
  .museum-album-image img{max-height:110px!important}
- .museum-v15-modal-image{height:min(64dvh,520px);max-height:calc(100dvh - 140px);padding:62px 20px 18px}
+ .museum-v15-modal-image{height:min(70dvh,570px);max-height:calc(100dvh - 140px);padding:50px 20px 15px}
  .museum-v15-modal-bottom{gap:9px;grid-template-columns:40px minmax(0,1fr) 40px;min-height:96px;padding:15px 10px}
  .museum-v15-modal-bottom>button{width:39px;height:39px}
 }
