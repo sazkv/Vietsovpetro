@@ -4,7 +4,7 @@ import {setRequestLocale} from "next-intl/server";
 import SourceNavigation from "@/components/source-navigation";
 import SourceFooter from "@/components/source-footer";
 import LocaleAttributes from "@/components/locale-attributes";
-import {isLocale, locales} from "@/lib/original-content";
+import {isLocale, locales, sectionOrder, sectionPages} from "@/lib/original-content";
 import {messageSet} from "@/lib/messages";
 
 export const dynamicParams = false;
@@ -14,5 +14,6 @@ export default async function LocaleLayout({children, params}: {children: React.
   const {locale} = await params;
   if (!isLocale(locale)) notFound();
   setRequestLocale(locale);
-  return <NextIntlClientProvider locale={locale} messages={messageSet(locale)}><LocaleAttributes locale={locale}/><SourceNavigation locale={locale}/>{children}<SourceFooter locale={locale}/></NextIntlClientProvider>;
+  const preview=Object.fromEntries(sectionOrder[locale].filter(section=>section!=="news").map(section=>[section,sectionPages(locale,section).filter(page=>page.route!==`/${locale}/${section}/`).slice(0,10).map(page=>({title:page.title,route:page.route}))]));
+  return <NextIntlClientProvider locale={locale} messages={messageSet(locale)}><LocaleAttributes locale={locale}/><SourceNavigation locale={locale} preview={preview}/>{children}<SourceFooter locale={locale}/></NextIntlClientProvider>;
 }
