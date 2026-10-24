@@ -129,7 +129,7 @@ if(existsSync(organizationFile)){
  if(!html.includes("og-switcher")||!html.includes("og-graph-root"))
   failures.push("Interactive company organization explorer is missing");
 }
-const galleryFile=join(root,"out","vi","company","hinhanh","index.html");
+const galleryFile=join(root,"out","vi","company","gallery","index.html");
 if(!existsSync(galleryFile))failures.push("Missing archival gallery route");
 else{
  const html=read(galleryFile);
