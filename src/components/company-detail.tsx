@@ -4,6 +4,7 @@ import HistoryExperience from "@/components/history-experience";
 import AchievementExperience from "@/components/achievement-experience";
 import AwardsExperience from "@/components/awards-experience";
 import CompanyEditorial from "@/components/company-editorial";
+import ActivityExperience from "@/components/activity-experience";
 import OrganizationExperience from "@/components/organization-experience";
 import ArchivalGallery from "@/components/archival-gallery";
 import {type SourcePage} from "@/lib/original-content";
@@ -20,7 +21,8 @@ const interactiveSlugs={
  achievements:new Set(["nhungthanhtuu","environment"]),
  organization:new Set(["cocau","organization"]),
  archive:new Set(["hinhanh","image"]),
- editorial:new Set(["gioithieuct","introduction","antoanskmt","safety","tiemnang","community","linhvuc","activity"])
+ activity:new Set(["linhvuc","activity"]),
+ editorial:new Set(["gioithieuct","introduction","antoanskmt","safety","tiemnang","community"])
 };
 
 export default function CompanyDetail({page}:{page:SourcePage}){
@@ -44,6 +46,7 @@ export default function CompanyDetail({page}:{page:SourcePage}){
      `https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/hinhanhtulieu/${i+1}.jpg`);
    return <ArchivalGallery images={page.images?.length?page.images:originals} locale={locale}/>;
  }
+ if(interactiveSlugs.activity.has(key))return <ActivityExperience page={page}/>;
  if(interactiveSlugs.editorial.has(key))return <CompanyEditorial page={page}/>;
  // Preserve other legacy company articles without inventing replacement content.
  return <article className="v-company-prose v-company-prose--text">
