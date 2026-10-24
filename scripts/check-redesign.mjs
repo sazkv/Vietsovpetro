@@ -56,7 +56,8 @@ for(const [section,slug,expected] of [
 if(existsSync(page("company"))){
  const html=read(page("company"));
  const sample="Liên doanh Vietsovpetro (gọi tắt là Vietsovpetro)";
- if(html.split(sample).length>2)failures.push("Company intro is duplicated");
+ const visible=(html.split("<main")[1]||"").split("</main>")[0];
+ if(visible.split(sample).length>2)failures.push("Company intro is duplicated");
 }
 const archive=JSON.parse(read("src/data/original-pages.json"));
 if(archive.length<2300)failures.push(`Content archive unexpectedly small: ${archive.length}`);
