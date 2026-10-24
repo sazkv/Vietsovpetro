@@ -27,8 +27,8 @@
       354
     ],
     "outputPx": [
-      561,
-      1062
+      1254,
+      1254
     ],
     "backgroundRemoved": true,
     "removedCoverage": 0.542,
@@ -37,7 +37,8 @@
       255,
       255
     ],
-    "bytes": 682645
+    "bytes": 1456629,
+    "enhancedAsset": "User-provided PNG upscale (2026-10-25), checked against official award identity and class"
   },
   "danhhieu/ld1.jpg": {
     "asset": "/awards/ld1.png",
@@ -47,8 +48,8 @@
       354
     ],
     "outputPx": [
-      624,
-      1062
+      1254,
+      1254
     ],
     "backgroundRemoved": true,
     "removedCoverage": 0.419,
@@ -57,7 +58,8 @@
       252,
       223
     ],
-    "bytes": 574502
+    "bytes": 1005132,
+    "enhancedAsset": "User-provided PNG upscale (2026-10-25), checked against official award identity and class"
   },
   "danhhieu/ld2.jpg": {
     "asset": "/awards/ld2.png",
@@ -67,8 +69,8 @@
       354
     ],
     "outputPx": [
-      552,
-      990
+      1254,
+      1254
     ],
     "backgroundRemoved": true,
     "removedCoverage": 0.624,
@@ -77,7 +79,8 @@
       89,
       144
     ],
-    "bytes": 456454
+    "bytes": 922790,
+    "enhancedAsset": "User-provided PNG upscale (2026-10-25), checked against official award identity and class"
   },
   "danhhieu/ld3.jpg": {
     "asset": "/awards/ld3.png",
@@ -87,8 +90,8 @@
       354
     ],
     "outputPx": [
-      612,
-      1047
+      1254,
+      1254
     ],
     "backgroundRemoved": true,
     "removedCoverage": 0.544,
@@ -97,7 +100,8 @@
       255,
       255
     ],
-    "bytes": 615680
+    "bytes": 1410770,
+    "enhancedAsset": "User-provided PNG upscale (2026-10-25), checked against official award identity and class"
   },
   "danhhieu/dl.jpg": {
     "asset": "/awards/dl.png",
@@ -107,8 +111,8 @@
       354
     ],
     "outputPx": [
-      624,
-      1062
+      1254,
+      1254
     ],
     "backgroundRemoved": true,
     "removedCoverage": 0.542,
@@ -117,7 +121,8 @@
       255,
       255
     ],
-    "bytes": 761077
+    "bytes": 1466995,
+    "enhancedAsset": "User-provided PNG upscale (2026-10-25), checked against official award identity and class"
   },
   "danhhieu/dl2.jpg": {
     "asset": "/awards/dl2.png",
@@ -127,8 +132,8 @@
       354
     ],
     "outputPx": [
-      624,
-      1062
+      1254,
+      1254
     ],
     "backgroundRemoved": true,
     "removedCoverage": 0.54,
@@ -137,7 +142,8 @@
       227,
       228
     ],
-    "bytes": 800760
+    "bytes": 1415923,
+    "enhancedAsset": "User-provided PNG upscale (2026-10-25), checked against official award identity and class"
   },
   "danhhieu/dl3.jpg": {
     "asset": "/awards/dl3.png",
@@ -147,8 +153,8 @@
       354
     ],
     "outputPx": [
-      543,
-      1062
+      1254,
+      1254
     ],
     "backgroundRemoved": true,
     "removedCoverage": 0.646,
@@ -157,7 +163,8 @@
       255,
       255
     ],
-    "bytes": 594342
+    "bytes": 1290038,
+    "enhancedAsset": "User-provided PNG upscale (2026-10-25), checked against official award identity and class"
   },
   "danhhieu/qc.jpg": {
     "asset": "/awards/qc.png",
@@ -207,8 +214,8 @@
       354
     ],
     "outputPx": [
-      543,
-      1050
+      1254,
+      1254
     ],
     "backgroundRemoved": true,
     "removedCoverage": 0.63,
@@ -217,7 +224,8 @@
       255,
       255
     ],
-    "bytes": 514414
+    "bytes": 1332369,
+    "enhancedAsset": "User-provided PNG upscale (2026-10-25), checked against official award identity and class"
   },
   "danhhieu/cc3.jpg": {
     "asset": "/awards/cc3.png",
@@ -227,8 +235,8 @@
       354
     ],
     "outputPx": [
-      543,
-      1062
+      1254,
+      1254
     ],
     "backgroundRemoved": true,
     "removedCoverage": 0.611,
@@ -237,7 +245,8 @@
       255,
       255
     ],
-    "bytes": 533578
+    "bytes": 1286189,
+    "enhancedAsset": "User-provided PNG upscale (2026-10-25), checked against official award identity and class"
   },
   "lanhdao/ahld.jpg": {
     "asset": "/awards/ahld.png",
@@ -247,8 +256,8 @@
       267
     ],
     "outputPx": [
-      549,
-      801
+      1254,
+      1254
     ],
     "backgroundRemoved": true,
     "removedCoverage": 0.662,
@@ -257,6 +266,7 @@
       254,
       254
     ],
-    "bytes": 397717
+    "bytes": 1323795,
+    "enhancedAsset": "User-provided PNG upscale (2026-10-25), checked against official award identity and class"
   }
 }
