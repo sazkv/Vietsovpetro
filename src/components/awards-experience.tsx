@@ -6,9 +6,9 @@ import type {AwardItem} from "@/lib/structured-content";
 
 type Locale="vi"|"ru"|"en";
 const t={
- vi:{heading:"Các danh hiệu",intro:"Những phần thưởng và danh hiệu đã được trao tặng cho Vietsovpetro.",all:"Tất cả",items:"danh hiệu",decade:"Giai đoạn",closer:"Xem chi tiết",prev:"Danh hiệu trước",next:"Danh hiệu tiếp theo",close:"Đóng",alt:"Ảnh huân chương",year:"Năm"},
- ru:{heading:"Награды и звания",intro:"Государственные награды и почётные звания, присвоенные совместному предприятию «Вьетсовпетро».",all:"Все годы",items:"наград",decade:"Период",closer:"Посмотреть награду",prev:"Предыдущая награда",next:"Следующая награда",close:"Закрыть",alt:"Оригинальная фотография награды",year:"Год"},
- en:{heading:"Awards and honours",intro:"Official distinctions and state decorations received by the Vietsovpetro Joint Venture.",all:"All years",items:"honours",decade:"Period",closer:"View medal",prev:"Previous honour",next:"Next honour",close:"Close",alt:"Original photograph of a medal",year:"Year"}
+ vi:{heading:"Các danh hiệu",intro:"Những phần thưởng và danh hiệu đã được trao tặng cho Vietsovpetro.",all:"Tất cả",items:"danh hiệu",decade:"Giai đoạn",closer:"Xem chi tiết",prev:"Danh hiệu trước",next:"Danh hiệu tiếp theo",close:"Đóng",alt:"Ảnh huân chương",year:"Năm",source:"Xem danh mục gốc"},
+ ru:{heading:"Награды и звания",intro:"Государственные награды и почётные звания, присвоенные совместному предприятию «Вьетсовпетро».",all:"Все годы",items:"наград",decade:"Период",closer:"Посмотреть награду",prev:"Предыдущая награда",next:"Следующая награда",close:"Закрыть",alt:"Изображение награды",year:"Год",source:"Официальный каталог наград"},
+ en:{heading:"Awards and honours",intro:"Official distinctions and state decorations received by the Vietsovpetro Joint Venture.",all:"All years",items:"honours",decade:"Period",closer:"View medal",prev:"Previous honour",next:"Next honour",close:"Close",alt:"Award image",year:"Year",source:"Official awards catalogue"}
 };
 const base=process.env.NEXT_PUBLIC_BASE_PATH||"";
 const medals=new Set(["sv","hcm","ld1","ld2","ld3","dl","dl2","dl3","qc","bv","cc1","cc3","ahld"]);
@@ -35,9 +35,14 @@ export default function AwardsExperience({items,locale="vi"}:{items:AwardItem[];
  const [modal,setModal]=useState<number|null>(null);
  const [failed,setFailed]=useState<string[]>([]);
  const closeRef=useRef<HTMLButtonElement>(null);
+ const albumRef=useRef<HTMLDivElement>(null);
  const lastFocus=useRef<HTMLElement|null>(null);
  const filtered=useMemo(()=>decade===null?data:data.filter(item=>item.year&&Math.floor(Number(item.year)/10)*10===decade),[data,decade]);
  const chosen=modal===null?undefined:filtered[modal];
+ useEffect(()=>{
+  if(modal===null)return;
+  albumRef.current?.querySelector<HTMLButtonElement>('[aria-current="true"]')?.scrollIntoView({block:"nearest",inline:"center"});
+ },[modal,decade]);
  const close=()=>{
   setModal(null);
   lastFocus.current?.focus();
@@ -105,10 +110,11 @@ export default function AwardsExperience({items,locale="vi"}:{items:AwardItem[];
            {chosen.year&&<div className="museum-gallery-year">{copy.year} · {chosen.year}</div>}
            <h3>{displayAwardTitle(chosen)}</h3>
            <p>{copy.intro}</p>
+           <a className="museum-gallery-source" href="https://www.vietsov.com.vn/Pages/cacDanhHieu.aspx" target="_blank" rel="noopener noreferrer">{copy.source} ↗</a>
            <div className="museum-gallery-controls"><button type="button" onClick={()=>move(-1)} aria-label={copy.prev}><AwardUIIcon name="previous" size={24}/></button><button type="button" onClick={()=>move(1)} aria-label={copy.next}><AwardUIIcon name="next" size={24}/></button></div>
          </div>
        </div>
-       <div className="museum-gallery-album" aria-label={copy.heading}>
+       <div className="museum-gallery-album" ref={albumRef} aria-label={copy.heading}>
          {filtered.map((item,index)=><button key={item.id} type="button" aria-current={modal===index?"true":undefined} onClick={()=>setModal(index)} aria-label={displayAwardTitle(item)}>
            {item.asset&&!failed.includes(item.asset)?<img src={item.asset} alt="" loading="lazy"/>:<span>{item.year}</span>}
          </button>)}
