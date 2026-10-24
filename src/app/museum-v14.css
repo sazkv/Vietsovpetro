@@ -153,3 +153,35 @@
 @media(prefers-reduced-motion:reduce){
  .museum-photo,.museum-photo img,.museum-filters button,.museum-lightbox-details button{transition:none!important}
 }
+
+/* Accessible award museum viewer: artwork, details, thumbnail album */
+.museum-gallery-panel{width:min(1320px,100%);max-height:min(900px,calc(100dvh - 36px));overflow:hidden}
+.museum-gallery-main{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);min-height:0;flex:1}
+.museum-gallery-main .museum-lightbox-display{height:auto;min-height:0;max-height:calc(100dvh - 190px);padding:38px;background:#eef1ee}
+.museum-gallery-main .museum-lightbox-display img{display:block;max-height:min(600px,calc(100dvh - 245px));max-width:100%;width:auto;height:auto;object-fit:contain}
+.museum-gallery-info{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:64px clamp(24px,4vw,65px);min-width:0}
+.museum-gallery-info .museum-eyebrow{margin-bottom:22px}
+.museum-gallery-index{font-size:12px;color:#7b919b;letter-spacing:.1em;margin-bottom:30px}
+.museum-gallery-year{font-size:12px;font-weight:800;color:#a8403a;margin-bottom:14px}
+.museum-gallery-info h3{font-size:clamp(23px,3vw,45px);line-height:1.16;letter-spacing:-.04em;font-weight:650;color:#153a50;margin:0 0 22px;overflow-wrap:break-word}
+.museum-gallery-info p{font-size:14px;line-height:1.75;color:#5b7180;margin:0 0 30px}
+.museum-gallery-controls{display:flex;gap:12px}
+.museum-gallery-controls button{width:46px;height:46px;display:grid;place-items:center;border:1px solid #b4c7cd;background:white;color:#153a50}
+.museum-gallery-album{display:flex;gap:9px;overflow-x:auto;flex-shrink:0;padding:14px 24px;background:white;border-top:1px solid #d7e1e2;scrollbar-width:thin}
+.museum-gallery-album button{width:68px;height:76px;flex:0 0 auto;padding:7px;display:grid;place-items:center;background:#f0f3f2;border:2px solid transparent;cursor:pointer}
+.museum-gallery-album button[aria-current="true"]{border-color:#a8403a;background:#fff}
+.museum-gallery-album img{max-width:100%;max-height:100%;object-fit:contain}
+@media(max-width:760px){
+.museum-gallery-panel{max-height:calc(100dvh - 18px)}
+.museum-gallery-main{grid-template-columns:1fr;overflow:auto}
+.museum-gallery-main .museum-lightbox-display{height:min(45dvh,350px);min-height:180px;max-height:none;padding:25px 35px}
+.museum-gallery-main .museum-lightbox-display img{max-height:100%}
+.museum-gallery-info{padding:17px 23px 22px}
+.museum-gallery-info .museum-eyebrow{margin-bottom:8px}
+.museum-gallery-index{margin-bottom:10px}
+.museum-gallery-info h3{font-size:clamp(19px,5vw,27px);margin-bottom:10px}
+.museum-gallery-info p{font-size:12px;margin-bottom:13px}
+.museum-gallery-controls button{width:38px;height:38px}
+.museum-gallery-album{padding:9px 12px}
+.museum-gallery-album button{width:52px;height:57px}
+}
