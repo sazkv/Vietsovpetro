@@ -2,6 +2,8 @@ import Link from "next/link";
 import SourceCopy from "@/components/source-copy";
 import LeadershipDirectory from "@/components/leadership-directory";
 import PartnersDirectory from "@/components/partners-directory";
+import CompanyDetail from "@/components/company-detail";
+import {FacilityDetail} from "@/components/resource-pages";
 import {sectionPages,type SourcePage,type Section} from "@/lib/original-content";
 import {messageSet} from "@/lib/messages";
 import {displayTitle} from "@/lib/site-titles";
@@ -21,9 +23,10 @@ export default function SourceDocument({page}:{page:SourcePage}){
  const corporate=section==="company";
  const resource=section==="resources";
  const unit=section==="units";
- const siblings=(corporate||resource)?
+ const siblings=false?
   sectionPages(page.locale,section).filter(item=>item.route!==page.route&&item.route!==`/${page.locale}/${section}/`).slice(0,14):[];
  const relatedName=m.nav[section];
+ const isFacilities=resource&&(page.slug==="cosovatchat"||/cosovatchat\.aspx/i.test(page.sourceUrl));
  const title=displayTitle(page);
  return <main className={`v-document ${project?"v-document--project":""} ${corporate?"v-document--company":""} ${unit?"v-document--unit":""} ${resource?"v-document--resource":""}`}>
   <div className="shell">
@@ -38,6 +41,8 @@ export default function SourceDocument({page}:{page:SourcePage}){
    </header>
    {partners?<PartnersDirectory locale={page.locale}/>:
     leadership?<LeadershipDirectory locale={page.locale}/>:
+    corporate?<CompanyDetail page={page}/>:
+    isFacilities?<FacilityDetail page={page}/>:
     <div className={`v-document-layout ${siblings.length?"v-document-layout--related":""}`}>
       <article className="v-document-body">
         <SourceCopy html={page.html} title={title}/>
