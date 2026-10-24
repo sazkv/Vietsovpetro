@@ -3,7 +3,7 @@
 import UIIcon from "@/components/ui-icon";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
-import {useState} from "react";
+import {useEffect,useRef,useState} from "react";
 import {useTranslations} from "next-intl";
 import type {Locale,Section} from "@/lib/original-content";
 import {employeeNavigation,employeeResources,employeeLabels} from "@/lib/employee-links";
@@ -17,6 +17,14 @@ const ordering:Record<Locale,Section[]>={
 export type MenuPreview=Record<string,{title:string,route:string}[]>;
 export default function SourceNavigation({locale,preview={}}:{locale:Locale,preview?:MenuPreview}){
  const [open,setOpen]=useState(false);
+ const utilityRef=useRef<HTMLDetailsElement>(null);
+ useEffect(()=>{
+  const closeOnOutside=(event:PointerEvent)=>{if(utilityRef.current&&!utilityRef.current.contains(event.target as Node))utilityRef.current.open=false;};
+  const closeOnEscape=(event:KeyboardEvent)=>{if(event.key==="Escape"&&utilityRef.current?.open){utilityRef.current.open=false;utilityRef.current.querySelector("summary")?.focus();}};
+  document.addEventListener("pointerdown",closeOnOutside);
+  document.addEventListener("keydown",closeOnEscape);
+  return()=>{document.removeEventListener("pointerdown",closeOnOutside);document.removeEventListener("keydown",closeOnEscape);};
+ },[]);
  const pathname=usePathname()||`/${locale}/`;
  const t=useTranslations("nav");
  const active=pathname.split("/").filter(Boolean)[1] as Section|undefined;
@@ -27,7 +35,7 @@ export default function SourceNavigation({locale,preview={}}:{locale:Locale,prev
     <a className="vsp-utility-signin" href={employeeNavigation.signIn} target="_blank" rel="noopener noreferrer"><UIIcon name="user" size={16}/><span>{employeeLabels[locale].signIn}</span></a>
     <a href={employeeNavigation.eoffice} target="_blank" rel="noopener noreferrer">eOffice</a>
     <a href={employeeNavigation.handbook} target="_blank" rel="noopener noreferrer"><span className="vsp-handbook-long">{employeeLabels[locale].handbook}</span><span className="vsp-handbook-short">{employeeLabels[locale].shortHandbook}</span></a>
-    <details className="vsp-utility-dropdown">
+    <details className="vsp-utility-dropdown" ref={utilityRef}>
      <summary aria-label={employeeLabels[locale].resources}>{employeeLabels[locale].resources} <UIIcon name="chevron-down" size={15}/></summary>
      <div className="vsp-utility-menu">
       {employeeResources.map(item=><a href={item.href} key={item.href} target="_blank" rel="noopener noreferrer">{item.label[locale]}<UIIcon name="up-right" size={14}/></a>)}
