@@ -16,7 +16,7 @@ export function ResourceIndex({locale,page}:{locale:Locale;page?:SourcePage}){
  const t=words[locale];
  const related=sectionPages(locale,"resources").filter(p=>p.route!==`/${locale}/resources/`);
  const facilities=related.find(p=>p.slug==="cosovatchat");
- const statements=page?[...page.html.matchAll(/<li[^>]*>([sS]*?)</lis*>/gi)]
+ const statements=page?[...page.html.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li\s*>/gi)]
    .map(m=>textOf(m[1])).filter(Boolean):[];
  return <div className="v-resource-index shell">
    <div className="v-resource-top">
