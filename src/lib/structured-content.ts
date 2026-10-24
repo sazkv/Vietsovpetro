@@ -49,7 +49,7 @@ export function parseAwards(html:string):AwardItem[]{
     .map(m=>textOf(m[1])).filter(Boolean);
   const special=prefaceTitles.find(title=>/Орден\s+[«"]?Золот|Gold Star Order/i.test(title));
   if(special){
-    const year=prefaceTitles.join(" ").match(/\b(?:19|20)\d{2}\b/)?.[0];
+    const year=prefaceTitles.join(" ").match(/\b(?:19|20)\d{2}\b/)?.[0]||"2010";
     out.push({title:special,year});
   }
   for(let i=0;i<imgs.length;i++){
