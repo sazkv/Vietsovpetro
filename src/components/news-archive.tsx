@@ -1,5 +1,6 @@
-import UIIcon from "@/components/ui-icon";
 "use client";
+
+import UIIcon from "@/components/ui-icon";
 
 import Link from "next/link";
 import {useMemo,useState} from "react";
