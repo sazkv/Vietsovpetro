@@ -40,17 +40,6 @@ function Metric({value,selected}:{value:string;selected:number}){
  },[value,selected]);
  return <span>{shown}</span>;
 }
-function AssetIcon({index}:{index:number}){
- return <svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-   {index===0?<><path d="M6 53h52M16 53V24h32v29M22 24l10-17 10 17M22 34h20M22 42h20M32 7v-5"/></>:
-   index===1?<><path d="M9 53h46M12 44h40M18 44V21h28v23M24 21V11h16v10M31 44V21M19 32h27"/><path d="M32 10V4"/></>:
-   index===2?<><rect x="11" y="28" width="12" height="25"/><rect x="26" y="18" width="12" height="35"/><rect x="41" y="7" width="12" height="46"/><path d="M8 53h49M13 15l7-7 8 5 12-10"/></>:
-   index===3?<><path d="m8 50 12-28 13-7 23 16-12 20H8Zm5 0 12-15 14 15m-6-35 4-9"/><circle cx="33" cy="15" r="3"/></>:
-   index===4?<><path d="M8 54h48M20 54 32 9l12 45M25 36h14M28 23h8M13 44h38M32 9V3"/></>:
-   index===5?<><path d="M8 53h48M13 53l6-22h26l6 22M19 31h26M26 31V11h12v20M19 42h26M32 11V5"/></>:
-   <><path d="M6 18h15v28H6zM43 18h15v28H43zM21 27h22M21 37h22M13 18v-9h38v9M13 46v9h38v-9"/><circle cx="32" cy="32" r="4"/></>}
- </svg>;
-}
 export default function AchievementExperience({items,locale="vi"}:{items:Achievement[];locale?:Locale}){
  const t=ui[locale];
  const data=items.slice(0,7).map((item,index)=>({
@@ -86,7 +75,6 @@ export default function AchievementExperience({items,locale="vi"}:{items:Achieve
     </div>
     <div className="ac-visual" key={"photo-"+active}>
      <div className="ac-visual-photo"><img src={base+"/brand/"+photos[active]} loading="eager" alt=""/></div>
-     <div className="ac-visual-geometry" aria-hidden="true"></div>
      <span className="ac-visual-caption">{current.label}</span>
     </div>
    </div>
