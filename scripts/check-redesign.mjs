@@ -152,8 +152,8 @@ if(!masonrySource.includes("React Bits Masonry")||!masonrySource.includes("light
 const awardsFile=join(root,"out","vi","company","cacdanhhieu","index.html");
 if(existsSync(awardsFile)){
  const html=read(awardsFile);
- if(!html.includes("aw-stage")||!html.includes("aw-years")||!html.includes("aw-rail"))
-  failures.push("Awards museum must have interactive era filters, spotlight and medal rail");
+ if(!html.includes("museum-grid")||!html.includes("museum-filters")||!html.includes("museum-card"))
+  failures.push("Awards museum must render cleaned authentic medal assets in responsive exhibition grid");
 }
 for(const slug of ["gioithieuct","tiemnang","antoanskmt"]){
  const path=join(root,"out","vi","company",slug,"index.html");
@@ -218,6 +218,30 @@ for(const locale of ["vi","ru","en"]){
  if(!html.includes('class="ep-banner-image"'))
   failures.push(locale+"/capabilities missing dedicated original-ratio photo banner");
 }
+
+const awardManifest=JSON.parse(read("public/awards/manifest.json"));
+const distinctMedals=Object.values(awardManifest);
+if(distinctMedals.length!==13)failures.push("Expected 13 genuine cleaned source medal files, found "+distinctMedals.length);
+for(const medal of distinctMedals){
+ const path=join(root,"out",medal.asset.replace(/^\//,""));
+ if(!existsSync(path))failures.push("Missing locally packaged transparent original medal: "+medal.asset);
+ if(!medal.backgroundRemoved)failures.push("Medal still has scan background: "+medal.asset);
+}
+for(const [locale,slug] of [["vi","linhvuc"],["ru","activity"],["en","activity"]]){
+ const path=join(root,"out",locale,"company",slug,"index.html");
+ if(!existsSync(path)){failures.push("Missing industry scope: "+locale+"/"+slug);continue;}
+ const html=read(path);
+ if(!html.includes("scope-experience")||!html.includes("scope-group-items"))
+  failures.push(locale+" activity page still renders a single unstructured paragraph");
+ const paragraphs=(html.match(/class="scope-group-items"/g)||[]).length;
+ if(paragraphs<3)failures.push(locale+" activity page missing content categories");
+}
+const achievementsUI=read("src/components/achievement-experience.tsx");
+if(achievementsUI.includes("setPlaying")||achievementsUI.includes('className={"ac-play'))
+ failures.push("Achievements still exposes a pointless start/autoplay button");
+const awardsUI=read("src/components/awards-experience.tsx");
+if(awardsUI.includes("MedalPlaceholder")||awardsUI.includes("aw-stage-halo"))
+ failures.push("Awards still contains invented medal SVG or fake decorative halo");
 const archive=JSON.parse(read("src/data/original-pages.json"));
 if(archive.length<2300)failures.push(`Content archive unexpectedly small: ${archive.length}`);
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}
