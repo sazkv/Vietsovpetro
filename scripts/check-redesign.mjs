@@ -61,10 +61,10 @@ if(existsSync(page("company"))){
 }
 
 for(const [slug,marker] of [
- ["lichsuhinhthanh","hx-story"],
+ ["lichsuhinhthanh","hc-experience"],
  ["cacdanhhieu","v-awards-grid"],
  ["nhungthanhtuu","ax-experience"],
- ["cocau","v-organization"],
+ ["cocau","og-experience"],
  ["lanhdao","v-leadership-grid"]
 ]){
  const path=join(root,"out","vi","company",slug,"index.html");
@@ -111,10 +111,10 @@ if(existsSync(leadershipFile)){
 const historyFile=join(root,"out","vi","company","lichsuhinhthanh","index.html");
 if(existsSync(historyFile)){
  const html=read(historyFile);
- const buttons=(html.match(/class="hx-rail-item/g)||[]).length;
+ const buttons=(html.match(/class="hc-year-btn/g)||[]).length;
  if(buttons<15)failures.push("Interactive timeline must expose all original history events, found "+buttons);
- if(!html.includes('role="progressbar"')||!html.includes("hx-stage-media"))
-  failures.push("Timeline requires progress and large photographic stage");
+ if(!html.includes('class="hc-scrub"')||!html.includes("hc-canvas")||!html.includes("hc-era-buttons"))
+  failures.push("History must expose cinematic photograph, decade navigation and draggable scrubber");
 }
 const achievementsFile=join(root,"out","vi","company","nhungthanhtuu","index.html");
 if(existsSync(achievementsFile)){
@@ -122,6 +122,32 @@ if(existsSync(achievementsFile)){
  if(!html.includes("ax-hero")||!html.includes("ax-duo")||!html.includes("ax-output"))
   failures.push("Achievements page must render complete editorial data-wall hierarchy");
 }
+
+const organizationFile=join(root,"out","vi","company","cocau","index.html");
+if(existsSync(organizationFile)){
+ const html=read(organizationFile);
+ if(!html.includes("og-switcher")||!html.includes("og-graph-root"))
+  failures.push("Interactive company organization explorer is missing");
+}
+const galleryFile=join(root,"out","vi","company","hinhanh","index.html");
+if(!existsSync(galleryFile))failures.push("Missing archival gallery route");
+else{
+ const html=read(galleryFile);
+ if(!html.includes("ar-archive-cover")||!html.includes("ar-grid-section"))
+  failures.push("React Bits archive gallery not present in exported HTML");
+}
+const orgSource=read("src/lib/organization-data.ts");
+for(const [name,expected] of [["organizationDepartments",18],["organizationUnits",18]]){
+ const match=orgSource.match(new RegExp("export const "+name+"=\\[([\\s\\S]*?)\\];"));
+ if(!match)failures.push("Missing structured organization data: "+name);
+ else{
+  const count=(match[1].match(/^ "/gm)||[]).length;
+  if(count!==expected)failures.push(name+" needs "+expected+" source-backed nodes, got "+count);
+ }
+}
+const masonrySource=read("src/components/react-bits-masonry.tsx");
+if(!masonrySource.includes("React Bits Masonry")||!masonrySource.includes("lightbox"))
+ failures.push("Licensed interactive React Bits masonry component is missing");
 const archive=JSON.parse(read("src/data/original-pages.json"));
 if(archive.length<2300)failures.push(`Content archive unexpectedly small: ${archive.length}`);
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}

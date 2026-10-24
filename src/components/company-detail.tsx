@@ -4,6 +4,8 @@ import SourceCopy from "@/components/source-copy";
 import {parseHistory,parseAwards,parseAchievements} from "@/lib/structured-content";
 import HistoryExperience from "@/components/history-experience";
 import AchievementExperience from "@/components/achievement-experience";
+import OrganizationExperience from "@/components/organization-experience";
+import ArchivalGallery from "@/components/archival-gallery";
 import {sectionPages,type SourcePage,type Locale} from "@/lib/original-content";
 
 const base=process.env.NEXT_PUBLIC_BASE_PATH||"";
@@ -38,25 +40,13 @@ export default function CompanyDetail({page}:{page:SourcePage}){
   }
 
   if(["cocau","organization"].includes(slug)){
-    const units=sectionPages(locale,"units").filter(p=>p.route!==`/${locale}/units/`);
-    return <div className="v-organization">
-      <div className="v-organization-top">
-        <div><span>18</span><p>{t.offices}</p></div>
-        <div><span>18</span><p>{t.units}</p></div>
-      </div>
-      <div className="v-organization-bottom">
-        <div className="v-organization-text"><SourceCopy html={html} title={page.title}/></div>
-        <Link href={`/${locale}/units/`} className="v-organization-link">
-          <span>{t.unitsLink}</span><span aria-hidden="true"><UIIcon name="up-right" size={18}/></span>
-          <small>{units.length}</small>
-        </Link>
-      </div>
-      <p className="v-organization-note">{t.sourceNote}</p>
-    </div>;
+    return <OrganizationExperience locale={locale}/>;
   }
 
-  if(slug==="hinhanh"&&page.images?.length){
-    return <div className="v-heritage-gallery">{page.images.map((src,i)=><figure key={src+i}><img src={src} alt="" loading="lazy"/></figure>)}</div>;
+  if(["hinhanh","image"].includes(slug)){
+    const fallback=Array.from({length:20},(_,index)=>
+      `https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/hinhanhtulieu/${index+1}.jpg`);
+    return <ArchivalGallery images={page.images?.length?page.images:fallback} locale={locale}/>;
   }
 
   const hasEmbeddedVisuals=/<(?:img|table|iframe)\b/i.test(html.replace(/<img\b[^>]*>/i,""));
