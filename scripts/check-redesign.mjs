@@ -65,7 +65,7 @@ for(const [slug,marker] of [
  ["cacdanhhieu","v-awards-grid"],
  ["nhungthanhtuu","v-achievement-grid"],
  ["cocau","v-organization"],
- ["lanhdao","v-leadership-list"]
+ ["lanhdao","v-leadership-feature"]
 ]){
  const path=join(root,"out","vi","company",slug,"index.html");
  if(!existsSync(path)){failures.push(`Missing company detail: ${slug}`);continue;}
