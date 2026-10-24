@@ -36,7 +36,7 @@ try{
    await page.locator(".r-hero-line").first().waitFor({state:"visible"});
    const phrases=await page.locator(".r-hero-line").allTextContents();
    assert.equal(phrases.length,2,locale+" two-line hero required");
-   assert.deepEqual(locale==="en"?phrases:["fixed","two"],locale==="en"?["Offshore energy.","Proven expertise."]:["fixed","two"]);
+   assert.deepEqual(phrases,locale==="en"?["Offshore energy.","Proven expertise."]:["Năng lượng ngoài khơi.","Năng lực vững vàng."]);
    const boxes=await Promise.all([0,1].map(i=>page.locator(".r-hero-line").nth(i).boundingBox()));
    assert(boxes[0]&&boxes[1],"Hero line bounding boxes missing");
    assert(boxes[1].y>=boxes[0].y+boxes[0].height-2,"Two hero lines overlap");
