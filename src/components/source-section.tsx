@@ -1,3 +1,4 @@
+import UIIcon from "@/components/ui-icon";
 import Link from "next/link";
 import NewsArchive, {type ArchiveCategory} from "@/components/news-archive";
 import PartnersDirectory from "@/components/partners-directory";
@@ -31,7 +32,7 @@ function Directory({items,className=""}:{items:{route:string,title:string}[],cla
   {items.map((item,i)=><Link href={item.route} className="v-directory-row" key={item.route}>
     <span className="v-directory-number">{String(i+1).padStart(2,"0")}</span>
     <span className="v-directory-title">{item.title}</span>
-    <span className="v-directory-arrow" aria-hidden="true">↗</span>
+    <span className="v-directory-arrow" aria-hidden="true"><UIIcon name="up-right" size={18}/></span>
   </Link>)}
  </nav>;
 }
@@ -71,7 +72,7 @@ export default function SourceSection({locale,section}:{locale:Locale,section:Se
     <div className="v-unit-grid">{children.map((unit,i)=><Link href={unit.route} key={unit.route} className="v-unit">
       <span className="v-unit-number">{String(i+1).padStart(2,"0")}</span>
       <h2>{displayTitle(unit)}</h2>
-      <span className="v-unit-arrow" aria-hidden="true">↗</span>
+      <span className="v-unit-arrow" aria-hidden="true"><UIIcon name="up-right" size={18}/></span>
     </Link>)}</div>
   </div>}
 
@@ -105,15 +106,15 @@ export default function SourceSection({locale,section}:{locale:Locale,section:Se
         <h2>{info.office}</h2><address>{info.address}</address>
       </div>
       <div className="v-contact-ways">
-        <a href="tel:+842543839871"><span>{info.phone}</span><strong>+84 254 3839 871</strong><span className="v-contact-link-arrow" aria-hidden="true">↗</span></a>
-        <a href="mailto:vspadmin@vietsov.com.vn"><span>{info.mail}</span><strong>vspadmin@vietsov.com.vn</strong><span className="v-contact-link-arrow" aria-hidden="true">↗</span></a>
+        <a href="tel:+842543839871"><span>{info.phone}</span><strong>+84 254 3839 871</strong><span className="v-contact-link-arrow" aria-hidden="true"><UIIcon name="up-right" size={18}/></span></a>
+        <a href="mailto:vspadmin@vietsov.com.vn"><span>{info.mail}</span><strong>vspadmin@vietsov.com.vn</strong><span className="v-contact-link-arrow" aria-hidden="true"><UIIcon name="up-right" size={18}/></span></a>
         <div><span>{info.fax}</span><strong>+84 254 3839 857</strong></div>
       </div>
     </div>
     <h2 className="v-contact-title">{info.people}</h2>
     <div className="v-contact-people">{people.map(person=><div className="v-contact-person" key={person.email}>
       <h3>{person.name}</h3><p>{person[locale]}</p>
-      <div><a href={`mailto:${person.email}`}>{person.email} ↗</a><span>{info.ext}: {person.ext}</span></div>
+      <div><a href={`mailto:${person.email}`}>{person.email} <UIIcon name="up-right" size={18}/></a><span>{info.ext}: {person.ext}</span></div>
     </div>)}</div>
   </div>}
 
