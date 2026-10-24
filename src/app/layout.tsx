@@ -7,6 +7,8 @@ import "./polish-v6.css";
 import "./fullwidth-v7.css";
 import "./leadership-v8.css";
 import "./experience-v9.css";
+import "./react-bits-masonry.css";
+import "./immersive-v10.css";
 
 export const metadata: Metadata = {
   title: "Vietsovpetro",
