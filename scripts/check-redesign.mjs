@@ -82,7 +82,8 @@ for(const [section,slug,marker] of [
  if(!html.includes(marker))failures.push(`Missing structured layout: ${section}/${slug||""} ${marker}`);
 }
 const svc=read("src/components/service-icon.tsx");
-if((svc.match(/\/\/ \d\d /g)||[]).length!==15)failures.push("Expected 15 unique service SVG designs");
+if((svc.match(/<path|<circle|<rect/g)||[]).length>0 && !svc.includes("lucide-icons"))failures.push("Professional icon system missing");
+if(!svc.includes("serviceIconNames")||!svc.includes("Lucide"))failures.push("Expected professional Lucide icon package mapping");
 const archive=JSON.parse(read("src/data/original-pages.json"));
 if(archive.length<2300)failures.push(`Content archive unexpectedly small: ${archive.length}`);
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}
