@@ -39,3 +39,12 @@ jobs:
             git commit -m "assets: commit transparent restored medals from official source"
             git push origin HEAD:design/real-medal-assets-v14
           fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install site dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build all localized pages
+        run: npm run build
+      - name: Verify exported pages and original award assets
+        run: npm run check:ui
