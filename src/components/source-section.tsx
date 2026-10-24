@@ -56,12 +56,15 @@ export default function SourceSection({locale,section}:{locale:Locale,section:Se
     <h1>{title}</h1>
   </div>
 
-  {section==="company"&&<div className="shell v-company">
-    <div className="v-company-image"><img src={index?.images?.[0]||`${base}/brand/hero-offshore-6.jpg`} alt="" loading="lazy"/></div>
-    <div className="v-company-columns">
-      <div className="v-company-article">{(companyFull?.html||index?.html)&&<SourceCopy html={previewParagraphs(companyFull?.html||index?.html||"",3)} title={title}/>}</div>
-      {children.length>0&&<Directory items={children.map(p=>({route:p.route,title:displayTitle(p)}))} className="v-company-chapters"/>}
+  {section==="company"&&<div className="shell v-company-new">
+    <div className="v-about-feature">
+      <div className="v-about-intro">
+        <h2>{locale==="vi"?"Liên doanh Vietsovpetro":locale==="ru"?"Вьетсовпетро":"Vietsovpetro Joint Venture"}</h2>
+        {(companyFull?.html||index?.html)&&<SourceCopy html={previewParagraphs(companyFull?.html||index?.html||"",2)} title={title}/>}
+      </div>
+      <div className="v-about-photo"><img src={companyFull?.images?.[0]||index?.images?.[0]||`${base}/brand/hero-offshore-6.jpg`} alt="" loading="lazy"/></div>
     </div>
+    {children.length>0&&<Directory items={children.map(p=>({route:p.route,title:displayTitle(p)}))} className="v-about-directory"/>}
   </div>}
 
   {section==="units"&&<div className="shell v-units">
