@@ -54,13 +54,16 @@ export default function AchievementExperience({items}:{items:Achievement[]}){
  }));
  const hero=data[0];
  if(!hero)return null;
+ // The original page has a 250 headline, but its detailed production claim says >256.
+ // Display the value from the published sentence so the headline and explanation agree.
+ const currentOilVolume=hero.description.match(/trên\s+(\d+)\s+triệu\s+tấn/i)?.[1]||hero.number;
  return <div className="ax-experience">
   <Reveal>
     <section className="ax-hero" aria-label={hero.label}>
       <div className="ax-hero-data">
         <span className="ax-eyebrow">VIETSOVPETRO · 1981—</span>
         <div className="ax-hero-metric">
-          <strong><MotionMetric value={hero.number}/><span className="ax-plus">+</span></strong>
+          <strong><MotionMetric value={currentOilVolume}/><span className="ax-plus">+</span></strong>
           <h2>{hero.label}</h2>
         </div>
         <p>{hero.description}</p>
