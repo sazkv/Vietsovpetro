@@ -65,7 +65,7 @@ for(const [slug,marker] of [
  ["cacdanhhieu","v-awards-grid"],
  ["nhungthanhtuu","v-achievement-grid"],
  ["cocau","v-organization"],
- ["lanhdao","v-leadership-feature"]
+ ["lanhdao","v-leadership-grid"]
 ]){
  const path=join(root,"out","vi","company",slug,"index.html");
  if(!existsSync(path)){failures.push(`Missing company detail: ${slug}`);continue;}
@@ -99,6 +99,13 @@ for(const path of [
 ]){
  const content=read(path);
  if(/[↗☰✕⌕＋]/u.test(content))failures.push(`Emoji-like Unicode glyph remains in ${path}`);
+}
+const leadershipFile=join(root,"out","vi","company","lanhdao","index.html");
+if(existsSync(leadershipFile)){
+  const html=read(leadershipFile).split("<main")[1]?.split("</main>")[0]||"";
+  const num=(html.match(/class="v-leadership-card"/g)||[]).length;
+  const photos=(html.match(/class="v-leadership-portrait"/g)||[]).length;
+  if(num!==11||photos!==11)failures.push(`Expected 11 real, consistently framed portrait cards, found ${num} cards and ${photos} photos`);
 }
 const archive=JSON.parse(read("src/data/original-pages.json"));
 if(archive.length<2300)failures.push(`Content archive unexpectedly small: ${archive.length}`);
