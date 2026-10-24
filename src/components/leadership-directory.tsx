@@ -23,7 +23,7 @@ export default function LeadershipDirectory({locale}:{locale:Locale}){
     <span className="v-leadership-feature-role">{director.role}</span>
     <h2>{director.name}</h2>
    </div>
-   <div className="v-leadership-feature-mark" aria-hidden="true">VSP</div>
+
   </section>
   <div className="v-leadership-grid">
    {leadership.slice(1).map(person=><article className="v-leadership-person" key={person.name}>
