@@ -3,6 +3,7 @@ import NewsArchive, {type ArchiveCategory} from "@/components/news-archive";
 import PartnersDirectory from "@/components/partners-directory";
 import ServiceIcon from "@/components/service-icon";
 import SourceCopy from "@/components/source-copy";
+import {ResourceIndex} from "@/components/resource-pages";
 import {home, sectionIndex, sectionPages, type Locale, type Section} from "@/lib/original-content";
 import {messageSet} from "@/lib/messages";
 import {displayTitle} from "@/lib/site-titles";
@@ -55,12 +56,15 @@ export default function SourceSection({locale,section}:{locale:Locale,section:Se
     <h1>{title}</h1>
   </div>
 
-  {section==="company"&&<div className="shell v-company">
-    <div className="v-company-image"><img src={index?.images?.[0]||`${base}/brand/hero-offshore-6.jpg`} alt="" loading="lazy"/></div>
-    <div className="v-company-columns">
-      <div className="v-company-article">{(companyFull?.html||index?.html)&&<SourceCopy html={previewParagraphs(companyFull?.html||index?.html||"",3)} title={title}/>}</div>
-      {children.length>0&&<Directory items={children.map(p=>({route:p.route,title:displayTitle(p)}))} className="v-company-chapters"/>}
+  {section==="company"&&<div className="shell v-company-new">
+    <div className="v-about-feature">
+      <div className="v-about-intro">
+        <h2>{locale==="vi"?"Liên doanh Vietsovpetro":locale==="ru"?"Вьетсовпетро":"Vietsovpetro Joint Venture"}</h2>
+        {(companyFull?.html||index?.html)&&<SourceCopy html={previewParagraphs(companyFull?.html||index?.html||"",2)} title={title}/>}
+      </div>
+      <div className="v-about-photo"><img src={companyFull?.images?.[0]||index?.images?.[0]||`${base}/brand/hero-offshore-6.jpg`} alt="" loading="lazy"/></div>
     </div>
+    {children.length>0&&<Directory items={children.map(p=>({route:p.route,title:displayTitle(p)}))} className="v-about-directory"/>}
   </div>}
 
   {section==="units"&&<div className="shell v-units">
@@ -81,13 +85,7 @@ export default function SourceSection({locale,section}:{locale:Locale,section:Se
     <PartnersDirectory locale={locale} compact/>
   </div>}
 
-  {section==="resources"&&<div className="shell v-resources">
-    <div className="v-resources-feature">
-      <div className="v-resources-copy">{index?.html&&<SourceCopy html={index.html} title={index.title} omitFirstImage={Boolean(index.images?.length)}/>}</div>
-      {index?.images?.[0]&&<div className="v-resources-image"><img src={index.images[0]} alt="" loading="lazy"/></div>}
-    </div>
-    {children.length>0&&<Directory items={children.map(p=>({route:p.route,title:displayTitle(p)}))} className="v-resources-directory"/>}
-  </div>}
+  {section==="resources"&&<ResourceIndex locale={locale} page={index}/>}
 
   {section==="services"&&<div className="shell v-services">
     {home[locale].serviceIntro&&<p className="v-services-lead">{home[locale].serviceIntro}</p>}

@@ -1,0 +1,251 @@
+/* ABOUT + RESOURCES V5
+   Strictly page-scoped. Each original information type gets its own editorial
+   composition; no duplicated archival markup or generic 'accordion' sections. */
+
+.v-company-new{padding-top:57px}
+.v-about-feature{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);align-items:stretch;gap:clamp(46px,5vw,84px);margin-bottom:85px}
+.v-about-intro{display:flex;flex-direction:column;justify-content:center;max-width:600px;padding:22px 0 34px}
+.v-about-intro h2{font:650 clamp(35px,3.65vw,54px)/1.12 Manrope,"Segoe UI",sans-serif;letter-spacing:-.052em;margin:0 0 30px}
+.v-about-intro .source-copy{font-size:16px;line-height:1.85;color:#536c7a}
+.v-about-intro .source-copy p{margin:0 0 1.25em}
+.v-about-intro .source-copy p:first-of-type{font-size:18px;color:#334e60}
+.v-about-photo{height:530px;min-height:100%;overflow:hidden;background:#dbe3e6}
+.v-about-photo img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.v-about-photo:hover img{transform:scale(1.025)}
+.v-about-directory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 26px;margin-bottom:18px}
+.v-about-directory .v-directory-row{min-height:106px;grid-template-columns:29px minmax(0,1fr) 22px;gap:12px}
+.v-about-directory .v-directory-title{font-size:clamp(16px,1.25vw,20px);font-weight:680}
+.v-about-directory .v-directory-number{font-size:10px}
+
+/* Every About detail is optimized for a different original data format. */
+.v-document--company .v-document-header{margin-bottom:60px}
+.v-company-prose{display:grid;grid-template-columns:minmax(0,1fr);gap:50px}
+.v-company-prose-photo{width:100%;height:410px;overflow:hidden;background:#e0e8eb}
+.v-company-prose-photo img{height:100%;width:100%;object-fit:cover;object-position:center;display:block}
+.v-company-prose-content{max-width:950px}
+.v-company-prose-content .source-copy{font-size:17px;line-height:1.9}
+.v-company-prose-content .source-copy>h1:first-child,
+.v-company-prose-content .source-copy>h2:first-child,
+.v-company-prose-content .source-copy>h3:first-child{margin-top:0}
+.v-company-prose-content .source-copy p{margin:0 0 25px}
+.v-company-prose-content .source-copy p:first-of-type{font-size:18px;color:#2d5065}
+.v-company-prose-content .source-copy h2{font-size:clamp(28px,2.7vw,40px);margin-top:48px;margin-bottom:22px}
+.v-company-prose-content .source-copy ul{padding-left:22px}
+.v-company-prose-content .source-copy li{padding-left:6px;margin-bottom:13px}
+.v-company-prose-content .source-copy img{max-width:100%;height:auto;object-fit:contain;margin:34px auto}
+
+/* Real event timeline: date / original description / original archival photo. */
+.v-history{list-style:none;margin:0;padding:0;max-width:1260px;border-top:1px solid #9cb3c0}
+.v-history-event{position:relative;display:grid;grid-template-columns:116px minmax(0,1fr) minmax(210px,.68fr);gap:clamp(25px,3.6vw,55px);align-items:center;min-height:190px;padding:29px 0;border-bottom:1px solid #d6e1e7}
+.v-history-event:before{content:"";position:absolute;left:107px;top:0;bottom:0;width:1px;background:#d7e1e6;z-index:0}
+.v-history-year{font-size:clamp(24px,2.5vw,35px);font-weight:680;letter-spacing:-.055em;color:#174054;align-self:start;padding-top:5px;z-index:1}
+.v-history-story{max-width:645px;align-self:center;z-index:1}
+.v-history-story time{font-size:11px;letter-spacing:.1em;color:#b33c36;font-weight:800;display:block;margin-bottom:14px}
+.v-history-story p{font-size:clamp(15px,1.25vw,18px);font-weight:560;line-height:1.7;color:#294a5c;margin:0}
+.v-history-photo{height:150px;background:#e0e8ea;overflow:hidden}
+.v-history-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease}
+.v-history-event:hover .v-history-photo img{transform:scale(1.04)}
+
+/* Awards: each historic medal is visible with its actual photo and label. */
+.v-awards-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px 20px}
+.v-award{margin:0;min-width:0}
+.v-award-media{height:220px;background:#f2f4f4;display:flex;align-items:center;justify-content:center;padding:28px;overflow:hidden}
+.v-award-media img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 6px 11px rgba(10,37,52,.1));transition:transform .25s ease}
+.v-award:hover .v-award-media img{transform:scale(1.045)}
+.v-award figcaption{border-top:1px solid #dbe3e7;padding-top:15px;margin-top:13px;display:flex;flex-direction:column;gap:7px;line-height:1.48}
+.v-award figcaption strong{font-size:14px;font-weight:710;color:#253f50}
+.v-award figcaption span{font-size:11px;color:#b03b34;font-weight:800}
+
+/* Achievements: true, published metrics instead of distorted nested tables. */
+.v-achievement-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 42px;border-top:1px solid #a6b9c3}
+.v-achievement{min-height:260px;border-bottom:1px solid #d2dfe5;padding:39px 0 32px;display:flex;flex-direction:column;align-items:flex-start}
+.v-achievement>strong{font-size:clamp(54px,5.4vw,84px);letter-spacing:-.084em;color:#123c53;font-weight:610;line-height:1.06}
+.v-achievement>span{font-size:12px;color:#b53c37;font-weight:800;margin:10px 0 26px;line-height:1.4;min-height:15px}
+.v-achievement p{font-size:15px;color:#5c7583;line-height:1.7;margin:0;max-width:390px}
+
+/* Organization: no fictitious org chart. Only the two published counts plus
+   real details and a direct link to the operating-unit catalogue. */
+.v-organization{max-width:1250px}
+.v-organization-top{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));background:#0c3146;color:#fff}
+.v-organization-top>div{padding:55px 63px;min-height:270px}
+.v-organization-top>div+div{border-left:1px solid #ffffff38}
+.v-organization-top span{display:block;font-size:clamp(73px,7.3vw,114px);line-height:1;letter-spacing:-.078em;font-weight:600}
+.v-organization-top p{font-size:16px;max-width:280px;line-height:1.55;color:#c6d9e1;margin:24px 0 0}
+.v-organization-bottom{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.55fr);gap:40px;margin-top:50px;align-items:start}
+.v-organization-text .source-copy{font-size:17px;line-height:1.85;color:#345367}
+.v-organization-link{min-height:170px;padding:26px 27px;background:#eff3f5;display:grid;grid-template-columns:1fr 25px;grid-template-rows:1fr auto;gap:15px;transition:background .2s ease}
+.v-organization-link:hover{background:#e0e9ee}
+.v-organization-link>span:first-child{font-size:20px;font-weight:730;line-height:1.35;letter-spacing:-.025em}
+.v-organization-link>span:nth-child(2){font-size:23px;color:#b43e36}
+.v-organization-link small{grid-column:1/-1;font-size:11px;letter-spacing:.06em;color:#718997}
+.v-organization-note{font-size:11px;color:#8a9aa2;line-height:1.6;margin-top:26px}
+.v-heritage-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.v-heritage-gallery figure{margin:0;aspect-ratio:4/3;background:#e5edf0;overflow:hidden}
+.v-heritage-gallery img{height:100%;width:100%;object-fit:cover;transition:transform .5s}
+.v-heritage-gallery figure:hover img{transform:scale(1.035)}
+
+/* Resources: split overview with genuine human resource copy, source metrics,
+   and a single photographic link to the real facilities detail. */
+.v-resource-index{padding-top:54px}
+.v-resource-top{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);min-height:505px;gap:clamp(40px,5.5vw,80px);align-items:stretch}
+.v-resource-top-copy{display:flex;flex-direction:column;justify-content:space-between;padding:18px 0 22px}
+.v-resource-top-copy h2{font-size:clamp(41px,4.1vw,63px);font-weight:660;letter-spacing:-.066em;line-height:1.12;margin:0}
+.v-resource-cover{height:505px;overflow:hidden;background:#cddbe2}
+.v-resource-cover img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .5s ease}
+.v-resource-cover:hover img{transform:scale(1.028)}
+.v-resource-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 18px}
+.v-resource-facts>div{border-top:1px solid #c6d3da;padding-top:17px}
+.v-resource-facts>div:first-child{grid-column:1/-1}
+.v-resource-facts strong{display:block;font-weight:630;font-size:clamp(42px,4.4vw,63px);letter-spacing:-.075em;line-height:1.07}
+.v-resource-facts span{display:block;color:#617988;font-size:12px;line-height:1.55;max-width:230px;margin-top:8px}
+.v-resource-points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 65px;border-top:1px solid #b1c2cb;margin-top:80px}
+.v-resource-point{display:grid;grid-template-columns:28px minmax(0,1fr);gap:15px;padding:30px 0;border-bottom:1px solid #d4e0e6;align-items:start}
+.v-resource-point>span{font-size:11px;color:#b4413c;font-weight:800;letter-spacing:.04em;margin-top:4px}
+.v-resource-point p{font-size:15px;line-height:1.83;color:#385669;margin:0}
+.v-resource-facility-entry{display:block;margin-top:90px}
+.v-resource-facility-photo{height:400px;background:#dce6eb;overflow:hidden}
+.v-resource-facility-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease}
+.v-resource-facility-entry:hover img{transform:scale(1.025)}
+.v-resource-facility-link{border-bottom:1px solid #b5c8d0;display:flex;justify-content:space-between;align-items:center;gap:22px;padding:24px 0}
+.v-resource-facility-link h2{font-size:clamp(29px,3.4vw,48px);font-weight:680;letter-spacing:-.053em;line-height:1.23;margin:0}
+.v-resource-facility-link span{font-size:31px;color:#b23b35}
+.v-resource-facility-entry:hover h2{color:#a63832}
+.v-resource-extra{margin-top:40px;display:flex;justify-content:space-between;gap:30px;border-bottom:1px solid #c7d6dc;padding:20px 0;font-size:18px;font-weight:680}
+.v-resource-extra span{color:#b43c35}
+
+/* Equipment detail: ten official groups with full bullet lists, image beside
+   text, and consistent visual cadence. No obsolete 'Xem thêm' accordions. */
+.v-facilities{display:flex;flex-direction:column;max-width:1320px}
+.v-facility{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:clamp(40px,5.2vw,82px);padding:55px 0;border-bottom:1px solid #cad8de;align-items:start}
+.v-facility:first-child{padding-top:0}
+.v-facility:nth-child(even){grid-template-columns:minmax(0,1.22fr) minmax(0,.78fr)}
+.v-facility:nth-child(even) .v-facility-image{grid-column:2;grid-row:1}
+.v-facility:nth-child(even) .v-facility-content{grid-column:1;grid-row:1}
+.v-facility-image{height:360px;min-width:0;overflow:hidden;background:#e8edf0;display:flex;align-items:center;justify-content:center}
+.v-facility-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.v-facility:hover .v-facility-image img{transform:scale(1.025)}
+.v-facility-image>span{color:#a3b6c0;font-size:70px}
+.v-facility-index{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;color:#b14039;margin:0 0 20px}
+.v-facility-content h2{font-size:clamp(25px,2.75vw,40px);font-weight:680;letter-spacing:-.05em;line-height:1.2;margin:0 0 22px}
+.v-facility-content ul{list-style:none;margin:0;padding:0;border-top:1px solid #c2d2da}
+.v-facility-content li{position:relative;color:#3d5c6c;line-height:1.68;font-size:14px;padding:12px 0 12px 19px;border-bottom:1px solid #e3e9ed}
+.v-facility-content li:before{content:"";position:absolute;left:1px;top:22px;width:6px;height:6px;border:1.5px solid #ad443d;border-radius:50%}
+.v-facility-fallback .source-copy{max-width:1080px}
+
+/* New service drawings: visually consistent but with one unique motif per group. */
+.v-service-grid{gap:12px}
+.v-service{background:#fff;min-height:265px;border:1px solid #dce5e9;padding:32px 30px 28px;position:relative;overflow:hidden}
+.v-service::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .22s}
+.v-service:hover{background:#fafbfc;border-color:#b9cdd6;transform:translateY(-2px)}
+.v-service:hover::before{background:#b33a35}
+.v-service-icon{width:82px;height:82px;stroke:#24556e;color:#24556e;transition:transform .25s}
+.v-service-icon .v-icon-highlight{stroke:#b64039}
+.v-service:hover .v-service-icon{transform:translateY(-3px)}
+.v-service h2{font-size:clamp(17px,1.4vw,22px);line-height:1.4}
+.v-service-number{color:#a9423d}
+.r-home-service-icon .v-icon-highlight{stroke:#b53b36}
+.r-home-service-icon{width:75px;height:75px}
+
+/* Current management is a directory, not eleven meaningless cards. */
+.v-leadership-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;border-top:1px solid #a9bfc9}
+.v-leader{min-height:112px;background:transparent;border:0;border-bottom:1px solid #d8e3e8;padding:21px 0;display:grid;grid-template-columns:34px minmax(0,1fr);gap:18px;align-items:start}
+.v-leader>span{margin-top:6px}
+.v-leader h2{font-size:clamp(19px,1.55vw,25px);line-height:1.3;letter-spacing:-.028em;margin:0 0 8px}
+.v-leader p{font-size:13px;color:#5e7786;line-height:1.6;margin:0}
+
+@media(max-width:1150px){
+ .v-about-feature{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+ .v-about-photo{height:470px}
+ .v-about-directory{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .v-history-event{grid-template-columns:98px minmax(0,1fr) 240px;gap:30px}
+ .v-history-event:before{left:89px}
+ .v-awards-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .v-resource-top{gap:40px}
+ .v-resource-points{gap:0 34px}
+ .v-facility{gap:40px}
+ .v-service-icon{width:75px;height:75px}
+}
+@media(max-width:800px){
+ .v-about-feature{display:flex;flex-direction:column-reverse;gap:35px;margin-bottom:55px}
+ .v-about-photo{height:360px;min-height:0}
+ .v-about-intro{max-width:none;padding:0}
+ .v-about-intro h2{font-size:40px}
+ .v-company-prose-photo{height:315px}
+ .v-history-event{grid-template-columns:85px minmax(0,1fr);gap:25px}
+ .v-history-event:before{left:77px}
+ .v-history-photo{grid-column:2;grid-row:2;height:220px}
+ .v-awards-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .v-achievement-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px}
+ .v-organization-bottom{grid-template-columns:1fr}
+ .v-resource-top{grid-template-columns:1fr;gap:35px}
+ .v-resource-cover{height:380px}
+ .v-resource-top-copy{padding:0}
+ .v-resource-facts{margin-top:40px}
+ .v-resource-facts>div:first-child{grid-column:auto}
+ .v-resource-points{margin-top:55px}
+ .v-resource-facility-entry{margin-top:60px}
+ .v-facility,.v-facility:nth-child(even){grid-template-columns:1fr;gap:24px;padding:42px 0}
+ .v-facility:nth-child(even) .v-facility-image,.v-facility:nth-child(even) .v-facility-content{grid-column:auto;grid-row:auto}
+ .v-facility-image{height:340px}
+ .v-facility-content h2{font-size:31px}
+}
+@media(max-width:600px){
+ .v-company-new{padding-top:33px}
+ .v-about-photo{height:235px}
+ .v-about-intro h2{font-size:34px;margin-bottom:19px}
+ .v-about-intro .source-copy{font-size:15px}
+ .v-about-intro .source-copy p:first-of-type{font-size:16px}
+ .v-about-directory{grid-template-columns:1fr;margin:0}
+ .v-about-directory .v-directory-row{min-height:78px}
+ .v-document--company .v-document-header{margin-bottom:35px}
+ .v-company-prose{gap:30px}
+ .v-company-prose-photo{height:220px}
+ .v-company-prose-content .source-copy{font-size:16px}
+ .v-company-prose-content .source-copy h2{font-size:28px;margin-top:35px}
+ .v-history-event{grid-template-columns:68px minmax(0,1fr);gap:16px;padding:25px 0}
+ .v-history-event:before{left:60px}
+ .v-history-year{font-size:23px}
+ .v-history-story time{margin-bottom:9px}
+ .v-history-story p{font-size:15px}
+ .v-history-photo{height:160px}
+ .v-awards-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 12px}
+ .v-award-media{height:165px;padding:15px}
+ .v-award figcaption strong{font-size:12px}
+ .v-achievement-grid{grid-template-columns:1fr}
+ .v-achievement{min-height:205px;padding:30px 0}
+ .v-achievement>strong{font-size:62px}
+ .v-organization-top>div{padding:27px 22px;min-height:195px}
+ .v-organization-top span{font-size:64px}
+ .v-organization-top p{font-size:12px;margin-top:15px}
+ .v-organization-bottom{margin-top:33px}
+ .v-organization-text .source-copy{font-size:15px}
+ .v-heritage-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .v-resource-index{padding-top:33px}
+ .v-resource-top-copy h2{font-size:38px}
+ .v-resource-cover{height:255px}
+ .v-resource-facts{margin-top:30px;gap:18px 10px}
+ .v-resource-facts strong{font-size:39px}
+ .v-resource-facts span{font-size:11px}
+ .v-resource-points{grid-template-columns:1fr;margin-top:40px}
+ .v-resource-point{padding:21px 0}
+ .v-resource-point p{font-size:14px}
+ .v-resource-facility-entry{margin-top:45px}
+ .v-resource-facility-photo{height:220px}
+ .v-resource-facility-link{padding:17px 0}
+ .v-resource-facility-link h2{font-size:28px}
+ .v-facility,.v-facility:nth-child(even){gap:19px;padding:34px 0}
+ .v-facility:first-child{padding-top:0}
+ .v-facility-image{height:220px}
+ .v-facility-index{margin-bottom:10px}
+ .v-facility-content h2{font-size:26px;margin-bottom:19px}
+ .v-facility-content li{font-size:13px;padding:10px 0 10px 16px}
+ .v-service{min-height:215px;padding:24px}
+ .v-service-icon{width:70px;height:70px}
+ .r-home-service-icon{width:70px;height:70px}
+ .v-leadership-list{grid-template-columns:1fr}
+ .v-leader{min-height:105px;padding:17px 0}
+}
+@media(prefers-reduced-motion:reduce){
+ .v-about-photo img,.v-award-media img,.v-history-photo img,.v-resource-cover img,
+ .v-resource-facility-photo img,.v-facility-image img,.v-service-icon{transition:none!important}
+}
