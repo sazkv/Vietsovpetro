@@ -45,11 +45,11 @@ export function parseAwards(html:string):AwardItem[]{
   // RU/EN originals list the Gold Star Order before the first image.
   // Retain its authentic title and year, with no invented medal photograph.
   const preface=html.slice(0,imgs[0]?.offset??0);
-  const prefaceTitles=[...preface.matchAll(/<h4\\b[^>]*>([\\s\\S]*?)<\\/h4\\s*>/gi)]
+  const prefaceTitles=[...preface.matchAll(/<h4\b[^>]*>([\s\S]*?)<\/h4\s*>/gi)]
     .map(m=>textOf(m[1])).filter(Boolean);
-  const special=prefaceTitles.find(title=>/Орден\\s+[«"]?Золот|Gold Star Order/i.test(title));
+  const special=prefaceTitles.find(title=>/Орден\s+[«"]?Золот|Gold Star Order/i.test(title));
   if(special){
-    const year=prefaceTitles.join(" ").match(/\\b(?:19|20)\\d{2}\\b/)?.[0];
+    const year=prefaceTitles.join(" ").match(/\b(?:19|20)\d{2}\b/)?.[0];
     out.push({title:special,year});
   }
   for(let i=0;i<imgs.length;i++){
