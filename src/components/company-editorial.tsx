@@ -46,7 +46,14 @@ export default function CompanyEditorial({page}:{page:SourcePage}){
  const about=["gioithieuct","introduction"].includes(slug);
  const hse=["antoanskmt","safety"].includes(slug);
  const hero=base+"/brand/"+(heroImg[slug]||"hero-offshore-1.jpg");
- const chapters=content.chapters.filter(ch=>ch.paragraphs.length||ch.bullets.length||ch.images.length);
+ const chapters=content.chapters.filter(ch=>{
+   // Old introductory thumbnails were at times the only content in a section.
+   // Never upscale them or render a duplicate empty image-only chapter.
+   if(ch.heading===title&&!ch.paragraphs.length&&!ch.bullets.length)return false;
+   return Boolean(ch.paragraphs.length||ch.bullets.length||ch.images.length);
+ }).map(ch=>about&&ch.heading===title?{
+   ...ch,heading:locale==="vi"?"Hoạt động và phát triển":locale==="ru"?"Деятельность и развитие":"Operations and development"
+ }:ch);
  const visibleIntro=content.intro.length>0?content.intro:
     chapters[0]?.paragraphs.slice(0,1)||[];
  return <div className={"ep-editorial "+(hse?"ep-editorial-safety":"")}>
@@ -60,6 +67,9 @@ export default function CompanyEditorial({page}:{page:SourcePage}){
        <img src={hero} alt="" loading="eager"/>
      </div>
    </div>
+   {visibleIntro.length>1&&<div className="ep-intro-continuation">
+     {visibleIntro.slice(1).map((paragraph,i)=><p key={i}>{paragraph}</p>)}
+   </div>}
    {about&&<section className="ep-stats" aria-label="Vietsovpetro">
      <div><strong>1981</strong><span>{copy.since}</span></div>
      <div><strong>18</strong><span>{copy.units}</span></div>
