@@ -10,6 +10,7 @@ import "./experience-v9.css";
 import "./react-bits-masonry.css";
 import "./immersive-v10.css";
 import "./editorial-v11.css";
+import "./quality-v12.css";
 
 export const metadata: Metadata = {
   title: "Vietsovpetro",

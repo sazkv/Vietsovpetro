@@ -1,0 +1,108 @@
+/* V12 — content images are editorial material, not background-filling widgets.
+   Fix source-media upscaling and separate title, photography, and technical copy.
+   The original source archive remains unchanged. */
+
+.ep-editorial-v12 .ep-banner{
+ display:flex!important;flex-direction:column!important;gap:0!important;
+ min-height:0!important;position:relative;overflow:visible;
+ background:transparent!important;
+}
+.ep-editorial-v12 .ep-banner-copy{
+ padding:0 0 clamp(30px,3.3vw,48px)!important;
+ max-width:1120px!important;display:block!important;
+ background:transparent!important;min-width:0;
+}
+.ep-editorial-v12 .ep-banner-eyebrow{
+ color:#b23d37!important;letter-spacing:.13em;font-size:11px;
+ margin:0 0 23px!important;
+}
+.ep-editorial-v12 .ep-banner h2{
+ font-size:clamp(39px,5.2vw,77px)!important;letter-spacing:-.066em;
+ color:#0c344a!important;line-height:1.12;max-width:1090px;
+ font-weight:660;margin:0 0 26px!important;text-wrap:balance;
+}
+.ep-editorial-v12 .ep-banner p{
+ color:#3d6172!important;font-size:clamp(16px,1.5vw,20px)!important;
+ line-height:1.72;max-width:95ch;text-wrap:pretty;
+}
+.ep-editorial-v12 .ep-banner-image{
+ position:relative!important;display:block!important;
+ margin:0!important;padding:0!important;width:100%!important;
+ height:auto!important;min-height:0!important;max-height:none!important;
+ aspect-ratio:1260/505;background:#d9e5eb;overflow:hidden!important;
+ align-self:auto!important;
+}
+.ep-editorial-v12 .ep-banner-image img{
+ display:block!important;position:static!important;inset:auto!important;
+ width:100%!important;height:auto!important;max-height:none!important;
+ max-width:100%!important;aspect-ratio:1260/505;
+ object-fit:contain!important;object-position:center!important;
+ filter:none!important;transform:none!important;
+}
+.ep-editorial-v12 .ep-intro-continuation{
+ display:block;padding:34px 0;max-width:100%;
+}
+.ep-editorial-v12 .ep-intro-continuation p{
+ max-width:90ch!important;color:#476779;
+}
+.ep-editorial-v12 .ep-chapter{
+ background:transparent!important;margin:0!important;
+ padding:58px 0!important;box-shadow:none!important;
+ border-bottom:1px solid #d1e0e7;scroll-margin-top:100px;
+}
+.ep-editorial-v12 .ep-chapter:nth-child(3n+2){
+ background:transparent!important;box-shadow:none!important;margin:0!important;
+}
+.ep-editorial-v12 .ep-chapter-title{position:relative;top:auto!important}
+.ep-editorial-v12 .ep-chapter-title h2{
+ font-size:clamp(30px,3.1vw,44px)!important;max-width:410px;
+ text-wrap:pretty;
+}
+.ep-editorial-v12 .ep-text p{
+ font-size:16px!important;line-height:1.8;
+ color:#3d5f70;max-width:94ch;
+}
+.ep-editorial-v12 .ep-points{border-top:1px solid #c9d7df}
+.ep-editorial-v12 .ep-point{
+ min-width:0;padding:18px 0;
+}
+.ep-editorial-v12 .ep-point>span:last-child{
+ font-size:15px;line-height:1.65;
+}
+/* Technical diagrams only: preserve their actual shape and pixel density.
+   DO NOT enlarge little JPEG thumbnails or force them into generic image cards. */
+.ep-editorial-v12 .ep-technical-diagrams{
+ display:flex;flex-direction:column;align-items:flex-start;gap:28px;
+ margin:38px 0 0;padding-top:27px;border-top:1px solid #d4e0e6;
+}
+.ep-editorial-v12 .ep-technical-diagrams figure{
+ display:block;max-width:100%;margin:0;padding:0;
+ overflow-x:auto;border:0;background:transparent;box-shadow:none;
+}
+.ep-editorial-v12 .ep-technical-diagrams img{
+ display:block;position:static;max-width:100%;max-height:740px;
+ width:auto!important;height:auto!important;object-fit:contain;
+ background:transparent;filter:none;transform:none;
+}
+.ep-editorial-v12 .ep-illustrations{display:none!important}
+@media(max-width:790px){
+ .ep-editorial-v12 .ep-banner-copy{padding:0 0 26px!important}
+ .ep-editorial-v12 .ep-banner h2{font-size:clamp(35px,6.2vw,55px)!important}
+ .ep-editorial-v12 .ep-banner-image{height:auto!important;min-height:0!important}
+ .ep-editorial-v12 .ep-chapter{padding:43px 0!important}
+ .ep-editorial-v12 .ep-chapter-title{position:static!important}
+ .ep-editorial-v12 .ep-chapter-title h2{font-size:31px!important}
+}
+@media(max-width:580px){
+ .ep-editorial-v12 .ep-banner-copy{padding:0 0 23px!important}
+ .ep-editorial-v12 .ep-banner h2{font-size:36px!important;margin-bottom:19px!important}
+ .ep-editorial-v12 .ep-banner p{font-size:15px!important;line-height:1.75}
+ .ep-editorial-v12 .ep-banner-image{aspect-ratio:1260/505!important}
+ .ep-editorial-v12 .ep-banner-image img{aspect-ratio:1260/505!important}
+ .ep-editorial-v12 .ep-chapter{padding:31px 0!important}
+ .ep-editorial-v12 .ep-chapter-title h2{font-size:28px!important}
+ .ep-editorial-v12 .ep-text p{font-size:15px!important}
+ .ep-editorial-v12 .ep-points{grid-template-columns:1fr}
+ .ep-editorial-v12 .ep-point>span:last-child{font-size:14px}
+ .ep-editorial-v12 .ep-technical-diagrams{gap:22px}
+}
