@@ -58,8 +58,8 @@
 
 /* Fixed headline rhythm, never allow one dangling word in EN / VI. */
 .r-hero{height:min(800px,calc(100svh - 129px));min-height:630px}
-.r-hero-headline.r-hero-headline--en{font-size:clamp(48px,6.15vw,102px);max-width:none;line-height:1.045;letter-spacing:-.069em}
-.r-hero-headline.r-hero-headline--vi{font-size:clamp(43px,5.35vw,91px);max-width:none;line-height:1.075;letter-spacing:-.066em}
+.r-hero-headline.r-hero-headline--en{font-size:clamp(48px,6.15vw,102px);max-width:none;line-height:1.045;letter-spacing:0;word-spacing:.07em}
+.r-hero-headline.r-hero-headline--vi{font-size:clamp(43px,5.35vw,91px);max-width:none;line-height:1.075;letter-spacing:0;word-spacing:.07em}
 .r-hero-line{display:block;white-space:nowrap;word-break:normal;hyphens:none;overflow-wrap:normal}
 @media(max-width:1260px){
  .r-hero-headline.r-hero-headline--en{font-size:clamp(43px,5.9vw,76px)}
