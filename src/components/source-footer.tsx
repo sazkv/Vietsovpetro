@@ -1,3 +1,4 @@
+import UIIcon from "@/components/ui-icon";
 import Link from "next/link";
 import {externalLinks,type Locale,sectionOrder} from "@/lib/original-content";
 import {messageSet} from "@/lib/messages";
@@ -20,8 +21,8 @@ export default function SourceFooter({locale}:{locale:Locale}){
       </nav>
     </div>
     <div className="shell vx-footer-services">
-      {externalLinks[locale].map(item=><a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer">{item.title} ↗</a>)}
+      {externalLinks[locale].map(item=><a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer">{item.title} <UIIcon name="up-right" size={18}/></a>)}
     </div>
-    <div className="shell vx-footer-bottom"><span>{disclaimer[locale]}</span><a href="https://www.vietsov.com.vn/" target="_blank" rel="noopener noreferrer">vietsov.com.vn ↗</a></div>
+    <div className="shell vx-footer-bottom"><span>{disclaimer[locale]}</span><a href="https://www.vietsov.com.vn/" target="_blank" rel="noopener noreferrer">vietsov.com.vn <UIIcon name="up-right" size={18}/></a></div>
   </footer>;
 }
