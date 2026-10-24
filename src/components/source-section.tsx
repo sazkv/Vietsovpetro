@@ -79,13 +79,13 @@ export default function SourceSection({locale,section}:{locale:Locale;section:Se
         <span className="r-unit-id">{String(i+1).padStart(2,"0")}</span><h2>{item.title}</h2><span className="r-unit-arrow" aria-hidden="true">↗</span>
       </Link>)}
     </div>
-    {index?.html&&<div className="r-source-bottom"><SourceCopy html={index.html}/></div>}
+    {index?.html&&<details className="r-source-details"><summary>{m.page.contents}<span aria-hidden="true">＋</span></summary><div className="r-source-details-body"><SourceCopy html={index.html}/></div></details>}
   </div>}
 
   {isCompany&&<div className="shell r-section-body">
     <div className="r-company-overview">
       <div className="r-company-photo"><img src={index?.images?.[0]||`${base}/brand/hero-offshore-6.jpg`} alt="" loading="lazy"/></div>
-      <div className="r-company-copy">{index?.html?<SourceCopy html={index.html}/>:<h2>{sectionHeading(locale,section)}</h2>}</div>
+      <div className="r-company-copy">{index?.html?<SourceCopy html={index.html.replace(/<img\b[^>]*>/i,"")}/>:<h2>{sectionHeading(locale,section)}</h2>}</div>
     </div>
     <SourceLinks locale={locale} section={section} children={children}/>
   </div>}
