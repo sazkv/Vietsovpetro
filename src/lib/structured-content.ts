@@ -41,24 +41,32 @@ export type AwardItem=WithImage&{title:string;year?:string};
 export function parseAwards(html:string):AwardItem[]{
   const imgs=[...html.matchAll(/<img\b[^>]*\bsrc=["']([^"']+)["']/gi)]
     .map(m=>({src:m[1],offset:m.index||0}));
-  const out:AwardItem[]=[];
-  // RU/EN originals list the Gold Star Order before the first image.
-  // Retain its authentic title and year, with no invented medal photograph.
-  const preface=html.slice(0,imgs[0]?.offset??0);
+  const preface=html.slice(0,imgs[0]?.offset??html.length);
   const prefaceTitles=[...preface.matchAll(/<h4\b[^>]*>([\s\S]*?)<\/h4\s*>/gi)]
     .map(m=>textOf(m[1])).filter(Boolean);
+  // RU/EN source archives may list the Gold Star order before the first image.
   const special=prefaceTitles.find(title=>/Орден\s+[«"]?Золот|Gold Star Order/i.test(title));
-  if(special){
-    const year=prefaceTitles.join(" ").match(/\b(?:19|20)\d{2}\b/)?.[0]||"2010";
-    out.push({title:special,year});
-  }
+  const out:AwardItem[]=[];
   for(let i=0;i<imgs.length;i++){
-    const tail=html.slice(imgs[i].offset,imgs[i+1]?.offset||html.length);
-    const h4=tail.match(/<h4\b[^>]*>([\s\S]*?)<\/h4\s*>/i);
-    let title=textOf(h4?.[1]||"");
+    const section=html.slice(imgs[i].offset,imgs[i+1]?.offset||html.length);
+    const headings=[...section.matchAll(/<h4\b[^>]*>([\s\S]*?)<\/h4\s*>/gi)]
+      .map(m=>textOf(m[1])).filter(Boolean);
+    // The official archive often writes the year in a second <h4> (e.g.
+    // "Huân chương Sao vàng" then "2010"). Do not silently lose this year.
+    const plainYear=/^(?:19|20)\d{2}$/;
+    let title=headings.find(value=>!plainYear.test(value))||"";
+    const year=title.match(/\b(?:19|20)\d{2}\b/)?.[0]
+      ||headings.find(value=>plainYear.test(value))
+      ||undefined;
+    if(i===0&&!title&&year==="2010")title=special||"Huân chương Sao vàng";
     if(!title)continue;
-    if(i===0&&title==="2010")title="Huân chương Sao vàng — 2010";
-    out.push({title,year:title.match(/\b(?:19|20)\d{2}\b/)?.[0],image:imgs[i].src});
+    out.push({title,year,image:imgs[i].src});
+  }
+  // Preserve Gold Star when the imported RU/EN archive has no corresponding
+  // image. Avoid inserting a second copy if the image-based entry already has it.
+  if(special&&!out.some(item=>/Орден\s+[«"]?Золот|Gold Star Order/i.test(item.title))){
+    const year=prefaceTitles.join(" ").match(/\b(?:19|20)\d{2}\b/)?.[0]||"2010";
+    out.unshift({title:special,year});
   }
   return out;
 }
