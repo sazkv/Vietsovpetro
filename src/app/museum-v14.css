@@ -185,3 +185,8 @@
 .museum-gallery-album{padding:9px 12px}
 .museum-gallery-album button{width:52px;height:57px}
 }
+
+.museum-gallery-source{display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid #9cafb8;
+ font-size:12px;font-weight:750;line-height:1.6;color:#245a76;margin-bottom:24px;padding-bottom:3px}
+.museum-gallery-source:hover{color:#a8403a;border-color:#a8403a}
+@media(max-width:760px){.museum-gallery-source{margin-bottom:15px}}
