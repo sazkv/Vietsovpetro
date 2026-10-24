@@ -1,3 +1,4 @@
+import UIIcon from "@/components/ui-icon";
 import Link from "next/link";
 import {type Locale} from "@/lib/original-content";
 
@@ -23,13 +24,13 @@ export default function PartnersDirectory({locale,compact=false}:{locale:Locale;
  const t=labels[locale];
  const link=`/${locale}/projects/partners/`;
  if(compact)return <section className="v-partner-preview" aria-labelledby="v-partner-title">
-   <div className="v-partner-preview-head"><h2 id="v-partner-title">{t.heading}</h2><Link href={link}>{t.heading} <span aria-hidden="true">↗</span></Link></div>
+   <div className="v-partner-preview-head"><h2 id="v-partner-title">{t.heading}</h2><Link href={link}>{t.heading} <span aria-hidden="true"><UIIcon name="up-right" size={18}/></span></Link></div>
    <div className="v-partner-preview-names">
     {recordedClients.slice(0,8).map(name=><span key={name}>{name}</span>)}
    </div>
   </section>;
  return <section className="v-partners" aria-label={t.clients}>
    <div className="v-partners-grid">{recordedClients.map((name,i)=><div className="v-partner-name" key={name}><span>{String(i+1).padStart(2,"0")}</span><strong>{name}</strong></div>)}</div>
-   <div className="v-partners-bottom"><Link href={`/${locale}/projects/`}>← {t.projects}</Link></div>
+   <div className="v-partners-bottom"><Link href={`/${locale}/projects/`}><UIIcon name="left" size={18}/> {t.projects}</Link></div>
   </section>;
 }
