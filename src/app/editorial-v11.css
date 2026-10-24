@@ -316,3 +316,36 @@
  .aw-stage-copy,.aw-stage-image img,.ac-data,.ac-visual,.ac-visual-photo img{animation:none!important}
  .aw-item,.ac-tile,.ud-chapters a,.ep-anchor-nav a{transition:none!important}
 }
+
+/* === GROUPED OPERATING UNIT DIRECTORY ================================= */
+.v-units{padding-top:46px}
+.ug-directory{width:100%}
+.ug-group{display:grid;grid-template-columns:minmax(200px,.28fr) minmax(0,.72fr);gap:clamp(32px,5vw,75px);padding:47px 0 65px;border-bottom:1px solid #c5d4db}
+.ug-group:first-child{padding-top:0}
+.ug-heading{align-self:start;position:sticky;top:120px;display:flex;flex-direction:column;align-items:start;gap:12px}
+.ug-heading>svg{width:52px;height:52px;color:#34667b;margin-bottom:22px}
+.ug-heading h2{font-size:clamp(30px,3.2vw,46px);font-weight:670;letter-spacing:-.054em;line-height:1.19;max-width:390px;margin:0}
+.ug-heading p{font-size:12px;color:#8298a3;margin:0;letter-spacing:.015em}
+.ug-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.ug-card{min-height:185px;background:#f2f5f6;border:1px solid #e0e8eb;padding:25px;display:flex;flex-direction:column;justify-content:space-between;gap:27px;align-items:start;transition:background .22s,border-color .22s}
+.ug-card:hover{background:#0d3246;color:white;border-color:#0d3246}
+.ug-card span{font-size:clamp(17px,1.4vw,22px);line-height:1.38;font-weight:680;letter-spacing:-.028em;max-width:330px;text-wrap:pretty}
+.ug-card svg{color:#b33c35;align-self:end;flex-shrink:0;transition:transform .22s}
+.ug-card:hover svg{color:#f4b9b4;transform:translate(2px,-2px)}
+@media(max-width:850px){
+ .ug-group{grid-template-columns:1fr;gap:25px;padding:35px 0}
+ .ug-heading{position:static;display:grid;grid-template-columns:60px minmax(0,1fr);align-items:center;gap:6px 17px}
+ .ug-heading>svg{grid-row:span 2;margin:0}
+ .ug-heading h2{font-size:32px}
+ .ug-heading p{grid-column:2}
+}
+@media(max-width:560px){
+ .v-units{padding-top:29px}
+ .ug-group{padding:28px 0 40px;gap:25px}
+ .ug-heading>svg{width:38px;height:38px}
+ .ug-heading{grid-template-columns:42px minmax(0,1fr);gap:3px 13px}
+ .ug-heading h2{font-size:28px}
+ .ug-cards{grid-template-columns:1fr;gap:10px}
+ .ug-card{min-height:128px;padding:20px}
+ .ug-card span{font-size:20px;line-height:1.34}
+}
