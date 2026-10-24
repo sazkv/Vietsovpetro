@@ -3,6 +3,7 @@ import NewsArchive, {type ArchiveCategory} from "@/components/news-archive";
 import PartnersDirectory from "@/components/partners-directory";
 import ServiceIcon from "@/components/service-icon";
 import SourceCopy from "@/components/source-copy";
+import {ResourceIndex} from "@/components/resource-pages";
 import {home, sectionIndex, sectionPages, type Locale, type Section} from "@/lib/original-content";
 import {messageSet} from "@/lib/messages";
 import {displayTitle} from "@/lib/site-titles";
@@ -81,13 +82,7 @@ export default function SourceSection({locale,section}:{locale:Locale,section:Se
     <PartnersDirectory locale={locale} compact/>
   </div>}
 
-  {section==="resources"&&<div className="shell v-resources">
-    <div className="v-resources-feature">
-      <div className="v-resources-copy">{index?.html&&<SourceCopy html={index.html} title={index.title} omitFirstImage={Boolean(index.images?.length)}/>}</div>
-      {index?.images?.[0]&&<div className="v-resources-image"><img src={index.images[0]} alt="" loading="lazy"/></div>}
-    </div>
-    {children.length>0&&<Directory items={children.map(p=>({route:p.route,title:displayTitle(p)}))} className="v-resources-directory"/>}
-  </div>}
+  {section==="resources"&&<ResourceIndex locale={locale} page={index}/>}
 
   {section==="services"&&<div className="shell v-services">
     {home[locale].serviceIntro&&<p className="v-services-lead">{home[locale].serviceIntro}</p>}
