@@ -152,8 +152,8 @@ if(!masonrySource.includes("React Bits Masonry")||!masonrySource.includes("light
 const awardsFile=join(root,"out","vi","company","cacdanhhieu","index.html");
 if(existsSync(awardsFile)){
  const html=read(awardsFile);
- if(!html.includes("museum-grid")||!html.includes("museum-filters")||!html.includes("museum-card"))
-  failures.push("Awards museum must render cleaned authentic medal assets in responsive exhibition grid");
+ if(!html.includes("museum-stage-art")||!html.includes("museum-stage-details")||!html.includes("museum-album-rail")||!html.includes("museum-album-item"))
+  failures.push("Awards museum requires photo-left/details-right scene and selectable thumbnail album");
 }
 for(const slug of ["gioithieuct","tiemnang","antoanskmt"]){
  const path=join(root,"out","vi","company",slug,"index.html");
@@ -242,6 +242,36 @@ if(achievementsUI.includes("setPlaying")||achievementsUI.includes('className={"a
 const awardsUI=read("src/components/awards-experience.tsx");
 if(awardsUI.includes("MedalPlaceholder")||awardsUI.includes("aw-stage-halo"))
  failures.push("Awards still contains invented medal SVG or fake decorative halo");
+
+for(const locale of ["vi","ru","en"]){
+ const main=join(root,"out",locale,"index.html");
+ if(!existsSync(main)){failures.push("Missing homepage for "+locale);continue;}
+ const html=read(main);
+ if(!html.includes("r-utility-signin")||!html.includes("r-utility-dropdown"))
+  failures.push("Original employee bar and login icon missing on "+locale);
+ for(const url of ["https://eoffice.vietsov.com.vn/","https://www.vietsov.com.vn/FlipBook/mobile/home.html","https://mail.vietsov.com.vn/","https://www.vietsov.com.vn/Pages/LichBay.aspx"]){
+  if(!html.includes(url))failures.push("Original staff link not retained: "+locale+" "+url);
+ }
+ if(locale!=="ru"){
+  const lines=(html.match(/class="r-hero-line"/g)||[]).length;
+  if(lines!==2)failures.push("EN/VI hero must contain exactly two fixed lines: "+locale);
+  if(locale==="en"&&(!html.includes("Offshore energy.")||!html.includes("Proven expertise.")))
+   failures.push("English headline must have the approved word grouping");
+ }
+}
+for(const [locale,slug] of [["vi","cacdanhhieu"],["ru","healthcare"],["en","healthcare"]]){
+ const f=join(root,"out",locale,"company",slug,"index.html");
+ if(!existsSync(f)){failures.push("No awards page for "+locale);continue;}
+ const markup=read(f).split("</main>")[0];
+ for(const klass of ["museum-stage-art","museum-stage-details","museum-album-rail","museum-album-image"]){
+  if(!markup.includes(klass))failures.push("Award album layout missing "+klass+" in "+locale);
+ }
+ if(!markup.includes("/awards/"))failures.push("Award page has no real PNG references "+locale);
+}
+const v15css=read("src/app/studio-v15.css");
+if(!v15css.includes(".museum-v15-modal-image img")||!v15css.includes("object-fit:contain!important"))
+ failures.push("Award image enlargement must not crop medals");
+
 const archive=JSON.parse(read("src/data/original-pages.json"));
 if(archive.length<2300)failures.push(`Content archive unexpectedly small: ${archive.length}`);
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}
