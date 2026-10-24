@@ -25,3 +25,17 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: /Vietsovpetro
           NEXT_PUBLIC_SITE_URL: https://sazkv.github.io/Vietsovpetro
       - run: npm run check:ui
+      - name: Install browser for real rendered visual checks
+        run: |
+          npm install --no-save --no-audit playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Test EN/VI line breaks, utility links and actual medal interactions
+        run: node scripts/qa-v15.mjs
+      - name: Upload desktop / mobile screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v15-browser-layout-preview
+          path: tmp/qa-v15/*.png
+          if-no-files-found: ignore
+          retention-days: 7
