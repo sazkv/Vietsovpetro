@@ -65,7 +65,7 @@ export default function SourceSection({locale,section}:{locale:Locale,section:Se
       </div>
       <div className="v-about-photo"><img src={companyFull?.images?.[0]||index?.images?.[0]||`${base}/brand/hero-offshore-6.jpg`} alt="" loading="lazy"/></div>
     </div>
-    {children.length>0&&<Directory items={children.map(p=>({route:p.route,title:displayTitle(p)}))} className="v-about-directory"/>}
+    <Directory items={[...children.filter(p=>p.slug!=="image").map(p=>({route:p.route,title:displayTitle(p)})),{route:`/${locale}/company/gallery/`,title:locale==="vi"?"Hình ảnh tư liệu":locale==="ru"?"Фотоархив":"Photo archive"}]} className="v-about-directory"/>
   </div>}
 
   {section==="units"&&<div className="shell v-units">
