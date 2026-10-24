@@ -97,7 +97,6 @@ export default function AwardsExperience({items,locale="vi"}:{items:AwardItem[];
      {image?<button type="button" className="museum-stage-image-button" onClick={openModal} aria-label={t.expand+": "+awardName(picked)}>
        <img key={image} src={image} alt={awardName(picked)} loading="eager" decoding="async" onError={()=>setFailed(prev=>[...prev,image])}/>
      </button>:<div className="museum-stage-no-photo">{awardName(picked)}</div>}
-     <span className="museum-stage-image-label">{t.photo}</span>
    </div>
    <div className="museum-stage-details">
     <div className="museum-stage-topline"><span>{t.year}</span><strong>{picked.year||"—"}</strong></div>
