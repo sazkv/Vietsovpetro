@@ -21,6 +21,12 @@ export default function SourceNavigation({locale,preview={}}:{locale:Locale,prev
  const active=pathname.split("/").filter(Boolean)[1] as Section|undefined;
  const languageHref=(target:Locale)=>active&&ordering[target].includes(active)?`/${target}/${active}/`:`/${target}/`;
  return <header className="r-header">
+  <div className="vsp-utility-bar"><div className="shell vsp-utility-inner">
+    <a href="https://www.vietsov.com.vn/Pages/default.aspx" target="_blank" rel="noopener noreferrer" aria-label="Vietsovpetro official employee resources"><UIIcon name="user" size={15}/><span>{locale==="vi"?"Đăng nhập":locale==="ru"?"Вход":"Sign in"}</span></a>
+    <a href="https://eoffice.vietsov.com.vn/" target="_blank" rel="noopener noreferrer">eOffice</a>
+    <a href="https://www.vietsov.com.vn/Pages/default.aspx" target="_blank" rel="noopener noreferrer">{locale==="vi"?"Cẩm nang văn hóa Vietsovpetro":locale==="ru"?"Справочник корпоративной культуры":"Vietsovpetro culture handbook"}</a>
+    <a href="https://www.vietsov.com.vn/Pages/default.aspx" target="_blank" rel="noopener noreferrer">{locale==="vi"?"Liên kết":locale==="ru"?"Ссылки":"Resources"} <UIIcon name="up-right" size={13}/></a>
+   </div></div>
   <div className="shell r-header-inner">
    <Link href={`/${locale}/`} className="r-brand" aria-label="Vietsovpetro" onClick={()=>setOpen(false)}>
     <img src={`${base}/brand/logo-classic.png`} width="56" height="56" alt=""/>
