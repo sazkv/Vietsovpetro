@@ -48,3 +48,18 @@ jobs:
         run: npm run build
       - name: Verify exported pages and original award assets
         run: npm run check:ui
+      - name: Export gallery preview for visual QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: v14-artifact-preview
+          retention-days: 3
+          path: |
+            out/vi/company/cacdanhhieu/
+            out/ru/company/healthcare/
+            out/vi/company/linhvuc/
+            out/ru/company/activity/
+            out/en/company/activity/
+            out/ru/company/environment/
+            out/awards/
+            out/brand/
+            out/_next/static/css/
