@@ -55,11 +55,14 @@ export function parseAwards(html:string):AwardItem[]{
     // "Huân chương Sao vàng" then "2010"). Do not silently lose this year.
     const plainYear=/^(?:19|20)\d{2}$/;
     let title=headings.find(value=>!plainYear.test(value))||"";
-    const year=title.match(/\b(?:19|20)\d{2}\b/)?.[0]
+    const explicitYear=title.match(/\b(?:19|20)\d{2}\b/)?.[0]
       ||headings.find(value=>plainYear.test(value))
       ||undefined;
-    if(i===0&&!title&&year==="2010")title=special||"Huân chương Sao vàng";
+    if(i===0&&!title&&explicitYear==="2010")title=special||"Huân chương Sao vàng";
     if(!title)continue;
+    // Some translated award scans omit the date entirely; the official
+    // Vietsovpetro chronology confirms the Gold Star Order was awarded in 2010.
+    const year=explicitYear||(/Орден\s+[«"]?Золот|Gold Star Order|Sao vàng/i.test(title)?"2010":undefined);
     out.push({title,year,image:imgs[i].src});
   }
   // Preserve Gold Star when the imported RU/EN archive has no corresponding
