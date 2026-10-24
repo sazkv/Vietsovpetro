@@ -1,8 +1,0 @@
-import Link from "next/link";
-import {notFound} from "next/navigation";
-import Navigation from "@/components/navigation";
-import SiteFooter from "@/components/site-footer";
-import CatalogFilter from "@/components/catalog-filter";
-import {groups,groupBySlug} from "@/lib/site-map";
-export function generateStaticParams(){return groups.map(group=>({section:group.slug}))}
-export default async function Directory({params}:{params:Promise<{section:string}>}){const {section}=await params;const group=groupBySlug[section];if(!group)notFound();return <><Navigation/><main className="container directory-page"><div className="breadcrumbs"><Link href="/">Trang chủ</Link><span>/</span><span>{group.vi}</span></div><h1>{group.vi}</h1><p className="page-lead">{group.intro}</p><div className="directory-heading"><div><span>Danh mục</span><h2>{group.items.length} mục trong danh mục</h2></div><a href={group.source} target="_blank" rel="noopener noreferrer">Xem danh mục gốc ↗</a></div><CatalogFilter section={section} items={group.items}/><section className="migration-explainer"><div><strong>Chính sách bảo toàn nội dung</strong><p>Danh mục này phản ánh cấu trúc đã được đối chiếu với nguồn gốc. Các URL chi tiết, tài liệu đính kèm và hình ảnh sẽ được nhập vào CMS theo tiến trình kiểm kê; những phần chưa nhập không được thay bằng nội dung tự tạo.</p></div><Link href="/systems">Hệ thống & liên kết công tác ↗</Link></section></main><SiteFooter/></>}

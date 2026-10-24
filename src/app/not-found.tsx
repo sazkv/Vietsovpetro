@@ -1,1 +1,5 @@
-import Link from "next/link";import Navigation from "@/components/navigation";import SiteFooter from "@/components/site-footer";export default function NotFound(){return <><Navigation/><main className="container directory-page"><p className="overline dark">404 / CONTENT NOT FOUND</p><h1>Không tìm thấy trang.</h1><p className="page-lead">Đường dẫn có thể đã thay đổi hoặc nội dung chưa được đưa vào danh mục.</p><Link href="/" className="btn dark-btn">Về trang chủ ↗</Link></main><SiteFooter/></>}
+import Link from "next/link";
+
+export default function NotFound() {
+  return <main className="document-page shell"><div className="document-article"><header className="document-heading"><h1>404</h1></header><Link href="/">Vietsovpetro ↗</Link></div></main>;
+}

@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "home": "Home",
+    "company": "Introduction",
+    "units": "Subsidiaries",
+    "services": "Products - Services",
+    "news": "News - Events",
+    "projects": "Projects - Contracts",
+    "resources": "Resources",
+    "careers": "Careers",
+    "contact": "Contact",
+    "pages": "Information",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "home": {
+    "hero1": "Joint venture",
+    "hero2": "Vietsovpetro",
+    "hero3": "",
+    "projects": "Typical Projects",
+    "allServices": "All services",
+    "allNews": "All news",
+    "allProjects": "All projects"
+  },
+  "page": {
+    "more": "Read more",
+    "back": "Back",
+    "contents": "Contents",
+    "source": "Original page"
+  },
+  "footer": {
+    "address": "105 Le Loi, Vung Tau Ward, Ho Chi Minh City, Viet Nam",
+    "phone": "Phone: +84.254.3839 871",
+    "fax": "Fax: +84.254.3839857",
+    "email": "Email: vspadmin@vietsov.com.vn"
+  }
+}

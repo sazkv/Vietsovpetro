@@ -1,4 +1,4 @@
-name: Deploy concept to GitHub Pages
+name: Deploy Vietsovpetro to GitHub Pages
 
 on:
   push:
