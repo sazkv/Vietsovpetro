@@ -67,17 +67,17 @@
       354
     ],
     "outputPx": [
-      624,
-      1062
+      552,
+      990
     ],
-    "backgroundRemoved": false,
-    "removedCoverage": 0,
+    "backgroundRemoved": true,
+    "removedCoverage": 0.624,
     "backgroundRGB": [
       30,
       89,
       144
     ],
-    "bytes": 586658
+    "bytes": 456454
   },
   "danhhieu/ld3.jpg": {
     "asset": "/awards/ld3.png",
@@ -131,13 +131,13 @@
       1062
     ],
     "backgroundRemoved": true,
-    "removedCoverage": 0.531,
+    "removedCoverage": 0.54,
     "backgroundRGB": [
       225,
       227,
       228
     ],
-    "bytes": 766760
+    "bytes": 800760
   },
   "danhhieu/dl3.jpg": {
     "asset": "/awards/dl3.png",
