@@ -306,3 +306,19 @@
  .ar-cover-panel img,.hc-year-btn,.og-tab,.og-org-node{transition:none!important}
  .hc-years{scroll-behavior:auto}
 }
+
+/* The cinematic documents already render large, meaningful titles inside their
+   hero. Keep the semantic H1 accessible but avoid a redundant white heading. */
+.v-document--company:has(.hc-experience) .v-document-header,
+.v-document--company:has(.og-experience) .v-document-header,
+.v-document--company:has(.ar-archive) .v-document-header{
+ position:absolute!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%);
+ width:1px!important;height:1px!important;padding:0!important;margin:0!important;
+ border:0!important;overflow:hidden!important;white-space:nowrap;
+}
+.v-document--company:has(.hc-experience) .r-breadcrumb,
+.v-document--company:has(.og-experience) .r-breadcrumb,
+.v-document--company:has(.ar-archive) .r-breadcrumb{margin-top:0;margin-bottom:21px!important}
+.v-document--company:has(.hc-experience),
+.v-document--company:has(.og-experience),
+.v-document--company:has(.ar-archive){padding-top:20px}
