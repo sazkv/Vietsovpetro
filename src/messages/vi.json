@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "company": "Giới thiệu",
+    "units": "Đơn vị trực thuộc",
+    "services": "Sản phẩm - Dịch vụ",
+    "news": "Tin tức - Sự kiện",
+    "projects": "Dự án - Đối tác",
+    "resources": "Nguồn lực",
+    "careers": "Tuyển dụng",
+    "contact": "Liên hệ",
+    "pages": "Thông tin",
+    "menu": "Danh mục",
+    "close": "Đóng"
+  },
+  "home": {
+    "hero1": "Đoàn kết hữu nghị",
+    "hero2": "Khát vọng",
+    "hero3": "Tin cậy - bền vững",
+    "projects": "Dự án tiêu biểu",
+    "allServices": "Toàn bộ dịch vụ",
+    "allNews": "Tất cả tin tức",
+    "allProjects": "Tất cả dự án"
+  },
+  "page": {
+    "more": "Xem thêm",
+    "back": "Trở về",
+    "contents": "Nội dung",
+    "source": "Trang gốc"
+  },
+  "footer": {
+    "address": "105 Lê Lợi, phường Vũng Tàu, Thành phố Hồ Chí Minh, Việt Nam",
+    "phone": "Điện thoại: +84.254.3839 871",
+    "fax": "Fax: +84.254.3839857",
+    "email": "Email: vspadmin@vietsov.com.vn"
+  }
+}

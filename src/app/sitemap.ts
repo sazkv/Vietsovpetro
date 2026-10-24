@@ -1,1 +1,10 @@
-import type {MetadataRoute} from "next";import {groups} from "@/lib/site-map";export const dynamic="force-static";export default function sitemap():MetadataRoute.Sitemap{const base=process.env.NEXT_PUBLIC_SITE_URL;if(!base)return [];const paths=["/","/search","/systems",...groups.flatMap(g=>["/"+g.slug,...g.items.map(i=>"/"+g.slug+"/"+i.slug)])];return paths.map(path=>({url:base.replace(/\/$/,"")+path,changeFrequency:"monthly" as const,priority:path==="/"?1:.5}))}
+import type {MetadataRoute} from "next";
+import {locales, pages, sectionOrder} from "@/lib/original-content";
+
+export const dynamic = "force-static";
+export default function sitemap(): MetadataRoute.Sitemap {
+  const base = process.env.NEXT_PUBLIC_SITE_URL;
+  if (!base) return [];
+  const paths = new Set<string>(["/", ...locales.map((locale) => `/${locale}/`), ...Object.entries(sectionOrder).flatMap(([locale, sections]) => sections.map((section) => `/${locale}/${section}/`)), ...pages.map((page) => page.route)]);
+  return [...paths].map((path) => ({url: base.replace(/\/$/, "") + path, changeFrequency: "monthly" as const}));
+}
