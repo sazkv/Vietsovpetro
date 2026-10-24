@@ -1,0 +1,27 @@
+name: V15 Layout Preflight
+on:
+  push:
+    branches:
+      - design/employee-bar-museum-stage-hero-v15
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run check:structure
+      - name: Export 2376 pages
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /Vietsovpetro
+          NEXT_PUBLIC_SITE_URL: https://sazkv.github.io/Vietsovpetro
+      - run: npm run check:ui
