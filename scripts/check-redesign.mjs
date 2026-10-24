@@ -1,8 +1,8 @@
 import {readFileSync,existsSync} from "node:fs";
-import {join} from "node:path";
+import {join,isAbsolute} from "node:path";
 
 const root=process.cwd();
-const read=p=>readFileSync(join(root,p),"utf8");
+const read=p=>readFileSync(isAbsolute(p)?p:join(root,p),"utf8");
 const failures=[];
 const page=(section,locale="vi")=>`out/${locale}/${section}/index.html`;
 const tests=[
