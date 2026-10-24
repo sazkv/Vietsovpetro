@@ -2,7 +2,7 @@
 .r-home-services{padding:110px 0 125px}
 .r-home-services-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 42px;border-top:1px solid #bccbd2}
 .r-home-service-card{
- display:grid;grid-template-columns:minmax(0,1fr) 22px;align-items:center;gap:25px;
+ display:grid;grid-template-columns:minmax(0,1fr);align-items:center;gap:25px;
  min-height:128px;border:0;border-bottom:1px solid #cbd7dd;border-radius:0;
  padding:24px 5px 24px 0;background:transparent;box-shadow:none!important;
  transform:none!important;
