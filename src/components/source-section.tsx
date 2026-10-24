@@ -2,6 +2,7 @@ import UIIcon from "@/components/ui-icon";
 import Link from "next/link";
 import NewsArchive, {type ArchiveCategory} from "@/components/news-archive";
 import PartnersDirectory from "@/components/partners-directory";
+import UnitsDirectory from "@/components/units-directory";
 import ServiceIcon from "@/components/service-icon";
 import SourceCopy from "@/components/source-copy";
 import {ResourceIndex} from "@/components/resource-pages";
@@ -68,13 +69,7 @@ export default function SourceSection({locale,section}:{locale:Locale,section:Se
     <Directory items={[...children.filter(p=>p.slug!=="image").map(p=>({route:p.route,title:displayTitle(p)})),{route:`/${locale}/company/gallery/`,title:locale==="vi"?"Hình ảnh tư liệu":locale==="ru"?"Фотоархив":"Photo archive"}]} className="v-about-directory"/>
   </div>}
 
-  {section==="units"&&<div className="shell v-units">
-    <div className="v-unit-grid">{children.map((unit,i)=><Link href={unit.route} key={unit.route} className="v-unit">
-      <span className="v-unit-number">{String(i+1).padStart(2,"0")}</span>
-      <h2>{displayTitle(unit)}</h2>
-      <span className="v-unit-arrow" aria-hidden="true"><UIIcon name="up-right" size={18}/></span>
-    </Link>)}</div>
-  </div>}
+  {section==="units"&&<div className="shell v-units"><UnitsDirectory locale={locale} units={children}/></div>}
 
   {section==="projects"&&<div className="shell v-projects">
     <div className="v-projects-editorial">

@@ -7,7 +7,7 @@ const failures=[];
 const page=(section,locale="vi")=>`out/${locale}/${section}/index.html`;
 const tests=[
  ["company","v-about-feature"],
- ["units","v-unit-grid"],
+ ["units","ug-directory"],
  ["projects","v-projects-editorial"],
  ["resources","v-resource-index"],
  ["services","v-service-grid"],
@@ -62,8 +62,8 @@ if(existsSync(page("company"))){
 
 for(const [slug,marker] of [
  ["lichsuhinhthanh","hc-experience"],
- ["cacdanhhieu","v-awards-grid"],
- ["nhungthanhtuu","ax-experience"],
+ ["cacdanhhieu","aw-experience"],
+ ["nhungthanhtuu","ac-experience"],
  ["cocau","og-experience"],
  ["lanhdao","v-leadership-grid"]
 ]){
@@ -119,8 +119,8 @@ if(existsSync(historyFile)){
 const achievementsFile=join(root,"out","vi","company","nhungthanhtuu","index.html");
 if(existsSync(achievementsFile)){
  const html=read(achievementsFile);
- if(!html.includes("ax-hero")||!html.includes("ax-duo")||!html.includes("ax-output"))
-  failures.push("Achievements page must render complete editorial data-wall hierarchy");
+ if(!html.includes("ac-spotlight")||!html.includes("ac-index")||!html.includes("ac-tile"))
+  failures.push("Achievements must render interactive metric explorer and index");
 }
 
 const organizationFile=join(root,"out","vi","company","cocau","index.html");
@@ -148,6 +148,30 @@ for(const [name,expected] of [["organizationDepartments",18],["organizationUnits
 const masonrySource=read("src/components/react-bits-masonry.tsx");
 if(!masonrySource.includes("React Bits Masonry")||!masonrySource.includes("lightbox"))
  failures.push("Licensed interactive React Bits masonry component is missing");
+
+const awardsFile=join(root,"out","vi","company","cacdanhhieu","index.html");
+if(existsSync(awardsFile)){
+ const html=read(awardsFile);
+ if(!html.includes("aw-stage")||!html.includes("aw-years")||!html.includes("aw-rail"))
+  failures.push("Awards museum must have interactive era filters, spotlight and medal rail");
+}
+for(const slug of ["gioithieuct","tiemnang","antoanskmt"]){
+ const path=join(root,"out","vi","company",slug,"index.html");
+ if(!existsSync(path)){failures.push("Missing editorial company page: "+slug);continue;}
+ const html=read(path);
+ if(!html.includes("ep-editorial")||!html.includes("ep-banner")||!html.includes("ep-chapters"))
+  failures.push("Company page must use designed editorial chapters: "+slug);
+}
+for(const slug of ["xnkt","xnkhoan","xncd","vien","ttyt"]){
+ const path=join(root,"out","vi","units",slug,"index.html");
+ if(!existsSync(path)){failures.push("Missing unit page: "+slug);continue;}
+ const html=read(path);
+ if(!html.includes("ud-experience")||!html.includes("ud-hero")||!html.includes("ud-content"))
+  failures.push("Unit must use structured functional / resource / service chapters: "+slug);
+}
+const css=read("src/app/editorial-v11.css");
+if(!css.includes(".ar-cover-bottom>a{justify-self:end")||!css.includes(".ar-grid-header>p{justify-self:end"))
+ failures.push("Photo-archive alignment fixes are missing");
 const archive=JSON.parse(read("src/data/original-pages.json"));
 if(archive.length<2300)failures.push(`Content archive unexpectedly small: ${archive.length}`);
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}

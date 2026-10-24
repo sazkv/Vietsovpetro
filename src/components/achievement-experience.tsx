@@ -1,101 +1,100 @@
 "use client";
 
 import {useEffect,useRef,useState} from "react";
-import Reveal from "@/components/reveal";
+import UIIcon from "@/components/ui-icon";
 import type {Achievement} from "@/lib/structured-content";
 
-const officialLabels=[
- "Triệu tấn dầu thô",
- "Tỷ mét khối khí",
- "Tỷ USD doanh thu",
- "Mỏ dầu khí thương mại",
- "Giếng đã khoan",
- "Công trình biển",
- "Km đường ống"
-];
+const labels=["Triệu tấn dầu thô","Tỷ mét khối khí","Tỷ USD doanh thu",
+ "Mỏ dầu khí thương mại","Giếng đã khoan","Công trình biển","Km đường ống"];
 const base=process.env.NEXT_PUBLIC_BASE_PATH||"";
-
-/** The original site's number remains the source of truth.
- * Animation affects presentation only and respects reduced motion. */
-function MotionMetric({value,className=""}:{value:string;className?:string}){
- const node=useRef<HTMLSpanElement>(null);
+const photos=["hero-offshore-2.jpg","hero-offshore-3.jpg","hero-offshore-6.jpg",
+ "hero-offshore-1.jpg","hero-offshore-3.jpg","hero-offshore-6.jpg","hero-offshore-2.jpg"];
+function Metric({value,selected}:{value:string;selected:number}){
  const [shown,setShown]=useState(value);
+ const reduce=useRef(false);
  useEffect(()=>{
-  const el=node.current;
-  const target=Number(value.replace(/[^\d]/g,""));
-  if(!el||!Number.isFinite(target)||target===0)return;
-  if(!("IntersectionObserver" in window)||window.matchMedia("(prefers-reduced-motion: reduce)").matches){
-    setShown(value);return;
-  }
-  let raf=0;
-  const observer=new IntersectionObserver(([entry])=>{
-    if(!entry?.isIntersecting)return;
-    observer.disconnect();
-    const start=performance.now();
-    const duration=1050;
-    const tick=(time:number)=>{
-      const p=Math.min(1,(time-start)/duration);
-      const ease=1-Math.pow(1-p,3);
-      setShown(String(Math.round(target*ease)));
-      if(p<1)raf=requestAnimationFrame(tick);
-      else setShown(value);
-    };
-    raf=requestAnimationFrame(tick);
-  },{threshold:0.3});
-  observer.observe(el);
-  return()=>{observer.disconnect();cancelAnimationFrame(raf);};
- },[value]);
- return <span className={className} ref={node} aria-label={value}>{shown}</span>;
+  reduce.current=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ },[]);
+ useEffect(()=>{
+  const final=Number(value.replace(/[^\d]/g,""));
+  if(!final||reduce.current){setShown(value);return;}
+  const started=performance.now();
+  let frame=0;
+  const animate=(now:number)=>{
+   const k=Math.min(1,(now-started)/920);
+   const eased=1-Math.pow(1-k,3);
+   setShown(String(Math.round(final*eased)));
+   if(k<1)frame=requestAnimationFrame(animate);else setShown(value);
+  };
+  frame=requestAnimationFrame(animate);
+  return()=>cancelAnimationFrame(frame);
+ },[value,selected]);
+ return <span>{shown}</span>;
 }
-
+function AssetIcon({index}:{index:number}){
+ return <svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+   {index===0?<><path d="M6 53h52M16 53V24h32v29M22 24l10-17 10 17M22 34h20M22 42h20M32 7v-5"/></>:
+   index===1?<><path d="M9 53h46M12 44h40M18 44V21h28v23M24 21V11h16v10M31 44V21M19 32h27"/><path d="M32 10V4"/></>:
+   index===2?<><rect x="11" y="28" width="12" height="25"/><rect x="26" y="18" width="12" height="35"/><rect x="41" y="7" width="12" height="46"/><path d="M8 53h49M13 15l7-7 8 5 12-10"/></>:
+   index===3?<><path d="m8 50 12-28 13-7 23 16-12 20H8Zm5 0 12-15 14 15m-6-35 4-9"/><circle cx="33" cy="15" r="3"/></>:
+   index===4?<><path d="M8 54h48M20 54 32 9l12 45M25 36h14M28 23h8M13 44h38M32 9V3"/></>:
+   index===5?<><path d="M8 53h48M13 53l6-22h26l6 22M19 31h26M26 31V11h12v20M19 42h26M32 11V5"/></>:
+   <><path d="M6 18h15v28H6zM43 18h15v28H43zM21 27h22M21 37h22M13 18v-9h38v9M13 46v9h38v-9"/><circle cx="32" cy="32" r="4"/></>}
+ </svg>;
+}
 export default function AchievementExperience({items}:{items:Achievement[]}){
  const data=items.slice(0,7).map((item,index)=>({
-  ...item,label:officialLabels[index]||item.label
+  ...item,label:labels[index]||item.label,
+  value:index===0?(item.description.match(/trên\s+(\d+)\s+triệu/i)?.[1]||item.number):item.number
  }));
- const hero=data[0];
- if(!hero)return null;
- // The original page has a 250 headline, but its detailed production claim says >256.
- // Display the value from the published sentence so the headline and explanation agree.
- const currentOilVolume=hero.description.match(/trên\s+(\d+)\s+triệu\s+tấn/i)?.[1]||hero.number;
- return <div className="ax-experience">
-  <Reveal>
-    <section className="ax-hero" aria-label={hero.label}>
-      <div className="ax-hero-data">
-        <span className="ax-eyebrow">VIETSOVPETRO · 1981—</span>
-        <div className="ax-hero-metric">
-          <strong><MotionMetric value={currentOilVolume}/><span className="ax-plus">+</span></strong>
-          <h2>{hero.label}</h2>
-        </div>
-        <p>{hero.description}</p>
-        <div className="ax-measure"><span/></div>
+ const [active,setActive]=useState(0);
+ const [playing,setPlaying]=useState(false);
+ const current=data[active];
+ useEffect(()=>{
+  if(!playing||data.length<2)return;
+  const handle=window.setInterval(()=>setActive(n=>(n+1)%data.length),6900);
+  return()=>window.clearInterval(handle);
+ },[playing,data.length]);
+ if(!current)return null;
+ const more=/\btrên\b|\bhơn\b|\bover\b|more than/i.test(current.description);
+ const progress=100*(active+1)/data.length;
+ return <section className="ac-experience">
+   <div className="ac-experience-head">
+     <span>VIETSOVPETRO / 1981—</span>
+     <div className="ac-head-side"><strong>{String(active+1).padStart(2,"0")}</strong><span> / {String(data.length).padStart(2,"0")}</span></div>
+   </div>
+   <div className="ac-spotlight">
+    <div className="ac-data" key={active}>
+      <div className="ac-data-kicker">KẾT QUẢ HOẠT ĐỘNG</div>
+      <div className="ac-data-main">
+       <div className="ac-metric"><Metric value={current.value} selected={active}/>{more&&<small>+</small>}</div>
+       <h2>{current.label}</h2>
+       <p>{current.description}</p>
       </div>
-      <div className="ax-hero-media">
-        <img src={base+"/brand/hero-offshore-2.jpg"} alt="" loading="lazy"/>
-        <span className="ax-image-caption">VIETSOVPETRO · OFFSHORE OPERATIONS</span>
+      <div className="ac-data-nav">
+       <div className="ac-nav-buttons">
+        <button type="button" aria-label="Previous achievement" onClick={()=>{setPlaying(false);setActive((active-1+data.length)%data.length)}}><UIIcon name="left" size={23}/></button>
+        <button type="button" aria-label="Next achievement" onClick={()=>{setPlaying(false);setActive((active+1)%data.length)}}><UIIcon name="left" size={23} className="ac-arrow-next"/></button>
+        <button type="button" aria-pressed={playing} className={"ac-play "+(playing?"ac-playing":"")} onClick={()=>setPlaying(v=>!v)}>{playing?"PAUSE":"PLAY"}</button>
+       </div>
+       <div className="ac-progress" role="progressbar" aria-label="Achievement selection" aria-valuemin={1} aria-valuemax={data.length} aria-valuenow={active+1}><span style={{width:progress+"%"}}/></div>
       </div>
-    </section>
-  </Reveal>
-
-  {data.length>2&&<div className="ax-duo">
-   {data.slice(1,3).map((entry,i)=><Reveal key={entry.label}><article className={"ax-duo-panel "+(i===0?"ax-duo-gas":"ax-duo-value")}>
-     <div className="ax-duo-top">
-       <span className="ax-eyebrow">{entry.label}</span>
-       <span className="ax-duo-symbol" aria-hidden="true">{i===0?
-        <svg viewBox="0 0 120 70" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M2 49h24v-22h25v31h24v-40h36M51 40h24M10 12c13-8 28-8 41 0"/><path d="M92 18v-13h17v13M88 57h30"/></svg>:
-        <svg viewBox="0 0 120 70" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M8 59h104M13 50V29h22v21M43 50V14h25v36M76 50V22h26v28M43 21h25M13 37h22M76 29h26"/><path d="m11 13 23-8 19 4 35-6 20 5"/></svg>}</span>
-     </div>
-     <strong className="ax-duo-number"><MotionMetric value={entry.number}/><span>{i===0?"+":"+"}</span></strong>
-     <p>{entry.description}</p>
-   </article></Reveal>)}
-  </div>}
-
-  {data.length>3&&<Reveal><section className="ax-output" aria-label="Các thành tựu khác">
-    {data.slice(3).map((entry,index)=><article key={entry.label} className="ax-output-item">
-      <span className="ax-output-unit">{entry.label}</span>
-      <div className="ax-output-value"><MotionMetric value={entry.number}/>{[1,2,3].includes(index)&&<span className="ax-plus">+</span>}</div>
-      <p>{entry.description}</p>
-      <div className="ax-output-marker" aria-hidden="true"><span/></div>
-    </article>)}
-  </section></Reveal>}
- </div>;
+    </div>
+    <div className="ac-visual" key={"photo-"+active}>
+     <div className="ac-visual-photo"><img src={base+"/brand/"+photos[active]} loading="eager" alt=""/></div>
+     <div className="ac-visual-geometry" aria-hidden="true"><AssetIcon index={active}/></div>
+     <span className="ac-visual-caption">{current.label}</span>
+    </div>
+   </div>
+   <div className="ac-index-head"><h3>Thành tựu nổi bật</h3><span>CHỌN MỘT CHỈ SỐ ĐỂ KHÁM PHÁ</span></div>
+   <div className="ac-index" role="group" aria-label="Các thành tựu của Vietsovpetro">
+    {data.map((item,i)=><button type="button" key={i} aria-pressed={active===i}
+      className={"ac-tile "+(active===i?"ac-tile-active":"")}
+      onClick={()=>{setPlaying(false);setActive(i)}}>
+      <span className="ac-tile-symbol"><AssetIcon index={i}/></span>
+      <strong>{item.value}{/\btrên\b|\bhơn\b/i.test(item.description)?"+":""}</strong>
+      <span className="ac-tile-name">{item.label}</span>
+     </button>)}
+   </div>
+ </section>;
 }

@@ -4,6 +4,8 @@ import SourceCopy from "@/components/source-copy";
 import {parseHistory,parseAwards,parseAchievements} from "@/lib/structured-content";
 import HistoryExperience from "@/components/history-experience";
 import AchievementExperience from "@/components/achievement-experience";
+import AwardsExperience from "@/components/awards-experience";
+import CompanyEditorial from "@/components/company-editorial";
 import OrganizationExperience from "@/components/organization-experience";
 import ArchivalGallery from "@/components/archival-gallery";
 import {sectionPages,type SourcePage,type Locale} from "@/lib/original-content";
@@ -26,14 +28,9 @@ export default function CompanyDetail({page}:{page:SourcePage}){
 
   if(locale==="vi"&&slug==="cacdanhhieu"){
     const awards=parseAwards(html);
-    if(awards.length)return <div className="v-awards-grid">
-      {awards.map((award,i)=><figure key={award.title+"-"+i} className="v-award">
-        <div className="v-award-media">{award.image&&<img src={award.image} alt="" loading="lazy"/>}</div>
-        <figcaption><strong>{award.title}</strong>{award.year&&<span>{award.year}</span>}</figcaption>
-      </figure>)}
-    </div>;
+    if(awards.length)return <AwardsExperience items={awards} locale={locale}/>;
   }
-  
+
   if(locale==="vi"&&slug==="nhungthanhtuu"){
     const achievements=parseAchievements(html);
     if(achievements.length)return <AchievementExperience items={achievements}/>;
@@ -47,6 +44,10 @@ export default function CompanyDetail({page}:{page:SourcePage}){
     const fallback=Array.from({length:20},(_,index)=>
       `https://www.vietsov.com.vn/_catalogs/masterpage/vietsov/assets/images/hinhanhtulieu/${index+1}.jpg`);
     return <ArchivalGallery images={page.images?.length?page.images:fallback} locale={locale}/>;
+  }
+
+  if(["gioithieuct","introduction","antoanskmt","safety","tiemnang","community","linhvuc","activity"].includes(slug)){
+    return <CompanyEditorial page={page}/>;
   }
 
   const hasEmbeddedVisuals=/<(?:img|table|iframe)\b/i.test(html.replace(/<img\b[^>]*>/i,""));
