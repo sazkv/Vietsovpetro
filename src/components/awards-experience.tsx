@@ -19,6 +19,11 @@ function getLocalMedal(item:AwardItem):string|undefined{
  if(/Золот(ая|ой)\s+звезд|Gold Star Order|Sao vàng/i.test(item.title))return base+"/awards/sv.png";
  return undefined;
 }
+function displayAwardTitle(item:AwardItem){
+ // Original source often embeds the year at the end of the award title.
+ // Show it only once, in the caption, without altering archived source data.
+ return item.title.replace(/\s*[-–—]\s*(?:19|20)\d{2}\s*(?:г\.?|р\.?)?\s*$/i,"").trim();
+}
 type Entry=AwardItem&{id:number;asset?:string};
 export default function AwardsExperience({items,locale="vi"}:{items:AwardItem[];locale?:Locale}){
  const copy=t[locale];
@@ -75,12 +80,12 @@ export default function AwardsExperience({items,locale="vi"}:{items:AwardItem[];
    <div className="museum-grid" aria-label={copy.heading}>
      {filtered.map((item,index)=>{
        const show=item.asset&&!failed.includes(item.asset);
-       return <button className="museum-card" key={item.id} type="button" onClick={()=>open(index)} aria-label={copy.closer+": "+item.title}>
+       return <button className="museum-card" key={item.id} type="button" onClick={()=>open(index)} aria-label={copy.closer+": "+displayAwardTitle(item)}>
          <span className="museum-photo">
            {show?<img src={item.asset} loading={index<4?"eager":"lazy"} alt="" decoding="async"
               onError={()=>setFailed(prev=>[...prev,item.asset!])}/>:<span className="museum-photo-unavailable">{item.year||""}</span>}
          </span>
-         <span className="museum-card-meta"><span className="museum-card-title">{item.title}</span>
+         <span className="museum-card-meta"><span className="museum-card-title">{displayAwardTitle(item)}</span>
            {item.year&&<span className="museum-card-year">{item.year}</span>}
          </span>
        </button>;
@@ -90,12 +95,12 @@ export default function AwardsExperience({items,locale="vi"}:{items:AwardItem[];
      <div className="museum-lightbox-inner">
        <button className="museum-close" ref={closeRef} type="button" aria-label={copy.close} onClick={close}><AwardUIIcon name="close"/></button>
        <figure className="museum-lightbox-display">
-        {chosen.asset&&!failed.includes(chosen.asset)?<img src={chosen.asset} alt={copy.alt+": "+chosen.title}
-          onError={()=>setFailed(prev=>[...prev,chosen.asset!])}/>:<div className="museum-no-asset">{chosen.title}</div>}
+        {chosen.asset&&!failed.includes(chosen.asset)?<img src={chosen.asset} alt={copy.alt+": "+displayAwardTitle(chosen)}
+          onError={()=>setFailed(prev=>[...prev,chosen.asset!])}/>:<div className="museum-no-asset">{displayAwardTitle(chosen)}</div>}
        </figure>
        <div className="museum-lightbox-details">
          <button type="button" onClick={()=>move(-1)} aria-label={copy.prev}><AwardUIIcon name="previous" size={26}/></button>
-         <div className="museum-lightbox-name"><small>{chosen.year||"VIETSOVPETRO"}</small><h3>{chosen.title}</h3></div>
+         <div className="museum-lightbox-name"><small>{chosen.year||"VIETSOVPETRO"}</small><h3>{displayAwardTitle(chosen)}</h3></div>
          <button type="button" onClick={()=>move(1)} aria-label={copy.next}><AwardUIIcon name="next" size={26}/></button>
        </div>
      </div>
