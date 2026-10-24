@@ -1,3 +1,4 @@
+import UIIcon from "@/components/ui-icon";
 import Link from "next/link";
 import SourceCopy from "@/components/source-copy";
 import {parseHistory,parseAwards,parseAchievements} from "@/lib/structured-content";
@@ -56,7 +57,7 @@ export default function CompanyDetail({page}:{page:SourcePage}){
       <div className="v-organization-bottom">
         <div className="v-organization-text"><SourceCopy html={html} title={page.title}/></div>
         <Link href={`/${locale}/units/`} className="v-organization-link">
-          <span>{t.unitsLink}</span><span aria-hidden="true">↗</span>
+          <span>{t.unitsLink}</span><span aria-hidden="true"><UIIcon name="up-right" size={18}/></span>
           <small>{units.length}</small>
         </Link>
       </div>
