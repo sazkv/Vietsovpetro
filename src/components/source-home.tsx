@@ -50,7 +50,7 @@ export default function SourceHome({locale}:{locale:Locale}){
    <div className="r-hero-image" style={{backgroundImage:`url("${base}/brand/hero-offshore-1.jpg")`}} aria-hidden="true"/>
    <div className="shell r-hero-content">
     <span className="r-hero-identity">{t.heroTop}</span>
-    <h1>{t.hero}</h1>
+    <h1>{locale==="en"?<><span>Offshore energy.</span><span>Proven expertise.</span></>:t.hero}</h1>
     <p>{t.heroCopy}</p>
     <div className="r-hero-actions">
      <Link href={`/${locale}/company/`} className="r-btn r-btn-light">{t.aboutLink}<Arrow/></Link>
