@@ -88,7 +88,7 @@ export function extractEditorialData(html:string,context:"unit"|"company",fallba
    for(const item of list){
     const value=plain(item[1]);
     if(!value)continue;
-    if(value.length<90&&value.endsWith(":")&&kindOf(value)!=="other"){start(value);continue;}
+    if(value.length<90&&value.endsWith(":")&&(context==="company"||kindOf(value)!=="other")){start(value);continue;}
     addBullet(value);
    }
    continue;

@@ -172,6 +172,18 @@ for(const slug of ["xnkt","xnkhoan","xncd","vien","ttyt"]){
 const css=read("src/app/editorial-v11.css");
 if(!css.includes(".ar-cover-bottom>a{justify-self:end")||!css.includes(".ar-grid-header>p{justify-self:end"))
  failures.push("Photo-archive alignment fixes are missing");
+
+const capabilityFile=join(root,"out","vi","company","tiemnang","index.html");
+if(existsSync(capabilityFile)){
+ const html=read(capabilityFile);
+ const chapters=(html.match(/class="ep-chapter ep-chapter-/g)||[]).length;
+ if(chapters<3)failures.push("Capabilities should be segmented into distinct project/service chapters, found "+chapters);
+}
+const profileFile=join(root,"out","vi","company","gioithieuct","index.html");
+if(existsSync(profileFile)){
+ const html=read(profileFile);
+ if(!html.includes("ep-intro-continuation"))failures.push("Full original company introduction must remain visible");
+}
 const archive=JSON.parse(read("src/data/original-pages.json"));
 if(archive.length<2300)failures.push(`Content archive unexpectedly small: ${archive.length}`);
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}
