@@ -24,7 +24,7 @@ export default function SourceSection({locale,section}:{locale:Locale;section:Se
     return {label:category.title,items};
   }):[];
 
-  return <main className="vx-section shell">
+  return <main className={`vx-section vx-section-${section} shell`}>
     <nav className="vx-crumbs" aria-label="Breadcrumb">
       <Link href={`/${locale}/`}>{m.nav.home}</Link><span aria-hidden="true">/</span><span>{title}</span>
     </nav>
