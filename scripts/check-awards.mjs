@@ -40,7 +40,7 @@ for(const [locale,slug] of Object.entries(slugs)){
  const stars=awards.filter(item=>gold.test(item.title));
  assert.equal(stars.length,1,`${locale}: Gold Star should occur exactly once`);
  assert.equal(stars[0].year,"2010",`${locale}: Gold Star must retain its 2010 year`);
- const missingYears=awards.filter(item=>!item.year||!/^\\d{4}$/.test(item.year));
+ const missingYears=awards.filter(item=>!item.year||!/^\d{4}$/.test(item.year));
  assert.equal(missingYears.length,0,`${locale}: entries with missing years: ${missingYears.map(item=>item.title).join("; ")}`);
  console.log(`${locale}: verified ${awards.length} original awards; Gold Star 2010; all years valid`);
 }
