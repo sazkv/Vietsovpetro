@@ -7,7 +7,7 @@ const failures=[];
 const page=(section,locale="vi")=>`out/${locale}/${section}/index.html`;
 const tests=[
  ["company","v-about-feature"],
- ["units","v-unit-grid"],
+ ["units","ug-directory"],
  ["projects","v-projects-editorial"],
  ["resources","v-resource-index"],
  ["services","v-service-grid"],
