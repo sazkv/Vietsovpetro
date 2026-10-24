@@ -1,0 +1,185 @@
+/* V7 — actual content-first composition. No numeric service tiles. */
+.r-home-services{padding:110px 0 125px}
+.r-home-services-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 42px;border-top:1px solid #bccbd2}
+.r-home-service-card{
+ display:grid;grid-template-columns:minmax(0,1fr) 22px;align-items:center;gap:25px;
+ min-height:128px;border:0;border-bottom:1px solid #cbd7dd;border-radius:0;
+ padding:24px 5px 24px 0;background:transparent;box-shadow:none!important;
+ transform:none!important;
+}
+.r-home-service-card:hover{background:transparent;border-color:#a7bac3}
+.r-home-service-leading{display:flex;align-items:center;gap:25px;min-width:0}
+.r-home-service-icon{flex-shrink:0;width:51px;height:51px;color:#1e5068}
+.r-home-service-card h3{margin:0;font-size:clamp(19px,1.65vw,25px);font-weight:680;line-height:1.35;letter-spacing:-.036em;max-width:none}
+.r-home-service-arrow{justify-self:end;color:#ae332d;display:grid;place-items:center}
+.r-home-service-arrow svg{width:20px;height:20px}
+.r-home-service-card:hover .r-home-service-icon{color:#b13f37}
+.r-home-service-card:hover h3{color:#a42e29}
+.v-service-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 52px}
+.v-service{grid-template-columns:66px minmax(0,1fr);column-gap:20px;min-height:123px}
+.v-service h2{font-size:clamp(18px,1.46vw,22px);line-height:1.36;letter-spacing:-.028em;margin:0}
+.v-service-icon{height:53px;width:53px}
+.v-services-lead{margin-bottom:42px}
+
+/* Company sections: avoid the 900px text island on a 1360px canvas. */
+.v-document--company .v-document-body,.v-company-prose,.v-company-prose-content{max-width:100%;width:100%}
+.v-document--company .v-document-header{margin-bottom:47px}
+.v-company-prose{gap:42px}
+.v-company-prose-photo{height:clamp(330px,40vw,535px);background:#dde7ea}
+.v-company-prose-photo img{object-fit:cover;object-position:center 47%}
+.v-company-prose-content .source-copy{max-width:none;font-size:17px;line-height:1.85}
+.v-company-prose--text .v-company-prose-content .source-copy{
+ columns:2;column-gap:clamp(45px,5vw,85px);column-rule:1px solid #e4eaed;
+}
+.v-company-prose--text .source-copy>p,.v-company-prose--text .source-copy>h2,
+.v-company-prose--text .source-copy>h3,.v-company-prose--text .source-copy>ul{
+ break-inside:avoid-column;
+}
+.v-company-prose--text .source-copy p{max-width:none;margin:0 0 24px}
+.v-company-prose--text .source-copy h2{font-size:clamp(26px,2.4vw,36px)!important}
+.v-company-prose--rich .source-copy{width:100%;max-width:none}
+.v-company-prose--rich .source-copy>p{max-width:95ch}
+.v-company-prose--rich .source-copy :is(table,figure){width:100%;max-width:100%}
+.v-company-prose--rich .source-copy>img{max-height:630px;object-fit:contain}
+.v-company-prose--rich .source-copy>ul{columns:2;column-gap:50px;max-width:none}
+.v-history{max-width:none}
+.v-history-event{grid-template-columns:130px minmax(0,1.4fr) minmax(200px,.8fr)}
+.v-history-event:before{left:121px}
+.v-history-story{max-width:none}
+.v-history-photo{height:185px}
+.v-awards-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:30px 24px}
+.v-achievement-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 45px}
+.v-organization{max-width:none}
+.v-organization-top>div{padding:45px 65px}
+.v-organization-bottom{grid-template-columns:minmax(0,1.6fr) minmax(260px,.4fr);gap:75px}
+.v-organization-text .source-copy{max-width:none}
+.v-organization-text .source-copy>p{max-width:93ch}
+
+/* Leadership: decisive director block + full-width compact peer grid.
+   No invented portraits and no ornamental fake people silhouettes. */
+.v-leadership{width:100%}
+.v-leadership-feature{
+ background:#0c3144;color:white;min-height:360px;
+ display:grid;grid-template-columns:minmax(0,1fr) 205px;align-items:end;
+ padding:55px 66px;margin-bottom:47px;overflow:hidden;
+}
+.v-leadership-feature-role{font-size:13px;line-height:1.55;letter-spacing:.11em;color:#b5cbd6;font-weight:730;text-transform:uppercase}
+.v-leadership-feature h2{font-size:clamp(52px,6vw,90px);letter-spacing:-.071em;font-weight:630;line-height:1.12;max-width:900px;margin:25px 0 0;text-wrap:balance}
+.v-leadership-feature-mark{font-size:clamp(50px,6vw,88px);font-weight:800;letter-spacing:-.085em;color:#ffffff2b;align-self:start;justify-self:end;user-select:none}
+.v-leadership-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;border-top:1px solid #aabdc6}
+.v-leadership-person{padding:29px 5px 34px 0;border-bottom:1px solid #d6e1e6;min-height:162px;display:flex;flex-direction:column;justify-content:space-between}
+.v-leadership-person-role{font-size:12px;color:#657f8e;line-height:1.55}
+.v-leadership-person h2{font-size:clamp(22px,2.1vw,31px);font-weight:660;letter-spacing:-.048em;line-height:1.24;margin:21px 0 0}
+.v-leadership-person:hover h2{color:#ad3932}
+
+/* Resources is now an editorial landing page + full-width capabilities. */
+.v-resource-index{padding-top:52px}
+.v-resource-top{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(40px,6vw,90px)}
+.v-resource-cover{height:540px}
+.v-resource-top-copy h2{font-size:clamp(42px,4.5vw,69px);max-width:600px}
+.v-resource-facts{gap:22px}
+.v-resource-facts strong{font-size:clamp(46px,4.6vw,69px)}
+.v-resource-points{margin-top:90px;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 65px}
+.v-resource-point{min-height:110px}
+.v-resource-point p{max-width:100%;font-size:16px;line-height:1.78}
+.v-resource-equipment{margin-top:115px}
+.v-resource-equipment-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:35px}
+.v-resource-equipment-heading h2{font-size:clamp(37px,4.1vw,61px);line-height:1.12;font-weight:660;letter-spacing:-.06em;margin:0;max-width:700px}
+.v-resource-equipment-heading>a{display:flex;align-items:center;gap:18px;border-bottom:1px solid #94aab6;padding-bottom:9px;font-size:12px;font-weight:790;white-space:nowrap}
+.v-resource-equipment-heading>a:hover{color:#b13831}
+.v-resource-equipment-feature{height:480px;display:block;position:relative;background:#173b51;overflow:hidden}
+.v-resource-equipment-feature img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.v-resource-equipment-feature:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#071c2a99,transparent 48%)}
+.v-resource-equipment-feature:hover img{transform:scale(1.03)}
+.v-resource-equipment-feature>span{position:absolute;z-index:1;bottom:28px;left:32px;right:32px;display:flex;align-items:center;justify-content:space-between;color:white;font-size:14px;font-weight:780}
+.v-resource-equipment-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 34px;border-top:1px solid #aabcc4;margin-top:35px}
+.v-resource-equipment-grid>a{display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid #d2e0e5;min-height:96px;padding:19px 0;scroll-margin-top:120px}
+.v-resource-equipment-grid strong{font-size:16px;line-height:1.45;font-weight:690;letter-spacing:-.025em}
+.v-resource-equipment-grid svg{flex-shrink:0;color:#b23832}
+.v-resource-equipment-grid a:hover strong{color:#a93831}
+.v-facilities{max-width:none}
+.v-facility{scroll-margin-top:115px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(45px,5vw,78px);padding:70px 0}
+.v-facility:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.v-facility-image{height:clamp(330px,30vw,455px)}
+.v-facility-content h2{font-size:clamp(29px,3vw,44px);max-width:none}
+.v-facility-content ul{max-width:100%;columns:1}
+.v-facility-content li{max-width:100%;font-size:15px}
+.v-facility-index{font-size:11px}
+
+/* Dense original text must never create narrow columns of dangling words. */
+.v-document-body,.v-company-prose-content,.v-resource-top-copy,.v-resource-point{min-width:0}
+.source-copy :is(p,li){hyphens:auto;overflow-wrap:break-word}
+.source-copy :is(table,pre){overflow-x:auto;max-width:100%}
+
+@media(max-width:1000px){
+ .r-home-services-grid{gap:0 28px}
+ .r-home-service-card h3{font-size:19px}
+ .v-company-prose--text .v-company-prose-content .source-copy{column-gap:36px}
+ .v-leadership-feature{grid-template-columns:1fr 120px;padding:45px}
+ .v-leadership-feature h2{font-size:clamp(44px,6vw,70px)}
+ .v-resource-equipment-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .v-resource-points{gap:0 35px}
+}
+@media(max-width:750px){
+ .r-home-services-grid{grid-template-columns:1fr;gap:0}
+ .r-home-service-card{min-height:106px;padding:18px 0}
+ .r-home-service-card h3{font-size:20px}
+ .r-home-service-leading{gap:17px}
+ .r-home-service-icon{width:44px;height:44px}
+ .v-service-grid{grid-template-columns:1fr}
+ .v-service{min-height:104px}
+ .v-company-prose--text .v-company-prose-content .source-copy{columns:1;column-rule:none}
+ .v-company-prose--rich .source-copy>ul{columns:1}
+ .v-company-prose-photo{height:300px}
+ .v-organization-bottom{grid-template-columns:1fr}
+ .v-history-event{grid-template-columns:90px minmax(0,1fr)}
+ .v-history-event:before{left:81px}
+ .v-history-photo{grid-column:2;grid-row:2;height:210px}
+ .v-leadership-feature{min-height:270px;padding:36px;grid-template-columns:1fr}
+ .v-leadership-feature-mark{display:none}
+ .v-leadership-feature h2{font-size:clamp(39px,7vw,61px)}
+ .v-leadership-grid{gap:0 25px}
+ .v-leadership-person{min-height:145px}
+ .v-leadership-person h2{font-size:22px}
+ .v-resource-top{grid-template-columns:1fr}
+ .v-resource-cover{height:320px}
+ .v-resource-points{grid-template-columns:1fr}
+ .v-resource-equipment{margin-top:75px}
+ .v-resource-equipment-feature{height:330px}
+ .v-facility,.v-facility:nth-child(even){grid-template-columns:1fr;gap:29px;padding:46px 0}
+ .v-facility-image{height:310px}
+ .v-facility:nth-child(even) .v-facility-image,.v-facility:nth-child(even) .v-facility-content{grid-column:auto;grid-row:auto}
+}
+@media(max-width:570px){
+ .r-home-services{padding:74px 0 82px}
+ .r-home-service-card{grid-template-columns:minmax(0,1fr) 20px}
+ .r-home-service-leading{gap:15px}
+ .r-home-service-card h3{font-size:18px}
+ .r-home-service-icon{width:42px;height:42px}
+ .v-service{grid-template-columns:47px minmax(0,1fr);gap:16px}
+ .v-service-icon{width:45px;height:45px}
+ .v-service h2{font-size:18px}
+ .v-company-prose-photo{height:225px}
+ .v-company-prose-content .source-copy{font-size:16px}
+ .v-achievement-grid,.v-awards-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .v-organization-top>div{padding:26px 22px}
+ .v-leadership-feature{min-height:230px;padding:29px}
+ .v-leadership-feature h2{font-size:36px}
+ .v-leadership-feature-role{font-size:10px}
+ .v-leadership-grid{grid-template-columns:1fr}
+ .v-leadership-person{min-height:119px;padding:20px 0}
+ .v-leadership-person h2{font-size:24px;margin-top:12px}
+ .v-resource-top-copy h2{font-size:38px}
+ .v-resource-cover{height:260px}
+ .v-resource-equipment-heading{align-items:start;flex-direction:column;gap:22px}
+ .v-resource-equipment-heading h2{font-size:35px}
+ .v-resource-equipment-feature{height:245px}
+ .v-resource-equipment-feature>span{left:20px;right:20px;bottom:20px}
+ .v-resource-equipment-grid{grid-template-columns:1fr;gap:0}
+ .v-resource-equipment-grid>a{min-height:78px}
+ .v-facility-image{height:230px}
+ .v-facility-content h2{font-size:27px}
+}
+@media(prefers-reduced-motion:reduce){
+ .v-resource-equipment-feature img,.r-home-service-icon{transition:none!important}
+}
