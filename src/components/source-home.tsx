@@ -49,7 +49,7 @@ const words: Record<Locale, {
     more: "Подробнее", people: "Команда и кадры",
     peopleHeading: "В основе сложной инженерии — люди.",
     peopleCopy: "Сведения о специалистах, профессиональной подготовке и доступных вакансиях.",
-    peopleCta: "Карьера и обучение", concept: "Независимый концепт · Неофициальный сайт",
+    peopleCta: "Ресурсы предприятия", concept: "Независимый концепт · Неофициальный сайт",
     year: "Год основания", serviceNumber: "Направлений услуг", languages: "Языковые версии"
   },
   en: {
@@ -68,7 +68,7 @@ const words: Record<Locale, {
     more: "Explore", people: "People & expertise",
     peopleHeading: "Behind every project are the people who build it.",
     peopleCopy: "Explore the company’s human resources, training and recruitment information.",
-    peopleCta: "Careers and learning", concept: "Independent redesign concept · Not an official site",
+    peopleCta: "People and resources", concept: "Independent redesign concept · Not an official site",
     year: "Founded", serviceNumber: "Service categories", languages: "Language versions"
   }
 };
@@ -165,7 +165,7 @@ export default function SourceHome({locale}: {locale: Locale}) {
 
     <section className="ed-people" aria-labelledby="ed-people-title">
       <div className="ed-people-photo" style={{backgroundImage: `url("${base}/brand/hero-offshore-3.jpg")`}} aria-hidden="true"/>
-      <div className="shell ed-people-shell"><div className="ed-section-marker"><span className="ed-index">05 / 05</span><span className="ed-rule"/></div><div className="ed-people-content"><p className="ed-overline">{t.people}</p><h2 id="ed-people-title">{t.peopleHeading}</h2><p>{t.peopleCopy}</p><Link className="ed-button ed-button-light" href={`/${locale}/careers/`}>{t.peopleCta}<Arrow/></Link></div></div>
+      <div className="shell ed-people-shell"><div className="ed-section-marker"><span className="ed-index">05 / 05</span><span className="ed-rule"/></div><div className="ed-people-content"><p className="ed-overline">{t.people}</p><h2 id="ed-people-title">{t.peopleHeading}</h2><p>{t.peopleCopy}</p><Link className="ed-button ed-button-light" href={locale==="vi"?"/vi/careers/":`/${locale}/resources/`}>{t.peopleCta}<Arrow/></Link></div></div>
     </section>
     <div className="ed-disclaimer shell">{t.concept}</div>
   </main>;
