@@ -67,10 +67,10 @@ export default function SourceSection({locale,section}:{locale:Locale;section:Se
       <div className="r-project-visual"><img src={`${base}/brand/hero-offshore-2.jpg`} loading="lazy" alt=""/></div>
       <div className="r-project-index">
         <h2>{sectionHeading(locale,section)}</h2>
-        <SourceLinks locale={locale} section={section} children={children}/>
+        <SourceLinks locale={locale} section={section} children={home[locale].projects.map(p=>({route:p.href||`/${locale}/projects/`,title:p.title}))}/>
       </div>
     </div>
-    {index?.html&&<div className="r-source-bottom"><SourceCopy html={index.html}/></div>}
+    {index?.html&&<details className="r-source-details"><summary>{m.page.contents}<span aria-hidden="true">＋</span></summary><div className="r-source-details-body"><SourceCopy html={index.html}/></div></details>}
   </div>}
 
   {isUnits&&<div className="shell r-section-body">
@@ -84,7 +84,7 @@ export default function SourceSection({locale,section}:{locale:Locale;section:Se
 
   {isCompany&&<div className="shell r-section-body">
     <div className="r-company-overview">
-      <div className="r-company-photo"><img src={`${base}/brand/hero-offshore-6.jpg`} alt="" loading="lazy"/></div>
+      <div className="r-company-photo"><img src={index?.images?.[0]||`${base}/brand/hero-offshore-6.jpg`} alt="" loading="lazy"/></div>
       <div className="r-company-copy">{index?.html?<SourceCopy html={index.html}/>:<h2>{sectionHeading(locale,section)}</h2>}</div>
     </div>
     <SourceLinks locale={locale} section={section} children={children}/>
