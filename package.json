@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "check:structure": "node --experimental-strip-types scripts/check-catalog.mjs",
+    "check:structure": "node --experimental-strip-types scripts/check-catalog.mjs && node --experimental-strip-types scripts/check-awards.mjs",
     "check:ui": "node scripts/check-redesign.mjs"
   },
   "dependencies": {
