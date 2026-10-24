@@ -59,6 +59,30 @@ if(existsSync(page("company"))){
  const visible=(html.split("<main")[1]||"").split("</main>")[0];
  if(visible.split(sample).length>2)failures.push("Company intro is duplicated");
 }
+
+for(const [slug,marker] of [
+ ["lichsuhinhthanh","v-history-event"],
+ ["cacdanhhieu","v-awards-grid"],
+ ["nhungthanhtuu","v-achievement-grid"],
+ ["cocau","v-organization"],
+ ["lanhdao","v-leadership-list"]
+]){
+ const path=join(root,"out","vi","company",slug,"index.html");
+ if(!existsSync(path)){failures.push(`Missing company detail: ${slug}`);continue;}
+ if(!read(path).includes(marker))failures.push(`Company detail ${slug} is not using intended layout ${marker}`);
+}
+for(const [section,slug,marker] of [
+ ["resources",null,"v-resource-index"],
+ ["resources","cosovatchat","v-facility"],
+ ["services",null,"v-service-icon"]
+]){
+ const path=join(root,"out","vi",section,...(slug?[slug]:[]),"index.html");
+ if(!existsSync(path)){failures.push(`Missing page: ${section}/${slug||""}`);continue;}
+ const html=read(path);
+ if(!html.includes(marker))failures.push(`Missing structured layout: ${section}/${slug||""} ${marker}`);
+}
+const svc=read("src/components/service-icon.tsx");
+if((svc.match(/\/\/ \d\d /g)||[]).length!==15)failures.push("Expected 15 unique service SVG designs");
 const archive=JSON.parse(read("src/data/original-pages.json"));
 if(archive.length<2300)failures.push(`Content archive unexpectedly small: ${archive.length}`);
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}
