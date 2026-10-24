@@ -45,6 +45,11 @@ export default function ArchivalGallery({images,locale}:{images:string[],locale:
       <h2>{t.archive}</h2>
       <p>{t.open}</p>
     </div>
+    <div className="ar-static-fallback" aria-label={t.archive}>
+      {records.map((src,i)=><a key={src} href={src} target="_blank" rel="noopener noreferrer" aria-label={`${t.archive} ${i+1}`}>
+        <img src={src} loading="lazy" decoding="async" alt={`${t.archive} ${i+1}`}/>
+      </a>)}
+    </div>
     <Masonry items={items}
       columns="auto" columnWidth={270} gap={17} radius={1}
       animateFrom="bottom" stagger={0.045} duration={0.8} bounce={0.16}
