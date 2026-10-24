@@ -58,13 +58,7 @@ export default function AchievementExperience({items,locale="vi"}:{items:Achieve
   value:index===0?(item.description.match(/trên\s+(\d+)\s+triệu/i)?.[1]||item.number):item.number
  }));
  const [active,setActive]=useState(0);
- const [playing,setPlaying]=useState(false);
  const current=data[active];
- useEffect(()=>{
-  if(!playing||data.length<2)return;
-  const handle=window.setInterval(()=>setActive(n=>(n+1)%data.length),6900);
-  return()=>window.clearInterval(handle);
- },[playing,data.length]);
  if(!current)return null;
  const more=/\btrên\b|\bhơn\b|\bover\b|more than|более|свыше/i.test(current.description);
  const progress=100*(active+1)/data.length;
@@ -83,16 +77,16 @@ export default function AchievementExperience({items,locale="vi"}:{items:Achieve
       </div>
       <div className="ac-data-nav">
        <div className="ac-nav-buttons">
-        <button type="button" aria-label={t.previous} onClick={()=>{setPlaying(false);setActive((active-1+data.length)%data.length)}}><UIIcon name="left" size={23}/></button>
-        <button type="button" aria-label={t.next} onClick={()=>{setPlaying(false);setActive((active+1)%data.length)}}><UIIcon name="left" size={23} className="ac-arrow-next"/></button>
-        <button type="button" aria-pressed={playing} className={"ac-play "+(playing?"ac-playing":"")} onClick={()=>setPlaying(v=>!v)}>{playing?t.pause:t.play}</button>
+        <button type="button" aria-label={t.previous} onClick={()=>{setActive((active-1+data.length)%data.length)}}><UIIcon name="left" size={23}/></button>
+        <button type="button" aria-label={t.next} onClick={()=>{setActive((active+1)%data.length)}}><UIIcon name="left" size={23} className="ac-arrow-next"/></button>
+        
        </div>
        <div className="ac-progress" role="progressbar" aria-label="Achievement selection" aria-valuemin={1} aria-valuemax={data.length} aria-valuenow={active+1}><span style={{width:progress+"%"}}/></div>
       </div>
     </div>
     <div className="ac-visual" key={"photo-"+active}>
      <div className="ac-visual-photo"><img src={base+"/brand/"+photos[active]} loading="eager" alt=""/></div>
-     <div className="ac-visual-geometry" aria-hidden="true"><AssetIcon index={active}/></div>
+     <div className="ac-visual-geometry" aria-hidden="true"></div>
      <span className="ac-visual-caption">{current.label}</span>
     </div>
    </div>
@@ -100,8 +94,8 @@ export default function AchievementExperience({items,locale="vi"}:{items:Achieve
    <div className="ac-index" role="group" aria-label={t.group}>
     {data.map((item,i)=><button type="button" key={i} aria-pressed={active===i}
       className={"ac-tile "+(active===i?"ac-tile-active":"")}
-      onClick={()=>{setPlaying(false);setActive(i)}}>
-      <span className="ac-tile-symbol"><AssetIcon index={i}/></span>
+      onClick={()=>{setActive(i)}}>
+      
       <strong>{item.value}{/\btrên\b|\bhơn\b|more than|over|более|свыше/i.test(item.description)?"+":""}</strong>
       <span className="ac-tile-name">{item.label}</span>
      </button>)}
