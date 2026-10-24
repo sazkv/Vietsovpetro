@@ -20,7 +20,7 @@ export default function SourceDocument({page}:{page:SourcePage}){
  const corporate=section==="company";
  const resource=section==="resources";
  const unit=section==="units";
- const siblings=(corporate||resource||unit||project)?
+ const siblings=(corporate||resource)?
   sectionPages(page.locale,section).filter(item=>item.route!==page.route&&item.route!==`/${page.locale}/${section}/`).slice(0,14):[];
  const relatedName=m.nav[section];
  return <main className={`v-document ${project?"v-document--project":""} ${corporate?"v-document--company":""} ${unit?"v-document--unit":""} ${resource?"v-document--resource":""}`}>
