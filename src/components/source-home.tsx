@@ -3,6 +3,7 @@ import Reveal from "@/components/reveal";
 import ServiceIcon from "@/components/service-icon";
 import {home,pages,sectionPages,sectionOrder,type Locale} from "@/lib/original-content";
 import {messageSet} from "@/lib/messages";
+import {displayTitle} from "@/lib/site-titles";
 
 const base=process.env.NEXT_PUBLIC_BASE_PATH||"";
 const copy={
@@ -71,7 +72,7 @@ export default function SourceHome({locale}:{locale:Locale}){
       <p>{t.about}</p>
       <Link className="r-arrow-link" href={`/${locale}/company/`}>{t.aboutLink}<Arrow/></Link>
       <div className="r-home-about-links">
-        {sectionPages(locale,"company").filter(p=>p.route!==`/${locale}/company/`).slice(0,4).map(p=><Link key={p.route} href={p.route}>{p.title}<Arrow/></Link>)}
+        {sectionPages(locale,"company").filter(p=>p.route!==`/${locale}/company/`).slice(0,4).map(p=><Link key={p.route} href={p.route}>{displayTitle(p)}<Arrow/></Link>)}
       </div>
     </div>
   </section></Reveal>
@@ -94,7 +95,7 @@ export default function SourceHome({locale}:{locale:Locale}){
      <div className="r-home-projects-visual"><img src={`${base}/brand/hero-offshore-2.jpg`} alt="" loading="lazy"/></div>
      <div className="r-home-projects-list">
       <h2>{t.projectSection}</h2>
-      <div>{projects.map((p,i)=><Link key={p.href||p.title} href={p.href||`/${locale}/projects/`}><span>{String(i+1).padStart(2,"0")}</span><strong>{p.title}</strong><Arrow/></Link>)}</div>
+      <div>{projects.map((p,i)=><Link key={p.href||p.title} href={p.href||`/${locale}/projects/`}><span>{String(i+1).padStart(2,"0")}</span><strong>{pages.find(item=>item.route===p.href)?displayTitle(pages.find(item=>item.route===p.href)!):p.title}</strong><Arrow/></Link>)}</div>
       <Link className="r-arrow-link r-arrow-link-light" href={`/${locale}/projects/`}>{t.projectAll}<Arrow/></Link>
      </div>
     </div>

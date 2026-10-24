@@ -228,3 +228,14 @@
 @media(prefers-reduced-motion:reduce){
  .v-directory-row,.v-unit,.v-projects-photo img,.v-company-image img,.v-service,.v-service-icon{transition:none!important}
 }
+
+/* Original project records use <td> even for their header rows. */
+.v-document--project .source-copy table tr:first-child td{
+ background:#102e41!important;color:white!important;font-weight:760!important;
+}
+.v-document--project .source-copy table tr:first-child:has(td[colspan]) + tr td{
+ background:#244b60!important;color:white!important;font-weight:760!important;
+}
+.v-document--project .source-copy table tr:first-child td[colspan]{
+ text-transform:uppercase;letter-spacing:.035em;
+}
