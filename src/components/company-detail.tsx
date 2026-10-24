@@ -69,7 +69,8 @@ export default function CompanyDetail({page}:{page:SourcePage}){
     return <div className="v-heritage-gallery">{page.images.map((src,i)=><figure key={src+i}><img src={src} alt="" loading="lazy"/></figure>)}</div>;
   }
 
-  return <div className="v-company-prose">
+  const hasEmbeddedVisuals=/<(?:img|table|iframe)\\b/i.test(html.replace(/<img\\b[^>]*>/i,""));
+  return <div className={`v-company-prose ${hasEmbeddedVisuals?"v-company-prose--rich":"v-company-prose--text"}`}>
     {photo&&<div className="v-company-prose-photo"><img src={photo} alt="" loading="lazy"/></div>}
     <div className="v-company-prose-content">
       <SourceCopy html={html} title={page.title} omitFirstImage={Boolean(photo)}/>
