@@ -3,6 +3,7 @@ import Reveal from "@/components/reveal";
 import ServiceIcon from "@/components/service-icon";
 import {home,pages,sectionPages,sectionOrder,type Locale} from "@/lib/original-content";
 import {messageSet} from "@/lib/messages";
+import {displayTitle} from "@/lib/site-titles";
 
 const base=process.env.NEXT_PUBLIC_BASE_PATH||"";
 const copy={
@@ -71,7 +72,7 @@ export default function SourceHome({locale}:{locale:Locale}){
       <p>{t.about}</p>
       <Link className="r-arrow-link" href={`/${locale}/company/`}>{t.aboutLink}<Arrow/></Link>
       <div className="r-home-about-links">
-        {sectionPages(locale,"company").filter(p=>p.route!==`/${locale}/company/`).slice(0,4).map(p=><Link key={p.route} href={p.route}>{p.title}<Arrow/></Link>)}
+        {sectionPages(locale,"company").filter(p=>p.route!==`/${locale}/company/`).slice(0,4).map(p=><Link key={p.route} href={p.route}>{displayTitle(p)}<Arrow/></Link>)}
       </div>
     </div>
   </section></Reveal>
