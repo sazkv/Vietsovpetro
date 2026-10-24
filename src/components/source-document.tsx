@@ -3,6 +3,7 @@ import SourceCopy from "@/components/source-copy";
 import LeadershipDirectory from "@/components/leadership-directory";
 import PartnersDirectory from "@/components/partners-directory";
 import CompanyDetail from "@/components/company-detail";
+import UnitDetail from "@/components/unit-detail";
 import {FacilityDetail} from "@/components/resource-pages";
 import {type SourcePage,type Section} from "@/lib/original-content";
 import {messageSet} from "@/lib/messages";
@@ -20,6 +21,7 @@ export default function SourceDocument({page}:{page:SourcePage}){
  const partners=isPartners(page);
  const leadership=isLeadership(page);
  const company=section==="company";
+ const isUnit=section==="units";
  const resource=section==="resources";
  const facilities=resource&&(page.slug==="cosovatchat"||/cosovatchat\.aspx/i.test(page.sourceUrl));
  const title=displayTitle(page);
@@ -36,6 +38,7 @@ export default function SourceDocument({page}:{page:SourcePage}){
    {partners?<PartnersDirectory locale={page.locale}/>:
     leadership?<LeadershipDirectory locale={page.locale}/>:
     company?<CompanyDetail page={page}/>:
+    isUnit?<UnitDetail page={page}/>:
     facilities?<FacilityDetail page={page}/>:
     <article className="v-document-body"><SourceCopy html={page.html} title={title}/></article>}
   </div>
