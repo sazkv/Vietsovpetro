@@ -92,16 +92,26 @@ export default function AwardsExperience({items,locale="vi"}:{items:AwardItem[];
      })}
    </div>
    {chosen&&<div role="dialog" aria-modal="true" aria-label={chosen.title} className="museum-lightbox" onMouseDown={e=>{if(e.target===e.currentTarget)close()}}>
-     <div className="museum-lightbox-inner">
+     <div className="museum-lightbox-inner museum-gallery-panel">
        <button className="museum-close" ref={closeRef} type="button" aria-label={copy.close} onClick={close}><AwardUIIcon name="close"/></button>
-       <figure className="museum-lightbox-display">
-        {chosen.asset&&!failed.includes(chosen.asset)?<img src={chosen.asset} alt={copy.alt+": "+displayAwardTitle(chosen)}
-          onError={()=>setFailed(prev=>[...prev,chosen.asset!])}/>:<div className="museum-no-asset">{displayAwardTitle(chosen)}</div>}
-       </figure>
-       <div className="museum-lightbox-details">
-         <button type="button" onClick={()=>move(-1)} aria-label={copy.prev}><AwardUIIcon name="previous" size={26}/></button>
-         <div className="museum-lightbox-name"><small>{chosen.year||"VIETSOVPETRO"}</small><h3>{displayAwardTitle(chosen)}</h3></div>
-         <button type="button" onClick={()=>move(1)} aria-label={copy.next}><AwardUIIcon name="next" size={26}/></button>
+       <div className="museum-gallery-main">
+         <figure className="museum-lightbox-display">
+          {chosen.asset&&!failed.includes(chosen.asset)?<img src={chosen.asset} alt={copy.alt+": "+displayAwardTitle(chosen)}
+            onError={()=>setFailed(prev=>[...prev,chosen.asset!])}/>:<div className="museum-no-asset">{displayAwardTitle(chosen)}</div>}
+         </figure>
+         <div className="museum-gallery-info">
+           <span className="museum-eyebrow">VIETSOVPETRO · {copy.heading}</span>
+           <small className="museum-gallery-index">{String((modal??0)+1).padStart(2,"0")} / {String(filtered.length).padStart(2,"0")}</small>
+           {chosen.year&&<div className="museum-gallery-year">{copy.year} · {chosen.year}</div>}
+           <h3>{displayAwardTitle(chosen)}</h3>
+           <p>{copy.intro}</p>
+           <div className="museum-gallery-controls"><button type="button" onClick={()=>move(-1)} aria-label={copy.prev}><AwardUIIcon name="previous" size={24}/></button><button type="button" onClick={()=>move(1)} aria-label={copy.next}><AwardUIIcon name="next" size={24}/></button></div>
+         </div>
+       </div>
+       <div className="museum-gallery-album" aria-label={copy.heading}>
+         {filtered.map((item,index)=><button key={item.id} type="button" aria-current={modal===index?"true":undefined} onClick={()=>setModal(index)} aria-label={displayAwardTitle(item)}>
+           {item.asset&&!failed.includes(item.asset)?<img src={item.asset} alt="" loading="lazy"/>:<span>{item.year}</span>}
+         </button>)}
        </div>
      </div>
    </div>}
