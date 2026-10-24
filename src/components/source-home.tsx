@@ -1,3 +1,4 @@
+import UIIcon from "@/components/ui-icon";
 import Link from "next/link";
 import Reveal from "@/components/reveal";
 import ServiceIcon from "@/components/service-icon";
@@ -33,7 +34,7 @@ const copy={
  statA:"Established",statB:"Operating units",statC:"Million tonnes of crude produced",statD:"Exploration and production wells",projectSection:"Completed projects",unitSection:"Operating units",
  }
 } as const;
-function Arrow(){return <span aria-hidden="true">↗</span>}
+function Arrow(){return <span aria-hidden="true"><UIIcon name="up-right" size={18}/></span>}
 function getNewsDate(d:string){const p=d.match(/(\d{1,2})[\/.\-](\d{1,2})[\/.\-](20\d{2}|19\d{2})/);return p?Number(p[3])*10000+Number(p[2])*100+Number(p[1]):0}
 export default function SourceHome({locale}:{locale:Locale}){
  const t=copy[locale],m=messageSet(locale),data=home[locale];
@@ -84,7 +85,7 @@ export default function SourceHome({locale}:{locale:Locale}){
        {data.services.slice(0,6).map((item,i)=><Link key={item.title} href={`/${locale}/services/#service-${i+1}`} className="r-home-service-card">
          <ServiceIcon index={i} className="r-home-service-icon"/>
          <span className="r-home-service-number">{String(i+1).padStart(2,"0")}</span>
-         <h3>{item.title}</h3><span className="r-home-service-arrow" aria-hidden="true">↗</span>
+         <h3>{item.title}</h3><span className="r-home-service-arrow" aria-hidden="true"><UIIcon name="up-right" size={18}/></span>
        </Link>)}
      </div>
     </div>
@@ -112,7 +113,7 @@ export default function SourceHome({locale}:{locale:Locale}){
     <div className="r-home-news-grid">
       {articles.map((item,i)=><Link href={item.href} className={i===0?"r-home-news-card r-home-news-lead":"r-home-news-card"} key={item.href}>
         {i===0&&<div className="r-home-news-photo">{item.image?<img src={item.image} alt="" loading="lazy"/>:<img src={`${base}/brand/hero-offshore-3.jpg`} alt="" loading="lazy"/>}</div>}
-        <div className="r-home-news-text">{item.date&&<time>{item.date}</time>}<h3>{item.title}</h3><span aria-hidden="true">↗</span></div>
+        <div className="r-home-news-text">{item.date&&<time>{item.date}</time>}<h3>{item.title}</h3><span aria-hidden="true"><UIIcon name="up-right" size={18}/></span></div>
       </Link>)}
     </div>
    </div>
