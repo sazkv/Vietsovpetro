@@ -3,6 +3,7 @@ import "./globals.css";
 import "./editorial.css";
 import "./sections.css";
 import "./about-resources.css";
+import "./polish-v6.css";
 
 export const metadata: Metadata = {
   title: "Vietsovpetro",
