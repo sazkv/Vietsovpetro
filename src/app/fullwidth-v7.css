@@ -60,7 +60,7 @@
 .v-leadership{width:100%}
 .v-leadership-feature{
  background:#0c3144;color:white;min-height:360px;
- display:grid;grid-template-columns:minmax(0,1fr) 205px;align-items:end;
+ display:grid;grid-template-columns:1fr;align-items:end;
  padding:55px 66px;margin-bottom:47px;overflow:hidden;
 }
 .v-leadership-feature-role{font-size:13px;line-height:1.55;letter-spacing:.11em;color:#b5cbd6;font-weight:730;text-transform:uppercase}
@@ -115,7 +115,7 @@
  .r-home-services-grid{gap:0 28px}
  .r-home-service-card h3{font-size:19px}
  .v-company-prose--text .v-company-prose-content .source-copy{column-gap:36px}
- .v-leadership-feature{grid-template-columns:1fr 120px;padding:45px}
+ .v-leadership-feature{grid-template-columns:1fr;padding:45px}
  .v-leadership-feature h2{font-size:clamp(44px,6vw,70px)}
  .v-resource-equipment-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
  .v-resource-points{gap:0 35px}
@@ -152,7 +152,7 @@
 }
 @media(max-width:570px){
  .r-home-services{padding:74px 0 82px}
- .r-home-service-card{grid-template-columns:minmax(0,1fr) 20px}
+ .r-home-service-card{grid-template-columns:1fr}
  .r-home-service-leading{gap:15px}
  .r-home-service-card h3{font-size:18px}
  .r-home-service-icon{width:42px;height:42px}
