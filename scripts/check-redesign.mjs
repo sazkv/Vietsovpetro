@@ -249,9 +249,10 @@ for(const locale of ["vi","ru","en"]){
  const html=read(main);
  if(!html.includes("r-utility-signin")||!html.includes("r-utility-dropdown"))
   failures.push("Original employee bar and login icon missing on "+locale);
- for(const url of ["https://eoffice.vietsov.com.vn/","https://www.vietsov.com.vn/FlipBook/mobile/home.html","https://mail.vietsov.com.vn/","https://www.vietsov.com.vn/Pages/LichBay.aspx"]){
+ for(const url of ["https://eoffice.vietsov.com.vn/","https://www.vietsov.com.vn/FlipBook/mobile/home.html","https://mail.vietsov.com.vn/","https://www.vietsov.com.vn/Pages/LichBay.aspx","https://www.vietsov.com.vn/LichTau/Forms/AllItems.aspx","VietsovPetroRootCertificate"]){
   if(!html.includes(url))failures.push("Original staff link not retained: "+locale+" "+url);
  }
+ if(!html.includes("Authenticate.aspx?Source=%2FPages%2Fdefault%2Easpx"))failures.push("Original SharePoint Sign In URL missing");
  if(locale!=="ru"){
   const lines=(html.match(/class="r-hero-line"/g)||[]).length;
   if(lines!==2)failures.push("EN/VI hero must contain exactly two fixed lines: "+locale);
