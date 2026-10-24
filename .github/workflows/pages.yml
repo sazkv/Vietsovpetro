@@ -27,6 +27,7 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: /Vietsovpetro
           NEXT_PUBLIC_SITE_URL: https://sazkv.github.io/Vietsovpetro
+      - run: npm run check:ui
       - run: touch out/.nojekyll
       - uses: actions/upload-pages-artifact@v4
         with:
