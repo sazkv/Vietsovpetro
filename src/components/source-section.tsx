@@ -1,67 +1,73 @@
 import Link from "next/link";
 import SourceCopy from "@/components/source-copy";
+import NewsArchive, {type ArchiveCategory} from "@/components/news-archive";
 import {home, sectionIndex, sectionPages, type Locale, type Section} from "@/lib/original-content";
 import {messageSet} from "@/lib/messages";
 
-const labels:Record<Locale,{browse:string,entries:string,category:string,all:string,source:string}> = {
-  vi:{browse:"Khám phá danh mục",entries:"Mục nội dung",category:"Chuyên mục",all:"Toàn bộ nội dung",source:"Tham khảo nguồn chính thức"},
-  ru:{browse:"Разделы каталога",entries:"Материалов",category:"Раздел",all:"Все материалы",source:"Оригинальный источник"},
-  en:{browse:"Explore the directory",entries:"Entries",category:"Category",all:"All content",source:"Original official source"}
-};
-
-export default function SourceSection({locale,section}: {locale:Locale;section:Section}) {
+/**
+ * The layout follows the content, not the other way around:
+ * news uses a searchable archive; services a numbered technical index;
+ * units/projects use photographic directory cards; other sections retain
+ * their full original intro and a compact index.
+ */
+export default function SourceSection({locale,section}:{locale:Locale;section:Section}){
   const m=messageSet(locale);
   const index=sectionIndex(locale,section);
   const children=sectionPages(locale,section).filter(page=>page.route!==`/${locale}/${section}/`);
   const title=m.nav[section];
-  const label=labels[locale];
   const isNews=section==="news",isServices=section==="services";
-  return <main className="cp-section-page">
-    <section className="cp-page-banner" aria-labelledby="cp-section-heading">
-      <div className="shell cp-page-banner-inner">
-        <nav className="cp-breadcrumb" aria-label="Breadcrumb"><Link href={`/${locale}/`}>{m.nav.home}</Link><span aria-hidden="true">/</span><span>{title}</span></nav>
-        <div className="cp-page-banner-content"><div><p className="cp-page-index">VIETSOVPETRO / {section.toUpperCase()}</p><h1 id="cp-section-heading">{title}</h1></div><div className="cp-banner-counter"><strong>{isServices?home[locale].services.length:children.length.toLocaleString("en-US")}</strong><span>{label.entries}</span></div></div>
-      </div>
-    </section>
+  const isPortfolio=section==="units"||section==="projects";
+  const news:ArchiveCategory[]=isNews?home[locale].news.map((category,i)=>{
+    const items=children.filter(page=>page.slug.endsWith(`-${i+1}`))
+      .sort((a,b)=>Number(b.slug.split("-")[1])-Number(a.slug.split("-")[1]))
+      .map(page=>({title:page.title,route:page.route,date:page.date,image:page.images?.[0]}));
+    return {label:category.title,items};
+  }):[];
 
-    <div className="shell cp-section-layout">
-      <aside className="cp-section-aside">
-        <span className="cp-aside-label">{label.category}</span>
-        <strong>{title}</strong>
-        <div className="cp-aside-rule"/>
-        <Link href={`/${locale}/`}>← {m.nav.home}</Link>
-        {index?.sourceUrl && <a href={index.sourceUrl} target="_blank" rel="noopener noreferrer">{label.source} ↗</a>}
-      </aside>
-      <div className="cp-section-primary">
-        {isServices && <>
-          <div className="cp-content-intro"><p className="cp-eyebrow">{m.nav.services}</p><h2>{home[locale].serviceTitle}</h2><p>{home[locale].serviceIntro}</p></div>
-          <ol className="cp-service-directory">
-            {home[locale].services.map((service,i)=><li key={service.title} id={`service-${i+1}`}>
-              <span className="cp-service-num">{String(i+1).padStart(2,"0")}</span>
-              <h3>{service.title}</h3>
-              {service.image && <img src={service.image} width={70} height={70} alt="" loading="lazy"/>}
-            </li>)}
-          </ol>
-        </>}
+  return <main className="vx-section shell">
+    <nav className="vx-crumbs" aria-label="Breadcrumb">
+      <Link href={`/${locale}/`}>{m.nav.home}</Link><span aria-hidden="true">/</span><span>{title}</span>
+    </nav>
 
-        {isNews && <div className="cp-news-archive">
-          <div className="cp-content-intro"><p className="cp-eyebrow">{m.nav.news}</p><h2>{label.all}</h2></div>
-          {home[locale].news.map((category,index)=>{
-            const categoryPages=children.filter(page=>page.slug.endsWith(`-${index+1}`)).sort((a,b)=>Number(b.slug.split("-")[1])-Number(a.slug.split("-")[1]));
-            const render=(page:typeof categoryPages[number])=><li key={page.route}><Link href={page.route}><span className="cp-archive-title">{page.title}</span><span className="cp-archive-meta">{page.date||"—"}</span><span className="cp-archive-arrow" aria-hidden>↗</span></Link></li>;
-            return <section key={category.title} className="cp-news-archive-group"><header><h3>{category.title}</h3><span>{categoryPages.length}</span></header><ul>{categoryPages.slice(0,24).map(render)}</ul>{categoryPages.length>24&&<details><summary>{m.page.more} ({categoryPages.length-24})</summary><ul>{categoryPages.slice(24).map(render)}</ul></details>}</section>;
-          })}
-        </div>}
+    <header className="vx-section-heading">
+      <h1>{title}</h1>
+    </header>
 
-        {!isNews && !isServices && index?.html && <div className="cp-section-copy"><SourceCopy html={index.html}/></div>}
-        {children.length>0&&!isNews&& <section className="cp-section-list" aria-label={label.browse}>
-          <div className="cp-section-list-head"><p className="cp-eyebrow">{label.browse}</p><h2>{m.page.contents}</h2></div>
-          <nav className="cp-chapter-list" aria-label={title}>
-            {children.map((page,i)=><Link key={page.route} href={page.route}><span className="cp-chapter-num">{String(i+1).padStart(2,"0")}</span><span>{page.title}</span><span className="cp-chapter-arrow" aria-hidden>↗</span></Link>)}
-          </nav>
-        </section>}
-        {isServices && index?.html && <div className="cp-section-copy cp-services-original"><div className="cp-section-list-head"><p className="cp-eyebrow">{label.source}</p><h2>{m.page.contents}</h2></div><SourceCopy html={index.html}/></div>}
-      </div>
-    </div>
+    {isNews&&<NewsArchive categories={news} locale={locale}/>}
+
+    {isServices&&<>
+      {home[locale].serviceIntro&&<p className="vx-section-lead">{home[locale].serviceIntro}</p>}
+      <ol className="vx-service-grid">
+        {home[locale].services.map((item,i)=><li id={`service-${i+1}`} key={`${i}-${item.title}`}>
+          <span className="vx-service-count">{String(i+1).padStart(2,"0")}</span>
+          <h2>{item.title}</h2>
+          {item.image&&<img src={item.image} alt="" width={56} height={56} loading="lazy"/>}
+        </li>)}
+      </ol>
+      {index?.html&&<details className="vx-original-text"><summary>{m.page.contents} <span aria-hidden="true">↓</span></summary><SourceCopy html={index.html}/></details>}
+    </>}
+
+    {!isNews&&!isServices&&<>
+      {!isPortfolio&&index?.html&&<div className="vx-index-body"><SourceCopy html={index.html}/></div>}
+
+      {children.length>0&&(isPortfolio?
+        <div className="vx-portfolio-grid">
+          {children.map((page,i)=><Link key={page.route} href={page.route} className="vx-portfolio-item">
+            {page.images?.[0]?
+              <div className="vx-portfolio-photo"><img src={page.images[0]} alt="" loading="lazy"/></div>:
+              <div className="vx-portfolio-empty" aria-hidden="true"><span>{String(i+1).padStart(2,"0")}</span></div>}
+            <div className="vx-portfolio-caption"><h2>{page.title}</h2><span aria-hidden="true">↗</span></div>
+          </Link>)}
+        </div>:
+        <div className="vx-chapter-list">
+          {children.map((page,i)=><Link key={page.route} href={page.route}>
+            <span className="vx-chapter-number">{String(i+1).padStart(2,"0")}</span>
+            <span>{page.title}</span>
+            <span className="vx-chapter-arrow" aria-hidden="true">↗</span>
+          </Link>)}
+        </div>)}
+
+      {isPortfolio&&index?.html&&<div className="vx-index-body vx-index-after"><SourceCopy html={index.html}/></div>}
+    </>}
   </main>;
 }
