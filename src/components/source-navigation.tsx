@@ -6,6 +6,7 @@ import {usePathname} from "next/navigation";
 import {useState} from "react";
 import {useTranslations} from "next-intl";
 import type {Locale,Section} from "@/lib/original-content";
+import {employeeNavigation,employeeResources,employeeLabels} from "@/lib/employee-links";
 
 const base=process.env.NEXT_PUBLIC_BASE_PATH||"";
 const ordering:Record<Locale,Section[]>={
@@ -21,12 +22,19 @@ export default function SourceNavigation({locale,preview={}}:{locale:Locale,prev
  const active=pathname.split("/").filter(Boolean)[1] as Section|undefined;
  const languageHref=(target:Locale)=>active&&ordering[target].includes(active)?`/${target}/${active}/`:`/${target}/`;
  return <header className="r-header">
-  <div className="vsp-utility-bar"><div className="shell vsp-utility-inner">
-    <a href="https://www.vietsov.com.vn/Pages/default.aspx" target="_blank" rel="noopener noreferrer" aria-label="Vietsovpetro official employee resources"><UIIcon name="user" size={15}/><span>{locale==="vi"?"Đăng nhập":locale==="ru"?"Вход":"Sign in"}</span></a>
-    <a href="https://eoffice.vietsov.com.vn/" target="_blank" rel="noopener noreferrer">eOffice</a>
-    <a href="https://www.vietsov.com.vn/Pages/default.aspx" target="_blank" rel="noopener noreferrer">{locale==="vi"?"Cẩm nang văn hóa Vietsovpetro":locale==="ru"?"Справочник корпоративной культуры":"Vietsovpetro culture handbook"}</a>
-    <a href="https://www.vietsov.com.vn/Pages/default.aspx" target="_blank" rel="noopener noreferrer">{locale==="vi"?"Liên kết":locale==="ru"?"Ссылки":"Resources"} <UIIcon name="up-right" size={13}/></a>
-   </div></div>
+  <nav className="vsp-utility-bar" aria-label="Vietsovpetro staff resources">
+   <div className="shell vsp-utility-inner">
+    <a className="vsp-utility-signin" href={employeeNavigation.signIn} target="_blank" rel="noopener noreferrer"><UIIcon name="user" size={16}/><span>{employeeLabels[locale].signIn}</span></a>
+    <a href={employeeNavigation.eoffice} target="_blank" rel="noopener noreferrer">eOffice</a>
+    <a href={employeeNavigation.handbook} target="_blank" rel="noopener noreferrer"><span className="vsp-handbook-long">{employeeLabels[locale].handbook}</span><span className="vsp-handbook-short">{employeeLabels[locale].shortHandbook}</span></a>
+    <details className="vsp-utility-dropdown">
+     <summary aria-label={employeeLabels[locale].resources}>{employeeLabels[locale].resources} <UIIcon name="chevron-down" size={15}/></summary>
+     <div className="vsp-utility-menu">
+      {employeeResources.map(item=><a href={item.href} key={item.href} target="_blank" rel="noopener noreferrer">{item.label[locale]}<UIIcon name="up-right" size={14}/></a>)}
+     </div>
+    </details>
+   </div>
+  </nav>
   <div className="shell r-header-inner">
    <Link href={`/${locale}/`} className="r-brand" aria-label="Vietsovpetro" onClick={()=>setOpen(false)}>
     <img src={`${base}/brand/logo-classic.png`} width="56" height="56" alt=""/>
@@ -40,10 +48,8 @@ export default function SourceNavigation({locale,preview={}}:{locale:Locale,prev
         <div className="r-submenu-items">{preview[section].slice(0,10).map(page=><Link href={page.route} key={page.route} onClick={()=>setOpen(false)}>{page.title}<span aria-hidden="true"><UIIcon name="up-right" size={18}/></span></Link>)}</div>
       </div>}
     </div>)}
-    <div className="r-mobile-external"><a href="https://eoffice.vietsov.com.vn/" target="_blank" rel="noopener noreferrer">eOffice <UIIcon name="up-right" size={18}/></a></div>
    </nav>
    <div className="r-header-actions">
-     <a className="r-eoffice" href="https://eoffice.vietsov.com.vn/" target="_blank" rel="noopener noreferrer">eOffice <UIIcon name="up-right" size={18}/></a>
      <div className="r-languages" aria-label="Language">{(["vi","ru","en"] as Locale[]).map(target=><Link key={target} href={languageHref(target)} hrefLang={target} aria-current={locale===target?"page":undefined} onClick={()=>setOpen(false)}>{target.toUpperCase()}</Link>)}</div>
      <button className="r-nav-toggle" type="button" aria-controls="r-main-nav" aria-expanded={open} aria-label={t(open?"close":"menu")} onClick={()=>setOpen(v=>!v)}><span aria-hidden="true"><UIIcon name={open?"close":"menu"} size={23}/></span></button>
    </div>
