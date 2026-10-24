@@ -50,7 +50,7 @@ def obtain(src:str)->bytes:
         except Exception as exc:errors.append(str(exc))
     raise RuntimeError(f"Could not fetch {src}: {'; '.join(errors)}")
 
-def clean_image(image:Image.Image):
+def clean_image(image:Image.Image,name:str):
     rgb=np.array(image.convert("RGB"),dtype=np.uint8)
     height,width=rgb.shape[:2]
     sample=max(2,min(12,height//20,width//20))
@@ -65,7 +65,24 @@ def clean_image(image:Image.Image):
     use_mask=bool(neutral and spread<40)
     rgba=cv2.cvtColor(rgb,cv2.COLOR_RGB2RGBA)
     coverage=0
-    if use_mask:
+    # Two historical scans have colored/uneven original backdrops.
+    # Use a connected matte for each actual background colour rather than
+    # allowing the background to survive as a blue/grey rectangle.
+    if name in ("ld2","dl2"):
+        red=rgb[:,:,0].astype(np.float32)
+        green=rgb[:,:,1].astype(np.float32)
+        blue=rgb[:,:,2].astype(np.float32)
+        if name=="ld2":
+            candidate=(red<95)&(green>55)&(blue>95)&(blue>green*1.18)
+        else:
+            candidate=(np.abs(red-green)<19)&(np.abs(green-blue)<19)&(np.abs(red-blue)<24)&(np.minimum.reduce([red,green,blue])>135)
+        _count,seg,*_=cv2.connectedComponentsWithStats(candidate.astype(np.uint8),connectivity=8)
+        edge=np.unique(np.r_[seg[0,:],seg[-1,:],seg[:,0],seg[:,-1]])
+        matte=np.isin(seg,edge[edge>0]).astype(np.uint8)*255
+        coverage=float(np.count_nonzero(matte))/(height*width)
+        rgba[:,:,3]=np.uint8(255-cv2.GaussianBlur(matte,(3,3),0.42))
+        use_mask=True
+    elif use_mask:
         lab=cv2.cvtColor(rgb,cv2.COLOR_RGB2LAB).astype(np.float32)
         lab_bg=cv2.cvtColor(np.uint8([[bg]]),cv2.COLOR_RGB2LAB).astype(np.float32)[0,0]
         d=np.sqrt(((lab-lab_bg[None,None,:])**2).sum(axis=2))
@@ -131,7 +148,7 @@ def main():
             image.load()
             src=image.copy()
             # This output is NOT artificial reconstruction.
-            cleaned,transparent,coverage,bg=clean_image(image)
+            cleaned,transparent,coverage,bg=clean_image(image,name)
             cleaned=upscale(cleaned)
             dst=PUBLIC/f"{name}.png"
             cleaned.save(dst,"PNG",optimize=True)
