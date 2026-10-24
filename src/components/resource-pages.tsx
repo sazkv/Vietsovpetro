@@ -1,3 +1,4 @@
+import UIIcon from "@/components/ui-icon";
 import Link from "next/link";
 import SourceCopy from "@/components/source-copy";
 import {parseFacilities,textOf} from "@/lib/structured-content";
@@ -34,10 +35,10 @@ export function ResourceIndex({locale,page}:{locale:Locale;page?:SourcePage}){
    {facilities&&<Link className="v-resource-facility-entry" href={facilities.route}>
      <div className="v-resource-facility-photo">{facilities.images?.[0]?<img src={facilities.images[0]} loading="lazy" alt=""/>:<img src={`${base}/brand/hero-offshore-2.jpg`} loading="lazy" alt=""/>}</div>
      <div className="v-resource-facility-link">
-       <h2>{t.facilities}</h2><span aria-hidden="true">↗</span>
+       <h2>{t.facilities}</h2><span aria-hidden="true"><UIIcon name="up-right" size={18}/></span>
      </div>
    </Link>}
-   {related.filter(p=>p.route!==facilities?.route).map(p=><Link key={p.route} className="v-resource-extra" href={p.route}>{displayTitle(p)} <span aria-hidden="true">↗</span></Link>)}
+   {related.filter(p=>p.route!==facilities?.route).map(p=><Link key={p.route} className="v-resource-extra" href={p.route}>{displayTitle(p)} <span aria-hidden="true"><UIIcon name="up-right" size={18}/></span></Link>)}
  </div>;
 }
 
