@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {type Locale, type SourcePage, home, pages} from "@/lib/original-content";
+import {type Locale} from "@/lib/original-content";
 
 /**
  * Names are sourced from CLIENT columns in the published project registries.
@@ -19,16 +19,11 @@ const labels={
  en:{heading:"Partners & Clients",projects:"Projects",clients:"Clients listed in the published project records"}
 };
 
-export function partnerPage(locale:Locale):SourcePage|undefined{
- return pages.find(p=>p.locale===locale&&/\/doitac\.aspx(?:\?|$)/i.test(p.sourceUrl))
-  ||pages.find(p=>p.locale===locale&&p.slug.toLowerCase()==="doitac");
-}
-
 export default function PartnersDirectory({locale,compact=false}:{locale:Locale;compact?:boolean}){
  const t=labels[locale];
- const link=partnerPage(locale);
+ const link=`/${locale}/projects/partners/`;
  if(compact)return <section className="v-partner-preview" aria-labelledby="v-partner-title">
-   <div className="v-partner-preview-head"><h2 id="v-partner-title">{t.heading}</h2>{link&&<Link href={link.route}>{t.heading} <span aria-hidden="true">↗</span></Link>}</div>
+   <div className="v-partner-preview-head"><h2 id="v-partner-title">{t.heading}</h2><Link href={link}>{t.heading} <span aria-hidden="true">↗</span></Link></div>
    <div className="v-partner-preview-names">
     {recordedClients.slice(0,8).map(name=><span key={name}>{name}</span>)}
    </div>

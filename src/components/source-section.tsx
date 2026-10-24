@@ -5,6 +5,8 @@ import ServiceIcon from "@/components/service-icon";
 import SourceCopy from "@/components/source-copy";
 import {home, sectionIndex, sectionPages, type Locale, type Section} from "@/lib/original-content";
 import {messageSet} from "@/lib/messages";
+import {displayTitle} from "@/lib/site-titles";
+import {previewParagraphs} from "@/lib/present-content";
 
 const base=process.env.NEXT_PUBLIC_BASE_PATH||"";
 const contactLabels={
@@ -38,6 +40,7 @@ export default function SourceSection({locale,section}:{locale:Locale,section:Se
  const index=sectionIndex(locale,section);
  const children=sectionPages(locale,section).filter(p=>p.route!==`/${locale}/${section}/`);
  const title=m.nav[section];
+ const companyFull=section==="company"?children.find(p=>/gioithieuct\.aspx/i.test(p.sourceUrl)):undefined;
  const groups:ArchiveCategory[]=section==="news"?home[locale].news.map((category,i)=>({
   label:category.title,items:children.filter(p=>p.slug.endsWith(`-${i+1}`))
    .sort((a,b)=>Number(b.slug.split("-")[1])-Number(a.slug.split("-")[1]))
@@ -55,15 +58,15 @@ export default function SourceSection({locale,section}:{locale:Locale,section:Se
   {section==="company"&&<div className="shell v-company">
     <div className="v-company-image"><img src={index?.images?.[0]||`${base}/brand/hero-offshore-6.jpg`} alt="" loading="lazy"/></div>
     <div className="v-company-columns">
-      <div className="v-company-article">{index?.html&&<SourceCopy html={index.html} title={index.title} omitFirstImage/>}</div>
-      {children.length>0&&<Directory items={children} className="v-company-chapters"/>}
+      <div className="v-company-article">{(companyFull?.html||index?.html)&&<SourceCopy html={previewParagraphs(companyFull?.html||index?.html||"",3)} title={title}/>}</div>
+      {children.length>0&&<Directory items={children.map(p=>({route:p.route,title:displayTitle(p)}))} className="v-company-chapters"/>}
     </div>
   </div>}
 
   {section==="units"&&<div className="shell v-units">
     <div className="v-unit-grid">{children.map((unit,i)=><Link href={unit.route} key={unit.route} className="v-unit">
       <span className="v-unit-number">{String(i+1).padStart(2,"0")}</span>
-      <h2>{unit.title}</h2>
+      <h2>{displayTitle(unit)}</h2>
       <span className="v-unit-arrow" aria-hidden="true">↗</span>
     </Link>)}</div>
   </div>}
@@ -72,7 +75,7 @@ export default function SourceSection({locale,section}:{locale:Locale,section:Se
     <div className="v-projects-editorial">
       <div className="v-projects-photo"><img src={`${base}/brand/hero-offshore-2.jpg`} alt="" loading="lazy"/></div>
       <div className="v-projects-directory"><h2>{projectNames[locale]}</h2>
-        <Directory items={home[locale].projects.map(item=>({title:item.title,route:item.href||`/${locale}/projects/`}))}/>
+        <Directory items={home[locale].projects.map(item=>{const p=children.find(child=>child.route===item.href);return {title:p?displayTitle(p):item.title,route:item.href||`/${locale}/projects/`};})}/>
       </div>
     </div>
     <PartnersDirectory locale={locale} compact/>
@@ -83,7 +86,7 @@ export default function SourceSection({locale,section}:{locale:Locale,section:Se
       <div className="v-resources-copy">{index?.html&&<SourceCopy html={index.html} title={index.title} omitFirstImage={Boolean(index.images?.length)}/>}</div>
       {index?.images?.[0]&&<div className="v-resources-image"><img src={index.images[0]} alt="" loading="lazy"/></div>}
     </div>
-    {children.length>0&&<Directory items={children} className="v-resources-directory"/>}
+    {children.length>0&&<Directory items={children.map(p=>({route:p.route,title:displayTitle(p)}))} className="v-resources-directory"/>}
   </div>}
 
   {section==="services"&&<div className="shell v-services">
@@ -118,7 +121,7 @@ export default function SourceSection({locale,section}:{locale:Locale,section:Se
 
   {!["company","units","projects","resources","services","news","contact"].includes(section)&&<div className="shell v-generic">
     {index?.html&&<SourceCopy html={index.html} title={index.title}/>}
-    {children.length>0&&<Directory items={children} className="v-generic-index"/>}
+    {children.length>0&&<Directory items={children.map(p=>({route:p.route,title:displayTitle(p)}))} className="v-generic-index"/>}
   </div>}
  </main>;
 }
