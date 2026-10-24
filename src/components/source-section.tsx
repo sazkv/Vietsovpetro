@@ -93,7 +93,7 @@ export default function SourceSection({locale,section}:{locale:Locale,section:Se
     <div className="v-service-grid">
       {home[locale].services.map((item,i)=><div className="v-service" id={`service-${i+1}`} key={item.title}>
         <ServiceIcon index={i} className="v-service-icon"/>
-        <div><span className="v-service-number">{String(i+1).padStart(2,"0")}</span><h2>{item.title}</h2></div>
+        <h2>{item.title}</h2>
       </div>)}
     </div>
   </div>}

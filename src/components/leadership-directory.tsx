@@ -1,6 +1,6 @@
 import type {Locale} from "@/lib/original-content";
 
-/** Roles as published on the Vietnamese leadership page, verified Oct 2026. */
+/** Names and roles reproduced from the published Vietsovpetro leadership list. */
 const leadership=[
  {name:"Vũ Mai Khanh",role:"Tổng Giám đốc"},
  {name:"Сидоров Игорь Николаевич",role:"Phó Tổng giám đốc thứ nhất"},
@@ -16,10 +16,20 @@ const leadership=[
 ];
 export default function LeadershipDirectory({locale}:{locale:Locale}){
  if(locale!=="vi")return null;
- return <div className="v-leadership-list">
-  {leadership.map((person,i)=><div className="v-leader" key={person.name}>
-    <span>{String(i+1).padStart(2,"0")}</span>
-    <div><h2>{person.name}</h2><p>{person.role}</p></div>
-  </div>)}
+ const director=leadership[0];
+ return <div className="v-leadership">
+  <section className="v-leadership-feature">
+   <div className="v-leadership-feature-body">
+    <span className="v-leadership-feature-role">{director.role}</span>
+    <h2>{director.name}</h2>
+   </div>
+   <div className="v-leadership-feature-mark" aria-hidden="true">VSP</div>
+  </section>
+  <div className="v-leadership-grid">
+   {leadership.slice(1).map(person=><article className="v-leadership-person" key={person.name}>
+     <span className="v-leadership-person-role">{person.role}</span>
+     <h2>{person.name}</h2>
+   </article>)}
+  </div>
  </div>;
 }

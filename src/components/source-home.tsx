@@ -83,9 +83,8 @@ export default function SourceHome({locale}:{locale:Locale}){
      <header className="r-home-section-head"><h2>{m.nav.services}</h2><Link href={`/${locale}/services/`} className="r-arrow-link">{t.serviceAll}<Arrow/></Link></header>
      <div className="r-home-services-grid">
        {data.services.slice(0,6).map((item,i)=><Link key={item.title} href={`/${locale}/services/#service-${i+1}`} className="r-home-service-card">
-         <ServiceIcon index={i} className="r-home-service-icon"/>
-         <span className="r-home-service-number">{String(i+1).padStart(2,"0")}</span>
-         <h3>{item.title}</h3><span className="r-home-service-arrow" aria-hidden="true"><UIIcon name="up-right" size={18}/></span>
+         <span className="r-home-service-leading"><ServiceIcon index={i} className="r-home-service-icon"/><h3>{item.title}</h3></span>
+         <span className="r-home-service-arrow" aria-hidden="true"><UIIcon name="up-right" size={18}/></span>
        </Link>)}
      </div>
     </div>
