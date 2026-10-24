@@ -2,46 +2,62 @@
 
 import Link from "next/link";
 import {usePathname} from "next/navigation";
-import {useTranslations} from "next-intl";
 import {useState} from "react";
-import {type Locale, sectionOrder, type Section} from "@/lib/original-content";
+import {useTranslations} from "next-intl";
+import {home, sectionOrder, type Locale, type Section} from "@/lib/original-content";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
-export default function SourceNavigation({locale}: {locale: Locale}) {
-  const [open, setOpen] = useState(false);
-  const path = usePathname() || `/${locale}/`;
-  const t = useTranslations("nav");
-  const section = path.split("/").filter(Boolean)[1] as Section | undefined;
-  const languagePath = (target: Locale) => {
-    if (section && sectionOrder[target].includes(section)) return `/${target}/${section}/`;
-    return `/${target}/`;
-  };
+const titles:Record<Locale,{official:string;services:string;label:string;source:string;tag:string}> = {
+  vi:{official:"Trang chính thức",services:"Hệ thống nội bộ",label:"Ngôn ngữ",source:"Từ năm 1981",tag:"Bản thiết kế độc lập"},
+  ru:{official:"Официальный сайт",services:"Сервисы компании",label:"Язык",source:"С 1981 года",tag:"Независимый концепт"},
+  en:{official:"Official website",services:"Employee services",label:"Language",source:"Since 1981",tag:"Independent concept"}
+};
 
-  return <header className="site-header">
-    <div className="utility-row shell">
-      <div className="utility-links">
-        <a href="https://eoffice.vietsov.com.vn/" target="_blank" rel="noreferrer">eOffice</a>
-        {locale === "vi" && <a href="https://www.vietsov.com.vn/FlipBook/mobile/home.html" target="_blank" rel="noreferrer">Cẩm nang văn hóa Vietsovpetro</a>}
-        {locale === "ru" && <a href="https://www.vietsov.com.vn/FlipBook/camnangvh_ru.html" target="_blank" rel="noreferrer">Справочник по корпоративной культуре</a>}
-      </div>
-      <div className="language-links" aria-label="Language">
-        {(["vi", "ru", "en"] as Locale[]).map((target) => <Link key={target} href={languagePath(target)} hrefLang={target} aria-current={locale === target ? "page" : undefined}>{target.toUpperCase()}</Link>)}
+export default function SourceNavigation({locale}: {locale:Locale}) {
+  const [open,setOpen]=useState(false);
+  const path=usePathname() || `/${locale}/`;
+  const nav=useTranslations("nav");
+  const active=path.split("/").filter(Boolean)[1] as Section | undefined;
+  const sectionFor=(target:Locale)=>active && sectionOrder[target].includes(active) ? `/${target}/${active}/` : `/${target}/`;
+  const t=titles[locale];
+
+  const close=()=>setOpen(false);
+  return <header className="cp-header">
+    <div className="cp-topbar">
+      <div className="shell cp-topbar-inner">
+        <div className="cp-topbar-left"><span className="cp-topbar-dot"/><span>{t.source}</span><span className="cp-topbar-separator">/</span><span>{t.tag}</span></div>
+        <div className="cp-topbar-right">
+          <a href="https://eoffice.vietsov.com.vn/" target="_blank" rel="noopener noreferrer">{t.services} <span aria-hidden>↗</span></a>
+          <a href="https://www.vietsov.com.vn/" target="_blank" rel="noopener noreferrer">{t.official} <span aria-hidden>↗</span></a>
+          <div className="cp-language" aria-label={t.label}>
+            {(["vi","ru","en"] as Locale[]).map(target=><Link key={target} href={sectionFor(target)} hrefLang={target} aria-current={target===locale?"page":undefined}>{target.toUpperCase()}</Link>)}
+          </div>
+        </div>
       </div>
     </div>
-    <div className="brand-row shell">
-      <Link className="brand-link" href={`/${locale}/`} aria-label="Vietsovpetro">
-        <img src={`${basePath}/brand/${locale === "vi" ? "logo-original.png" : "logo-classic.png"}`} width={locale === "vi" ? 180 : 131} height={locale === "vi" ? 128 : 98} alt="Vietsovpetro" />
-        <span className="brand-type"><small>{locale === "vi" ? "LIÊN DOANH" : locale === "en" ? "JOINT VENTURE" : "СОВМЕСТНОЕ ПРЕДПРИЯТИЕ"}</small><strong>{locale === "ru" ? "ВЬЕТСОВПЕТРО" : "VIETSOVPETRO"}</strong></span>
+    <div className="cp-nav-wrap shell">
+      <Link href={`/${locale}/`} className="cp-brand" onClick={close} aria-label="Vietsovpetro — home">
+        <img src={`${basePath}/brand/logo-classic.png`} alt="" width={57} height={57}/>
+        <span className="cp-brand-type"><strong>VIETSOVPETRO</strong><small>{locale==="ru"?"РОССИЯ · ВЬЕТНАМ":locale==="en"?"VIETNAM · RUSSIA":"LIÊN DOANH VIỆT – NGA"}</small></span>
       </Link>
-      <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="primary-menu" onClick={() => setOpen(!open)}>{open ? t("close") : t("menu")}<span aria-hidden="true">{open ? "×" : "+"}</span></button>
+      <nav className={`cp-nav ${open?"cp-nav-open":""}`} id="cp-primary-nav" aria-label={nav("menu")}>
+        <div className="cp-nav-list">
+          {sectionOrder[locale].map((section,index)=>{
+            const label=nav(section);
+            const isActive=active===section;
+            const preview=section==="services"?home[locale].services.slice(0,6).map((s,i)=>({title:s.title,href:`/${locale}/services/#service-${i+1}`})):[];
+            return <div className={`cp-nav-item ${isActive?"cp-nav-current":""}`} key={section}>
+              <Link href={`/${locale}/${section}/`} onClick={close} aria-current={isActive?"page":undefined}>{label}</Link>
+              {preview.length>0&&<div className="cp-nav-dropdown"><div className="cp-nav-dropdown-head"><span>{String(index+1).padStart(2,"0")} — {label}</span><Link href={`/${locale}/${section}/`} onClick={close}>↗</Link></div>{preview.map(p=><Link key={p.href} href={p.href} onClick={close}>{p.title}<span>↗</span></Link>)}</div>}
+            </div>;
+          })}
+        </div>
+        <div className="cp-mobile-extra"><a href="https://eoffice.vietsov.com.vn/" target="_blank" rel="noopener noreferrer">{t.services} ↗</a><a href="https://www.vietsov.com.vn/" target="_blank" rel="noopener noreferrer">{t.official} ↗</a></div>
+      </nav>
+      <button className="cp-menu-toggle" type="button" aria-expanded={open} aria-controls="cp-primary-nav" aria-label={nav(open?"close":"menu")} onClick={()=>setOpen(!open)}>
+        <span>{open?nav("close"):nav("menu")}</span><span aria-hidden>{open?"✕":"☰"}</span>
+      </button>
     </div>
-    <nav className={`primary-nav ${open ? "is-open" : ""}`} id="primary-menu" aria-label={t("menu")}>
-      <div className="shell primary-nav-inner">
-        <Link className="nav-home" href={`/${locale}/`} onClick={() => setOpen(false)}>{t("home")}</Link>
-        {sectionOrder[locale].map((item) => <Link key={item} href={`/${locale}/${item}/`} aria-current={section === item ? "page" : undefined} onClick={() => setOpen(false)}>{t(item)}</Link>)}
-        {locale === "vi" && <a href="https://www.vietsov.com.vn/TuyenSinh1/index.html" target="_blank" rel="noreferrer">Tuyển sinh</a>}
-      </div>
-    </nav>
   </header>;
 }
