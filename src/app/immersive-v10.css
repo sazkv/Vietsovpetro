@@ -322,3 +322,15 @@
 .v-document--company:has(.hc-experience),
 .v-document--company:has(.og-experience),
 .v-document--company:has(.ar-archive){padding-top:20px}
+
+/* Dedicated localized archive route added after the v10 export revealed that
+   the importer had not created a Vietnamese photo-document route. */
+.v-document--archival{padding-top:20px;padding-bottom:0}
+.v-document--archival .ar-breadcrumb{width:min(1360px,calc(100% - 90px));margin:0 auto 20px!important}
+.v-document--archival .ar-accessible-h1{
+ position:absolute;width:1px;height:1px;clip:rect(0,0,0,0);clip-path:inset(50%);
+ margin:0;padding:0;overflow:hidden;white-space:nowrap;border:0;
+}
+@media(max-width:600px){
+ .v-document--archival .ar-breadcrumb{width:calc(100% - 38px)}
+}
