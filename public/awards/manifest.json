@@ -7,8 +7,8 @@
       352
     ],
     "outputPx": [
-      600,
-      1056
+      1254,
+      1254
     ],
     "backgroundRemoved": true,
     "removedCoverage": 0.589,
@@ -17,7 +17,8 @@
       255,
       255
     ],
-    "bytes": 419008
+    "bytes": 1277983,
+    "enhancedAsset": "User-provided transparent PNG upscale (2026-10-25), matched by ribbon and insignia against official original"
   },
   "danhhieu/hcm.jpg": {
     "asset": "/awards/hcm.png",
@@ -174,8 +175,8 @@
       200
     ],
     "outputPx": [
-      437,
-      740
+      1254,
+      1254
     ],
     "backgroundRemoved": true,
     "removedCoverage": 0.446,
@@ -184,7 +185,8 @@
       255,
       255
     ],
-    "bytes": 292491
+    "bytes": 1440297,
+    "enhancedAsset": "User-provided transparent PNG upscale (2026-10-25), matched by ribbon and insignia against official original"
   },
   "danhhieu/bv.jpg": {
     "asset": "/awards/bv.png",
@@ -194,8 +196,8 @@
       200
     ],
     "outputPx": [
-      450,
-      740
+      1254,
+      1254
     ],
     "backgroundRemoved": true,
     "removedCoverage": 0.509,
@@ -204,7 +206,8 @@
       255,
       255
     ],
-    "bytes": 216163
+    "bytes": 844252,
+    "enhancedAsset": "User-provided transparent PNG upscale (2026-10-25), matched by ribbon and insignia against official original"
   },
   "danhhieu/cc1.jpg": {
     "asset": "/awards/cc1.png",
