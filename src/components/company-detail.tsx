@@ -1,5 +1,6 @@
 import SourceCopy from "@/components/source-copy";
-import {parseHistory,parseAwards,parseAchievements} from "@/lib/structured-content";
+import {parseHistory,parseAchievements} from "@/lib/structured-content";
+import {officialAwards} from "@/lib/awards-catalog";
 import HistoryExperience from "@/components/history-experience";
 import AchievementExperience from "@/components/achievement-experience";
 import AwardsExperience from "@/components/awards-experience";
@@ -33,7 +34,7 @@ export default function CompanyDetail({page}:{page:SourcePage}){
    return events.length?<HistoryExperience locale={locale} events={events}/>:<div className="v-source-empty">{displayTitle(page)}</div>;
  }
  if(interactiveSlugs.awards.has(key)){
-   const awards=parseAwards(html);
+   const awards=officialAwards(locale);
    return awards.length?<AwardsExperience locale={locale} items={awards}/>:<div className="v-source-empty">{displayTitle(page)}</div>;
  }
  if(interactiveSlugs.achievements.has(key)){
