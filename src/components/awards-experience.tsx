@@ -84,15 +84,6 @@ export default function AwardsExperience({items,locale="vi"}:{items:AwardItem[];
  },[lightbox,active,filtered.length]);
  if(!picked)return null;
  return <section className="museum museum-v15" aria-label={t.heading}>
-  <header className="museum-intro">
-   <div className="museum-heading">
-    <span className="museum-eyebrow">VIETSOVPETRO · 1981—</span>
-    <h2>{t.heading}</h2>
-    <p>{t.intro}</p>
-   </div>
-   <div className="museum-count"><strong>{String(data.length).padStart(2,"0")}</strong><span>{t.items}</span></div>
-  </header>
-
   <div className="museum-stage">
    <div className="museum-stage-art">
      {image?<button type="button" className="museum-stage-image-button" onClick={openModal} aria-label={t.expand+": "+awardName(picked)}>

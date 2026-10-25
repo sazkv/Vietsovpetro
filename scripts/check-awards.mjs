@@ -49,4 +49,10 @@ assert.equal(Object.keys(manifest).length,13,"Source-backed medal assets must re
 for(const {asset} of Object.values(manifest)){
  assert(existsSync(new URL("../public"+asset,import.meta.url)),`Missing medal asset ${asset}`);
 }
+// The route already renders the page <h1>; its gallery must not add a second
+// full-page heading or an unrelated institutional eyebrow.
+const gallery=readFileSync(new URL("../src/components/awards-experience.tsx",import.meta.url),"utf8");
+assert(!gallery.includes('className="museum-intro"'),"Duplicate awards heading returned");
+assert(!gallery.includes("VIETSOVPETRO · 1981—"),"Remove repeated gallery eyebrow");
+console.log("Awards heading hierarchy: PASS");
 console.log("Awards parser and medal assets: PASS");

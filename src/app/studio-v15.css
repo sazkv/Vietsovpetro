@@ -76,8 +76,6 @@
 }
 
 /* Honours museum: single active medal on left, details on right. */
-.museum-v15 .museum-intro{padding-top:0;margin-bottom:26px}
-.museum-v15 .museum-heading h2{font-size:clamp(40px,4.6vw,65px);margin-bottom:19px}
 .museum-stage{display:grid;grid-template-columns:minmax(0,.93fr) minmax(0,1.07fr);width:100%;min-height:510px;border:1px solid #dce5e6;background:#fff}
 .museum-stage-art{min-width:0;min-height:510px;padding:45px 32px 24px;display:flex;align-items:center;justify-content:center;position:relative;background:#f0f3f1;overflow:hidden}
 .museum-stage-image-button{display:grid;place-items:center;align-self:stretch;width:100%;max-height:455px;padding:16px 12px 30px;border:0;background:transparent;cursor:zoom-in;outline-offset:-6px}
