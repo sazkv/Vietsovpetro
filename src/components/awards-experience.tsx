@@ -13,11 +13,11 @@ const labels={
 
 const base=process.env.NEXT_PUBLIC_BASE_PATH||"";
 const medals=new Set(["sv","hcm","ld1","ld2","ld3","dl","dl2","dl3","qc","bv","cc1","cc3","ahld"]);
-const upgraded=new Set(["hcm","ld1","ld2","ld3","dl","dl2","dl3","cc1","cc3","ahld"]);
+const upgraded=new Set(["sv","qc","bv","hcm","ld1","ld2","ld3","dl","dl2","dl3","cc1","cc3","ahld"]);
 function localAsset(item:AwardItem):string|undefined{
  const stem=(item.image||"").split("?")[0].split("/").at(-1)?.replace(/\.[^.]+$/,"").toLowerCase()||"";
  if(medals.has(stem))return base+"/awards/"+stem+".png?v="+(upgraded.has(stem)?"upscale-1254-20261025":"legacy");
- if(/Золот(ая|ой)\s+звезд|Gold Star Order|Sao vàng/i.test(item.title))return base+"/awards/sv.png?v=20261025";
+ if(/Золот(ая|ой)\s+звезд|Gold Star Order|Sao vàng/i.test(item.title))return base+"/awards/sv.png?v=upscale-1254-20261025";
  return undefined;
 }
 function awardName(item:AwardItem){
