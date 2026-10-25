@@ -25,22 +25,25 @@ export default function SourceDocument({page}:{page:SourcePage}){
  const resource=section==="resources";
  const facilities=resource&&(page.slug==="cosovatchat"||/cosovatchat\.aspx/i.test(page.sourceUrl));
  const title=displayTitle(page);
+ const isNews=section==="news";
  return <main className={`v-document v-document--${section}`}>
   <div className="shell">
    <nav className="r-breadcrumb" aria-label="Breadcrumb">
     <Link href={`/${page.locale}/`}>{m.nav.home}</Link><span aria-hidden="true">/</span>
     <Link href={`/${page.locale}/${section}/`}>{m.nav[section]}</Link>
    </nav>
-   <header className="v-document-header">
+   <header className={`v-document-header ${isNews?"v-news-article-header":""}`}>
     <h1>{title}</h1>
     {page.date&&<time>{page.date}</time>}
    </header>
+   {isNews&&<div className="v-news-article-rule" aria-hidden="true"/>}
    {partners?<PartnersDirectory locale={page.locale}/>:
     leadership?<LeadershipDirectory locale={page.locale}/>:
     company?<CompanyDetail page={page}/>:
     isUnit?<UnitDetail page={page}/>:
     facilities?<FacilityDetail page={page}/>:
-    <article className="v-document-body"><SourceCopy html={page.html} title={title}/></article>}
+    <article className={`v-document-body ${isNews?"v-news-article-body":""}`}><SourceCopy html={page.html} title={title}/></article>}
+   {isNews&&<div className="v-news-article-footer"><Link href={`/${page.locale}/news/`}>{page.locale==="ru"?"Все новости":page.locale==="vi"?"Tất cả tin tức":"Back to all news"} <span aria-hidden="true">↗</span></Link></div>}
   </div>
  </main>;
 }
