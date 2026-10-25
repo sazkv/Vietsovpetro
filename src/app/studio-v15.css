@@ -173,3 +173,14 @@
  .museum-stage-image-button img,.museum-album-image,.r-utility-item{transition:none!important}
  .museum-album-rail{scroll-behavior:auto}
 }
+
+/* Award decades remain on a single swipeable line on narrow viewports. */
+.museum-v15 .museum-filters{display:flex;flex-wrap:nowrap;justify-content:flex-start;align-items:center;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+.museum-v15 .museum-filters button{flex:0 0 auto;white-space:nowrap;scroll-snap-align:start}
+@media(max-width:700px){
+ .museum-v15 .museum-filters{margin-right:0;gap:7px;padding:12px 0 18px}
+ .museum-v15 .museum-filters button{min-height:39px;padding:9px 13px;font-size:11px}
+}
+/* Preserve full transparent medal artwork in zoom instead of thumbnail-size cap. */
+.museum-v15-modal-image img{max-height:min(610px,calc(100dvh - 206px))!important;max-width:100%!important}
+@media(max-width:700px){.museum-v15-modal-image img{max-height:calc(100dvh - 195px)!important}}

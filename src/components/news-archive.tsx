@@ -27,20 +27,19 @@ export default function NewsArchive({categories,locale}:{categories:ArchiveCateg
  },[all,query,year]);
  const shown=filtered.slice(0,limit);
  function resetSearch(value:string){setQuery(value);setLimit(16)}
- const featured=shown[0];
  return <div className="r-news">
   <div className="r-news-toolbar">
    <label className="r-news-search"><span className="r-visually-hidden">{t.search}</span><input type="search" value={query} placeholder={t.search} onChange={e=>resetSearch(e.target.value)}/><span aria-hidden="true"><UIIcon name="search" size={20}/></span></label>
-   <label className="r-news-year"><span className="r-visually-hidden">{t.allYears}</span><select value={year} onChange={e=>{setYear(e.target.value);setLimit(16)}}><option value="">{t.allYears}</option>{years.map(y=><option key={y} value={y}>{y}</option>)}</select></label>
+   <label className="r-news-year"><span className="r-visually-hidden">{t.allYears}</span><select aria-label={t.allYears} value={year} onChange={e=>{setYear(e.target.value);setLimit(16)}}><option value="">{t.allYears}</option>{years.map(y=><option key={y} value={y}>{y}</option>)}</select><span className="r-news-select-chevron" aria-hidden="true"><UIIcon name="chevron-down" size={16}/></span></label>
   </div>
-  {featured&&<Link href={featured.route} className="r-news-lead">
-    <div className="r-news-lead-photo">{featured.image?<img src={featured.image} alt="" loading="lazy"/>:<div className="r-news-lead-art" aria-hidden="true"/>}</div>
-    <div className="r-news-lead-text">{featured.date&&<time>{featured.date}</time>}<h2>{featured.title}</h2><span>{t.article} <UIIcon name="up-right" size={18}/></span></div>
-  </Link>}
-  <div className="r-news-grid">{shown.slice(1).map((item,i)=><Link href={item.route} className="r-news-row" key={item.route}>
-    <span className="r-news-row-no">{String(i+2).padStart(2,"0")}</span>
-    <div>{item.date&&<time>{item.date}</time>}<h3>{item.title}</h3></div><span aria-hidden="true" className="r-news-row-arrow"><UIIcon name="up-right" size={18}/></span>
-  </Link>)}</div>
+  <div className="r-news-list">
+   {shown.map((item,i)=><Link href={item.route} className="r-news-entry" key={item.route}>
+     <span className="r-news-entry-index">{String(i+1).padStart(2,"0")}</span>
+     {item.image&&<span className="r-news-entry-media"><img src={item.image} alt="" loading="lazy" decoding="async"/></span>}
+     <span className="r-news-entry-copy">{item.date&&<time>{item.date}</time>}<strong>{item.title}</strong></span>
+     <span className="r-news-entry-arrow" aria-hidden="true"><UIIcon name="up-right" size={20}/></span>
+   </Link>)}
+  </div>
   {!shown.length&&<p role="status">{t.empty}</p>}
   {filtered.length>shown.length&&<button type="button" className="r-news-load" onClick={()=>setLimit(v=>v+16)}>{t.more}<span aria-hidden="true"><UIIcon name="down" size={18}/></span></button>}
  </div>;
