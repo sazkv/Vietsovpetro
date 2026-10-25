@@ -11,16 +11,32 @@
     "contact": "Liên hệ",
     "pages": "Thông tin",
     "menu": "Danh mục",
-    "close": "Đóng"
+    "close": "Đóng",
+    "search": "Tìm kiếm",
+    "searchPlaceholder": "Tìm trong nội dung Vietsovpetro",
+    "results": "Kết quả",
+    "noResults": "Không tìm thấy kết quả",
+    "systems": "Hệ thống nội bộ",
+    "tenders": "Đấu thầu",
+    "language": "Ngôn ngữ",
+    "skip": "Đến nội dung"
   },
   "home": {
-    "hero1": "Đoàn kết hữu nghị",
-    "hero2": "Khát vọng",
+    "hero1": "Liên doanh Việt – Nga",
+    "hero2": "Vietsovpetro",
     "hero3": "Tin cậy - bền vững",
     "projects": "Dự án tiêu biểu",
     "allServices": "Toàn bộ dịch vụ",
     "allNews": "Tất cả tin tức",
-    "allProjects": "Tất cả dự án"
+    "allProjects": "Tất cả dự án",
+    "heroDescription": "Liên doanh Vietsovpetro được thành lập năm 1981, hoạt động trong lĩnh vực tìm kiếm, thăm dò và khai thác dầu khí tại Việt Nam.",
+    "photos": "Hình ảnh công trình biển",
+    "photo": "Hình ảnh",
+    "overview": "Giới thiệu Vietsovpetro",
+    "founded": "Năm thành lập liên doanh",
+    "capability": "Năng lực hoạt động",
+    "people": "Nguồn nhân lực",
+    "peopleDescription": "Đội ngũ lao động quốc tế bao gồm gần 7000 cán bộ công nhân viên trong đó có hơn 6500 người Việt nam và gần 500 người Nga."
   },
   "page": {
     "more": "Xem thêm",
@@ -32,6 +48,7 @@
     "address": "105 Lê Lợi, phường Vũng Tàu, Thành phố Hồ Chí Minh, Việt Nam",
     "phone": "Điện thoại: +84.254.3839 871",
     "fax": "Fax: +84.254.3839857",
-    "email": "Email: vspadmin@vietsov.com.vn"
+    "email": "Email: vspadmin@vietsov.com.vn",
+    "concept": "Bản thiết kế độc lập — không phải trang thông tin chính thức của Vietsovpetro."
   }
 }

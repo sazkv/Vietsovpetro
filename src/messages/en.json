@@ -11,16 +11,32 @@
     "contact": "Contact",
     "pages": "Information",
     "menu": "Menu",
-    "close": "Close"
+    "close": "Close",
+    "search": "Search",
+    "searchPlaceholder": "Search Vietsovpetro content",
+    "results": "Results",
+    "noResults": "No results found",
+    "systems": "Corporate systems",
+    "tenders": "Tenders",
+    "language": "Language",
+    "skip": "Skip to content"
   },
   "home": {
-    "hero1": "Joint venture",
+    "hero1": "Russia–Vietnam Joint Venture",
     "hero2": "Vietsovpetro",
     "hero3": "",
     "projects": "Typical Projects",
     "allServices": "All services",
     "allNews": "All news",
-    "allProjects": "All projects"
+    "allProjects": "All projects",
+    "heroDescription": "Joint Venture - Vietsovpetro was established on June 19th, 1981 upon the Intergovernmental Agreements signed S.R Vietnam and the Soviet Union in 1981.",
+    "photos": "Offshore facility photographs",
+    "photo": "Photograph",
+    "overview": "About Vietsovpetro",
+    "founded": "Year the joint venture was established",
+    "capability": "Operational capabilities",
+    "people": "Human resources",
+    "peopleDescription": "Since the foundation, Vietsovpetro had proposed effective strategy and methods for training our staffs, focus on managers, technicians and skilled workers."
   },
   "page": {
     "more": "Read more",
@@ -32,6 +48,7 @@
     "address": "105 Le Loi, Vung Tau Ward, Ho Chi Minh City, Viet Nam",
     "phone": "Phone: +84.254.3839 871",
     "fax": "Fax: +84.254.3839857",
-    "email": "Email: vspadmin@vietsov.com.vn"
+    "email": "Email: vspadmin@vietsov.com.vn",
+    "concept": "Independent concept — not the official Vietsovpetro website."
   }
 }

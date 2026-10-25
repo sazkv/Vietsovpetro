@@ -68,7 +68,7 @@ export default function AchievementExperience({items,locale="vi"}:{items:Achieve
        <div className="ac-nav-buttons">
         <button type="button" aria-label={t.previous} onClick={()=>{setActive((active-1+data.length)%data.length)}}><UIIcon name="left" size={23}/></button>
         <button type="button" aria-label={t.next} onClick={()=>{setActive((active+1)%data.length)}}><UIIcon name="left" size={23} className="ac-arrow-next"/></button>
-        
+
        </div>
        <div className="ac-progress" role="progressbar" aria-label="Achievement selection" aria-valuemin={1} aria-valuemax={data.length} aria-valuenow={active+1}><span style={{width:progress+"%"}}/></div>
       </div>
@@ -83,7 +83,7 @@ export default function AchievementExperience({items,locale="vi"}:{items:Achieve
     {data.map((item,i)=><button type="button" key={i} aria-pressed={active===i}
       className={"ac-tile "+(active===i?"ac-tile-active":"")}
       onClick={()=>{setActive(i)}}>
-      
+
       <strong>{item.value}{/\btrên\b|\bhơn\b|more than|over|более|свыше/i.test(item.description)?"+":""}</strong>
       <span className="ac-tile-name">{item.label}</span>
      </button>)}

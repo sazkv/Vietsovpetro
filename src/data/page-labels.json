@@ -1,0 +1,58 @@
+{
+  "vi": {
+    "company": {
+      "antoanskmt": "An toàn – Sức khỏe – Môi trường",
+      "cacdanhhieu": "Các danh hiệu",
+      "cocau": "Cơ cấu tổ chức",
+      "gioithieuct": "Giới thiệu chung",
+      "lanhdao": "Ban lãnh đạo",
+      "nhungthanhtuu": "Thành tựu nổi bật"
+    },
+    "units": {
+      "vien": "Viện Nghiên cứu Khoa học và Thiết kế Dầu khí biển"
+    },
+    "projects": {
+      "ctkt": "Dự án thiết kế, mua sắm, xây dựng, lắp đặt (EPCI)",
+      "dieuhanhkhaithac": "Dự án điều hành khai thác mỏ",
+      "nghiencuuthamdo": "Dự án nghiên cứu thăm dò – khai thác dầu khí",
+      "lapdatchande": "Dự án lắp đặt chân đế",
+      "khoithuongtang": "Dự án lắp đặt khối thượng tầng"
+    }
+  },
+  "ru": {
+    "company": {
+      "board-old": "Руководство",
+      "environment": "Окружающая среда",
+      "healthcare": "Награды и звания",
+      "image": "Фотоархив",
+      "introduction": "Общие сведения",
+      "organization": "Организационная структура",
+      "significant": "История создания"
+    },
+    "projects": {
+      "epicproject": "Проекты EPCI",
+      "jacketproject": "Установка опорных блоков",
+      "omproject": "Эксплуатация и обслуживание",
+      "researchproject": "Исследования и разведка",
+      "topsideproject": "Установка верхних строений"
+    }
+  },
+  "en": {
+    "company": {
+      "board5": "Board of Management",
+      "environment": "Environment",
+      "healthcare": "Awards",
+      "image": "Photo archive",
+      "introduction": "Company overview",
+      "organization": "Organizational structure",
+      "significant": "History and milestones"
+    },
+    "projects": {
+      "epicproject": "EPCI projects",
+      "jacketproject": "Jacket installation",
+      "omproject": "Operation and maintenance",
+      "researchproject": "Exploration and research",
+      "topsideproject": "Topside installation"
+    }
+  }
+}
