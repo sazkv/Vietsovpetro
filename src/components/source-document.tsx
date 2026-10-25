@@ -1,4 +1,6 @@
 import Link from "next/link";
+import UIIcon from "@/components/ui-icon";
+import NewsStory from "@/components/news-story";
 import SourceCopy from "@/components/source-copy";
 import LeadershipDirectory from "@/components/leadership-directory";
 import PartnersDirectory from "@/components/partners-directory";
@@ -25,6 +27,23 @@ export default function SourceDocument({page}:{page:SourcePage}){
  const resource=section==="resources";
  const facilities=resource&&(page.slug==="cosovatchat"||/cosovatchat\.aspx/i.test(page.sourceUrl));
  const title=displayTitle(page);
+ if(section==="news")return <main className="v-news-article">
+  <div className="shell">
+   <nav className="r-breadcrumb" aria-label="Breadcrumb">
+    <Link href={`/${page.locale}/`}>{m.nav.home}</Link><span aria-hidden="true">/</span>
+    <Link href={`/${page.locale}/news/`}>{m.nav.news}</Link>
+   </nav>
+   <header className="v-news-article-header">
+    <span className="v-news-article-eyebrow">VIETSOVPETRO / {m.nav.news}</span>
+    <h1>{title}</h1>
+    <div className="v-news-article-meta">
+     {page.date&&<time>{page.date}</time>}
+     <Link href={`/${page.locale}/news/`}><UIIcon name="left" size={16}/>{m.nav.news}</Link>
+    </div>
+   </header>
+   <NewsStory page={page}/>
+  </div>
+ </main>;
  return <main className={`v-document v-document--${section}`}>
   <div className="shell">
    <nav className="r-breadcrumb" aria-label="Breadcrumb">
