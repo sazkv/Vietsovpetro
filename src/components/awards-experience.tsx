@@ -13,9 +13,10 @@ const labels={
 
 const base=process.env.NEXT_PUBLIC_BASE_PATH||"";
 const medals=new Set(["sv","hcm","ld1","ld2","ld3","dl","dl2","dl3","qc","bv","cc1","cc3","ahld"]);
+const upgraded=new Set(["hcm","ld1","ld2","ld3","dl","dl2","dl3","cc1","cc3","ahld"]);
 function localAsset(item:AwardItem):string|undefined{
  const stem=(item.image||"").split("?")[0].split("/").at(-1)?.replace(/\.[^.]+$/,"").toLowerCase()||"";
- if(medals.has(stem))return base+"/awards/"+stem+".png?v=20261025";
+ if(medals.has(stem))return base+"/awards/"+stem+".png?v="+(upgraded.has(stem)?"upscale-1254-20261025":"legacy");
  if(/Золот(ая|ой)\s+звезд|Gold Star Order|Sao vàng/i.test(item.title))return base+"/awards/sv.png?v=20261025";
  return undefined;
 }
@@ -130,7 +131,7 @@ export default function AwardsExperience({items,locale="vi"}:{items:AwardItem[];
        className={"museum-album-item "+(item.id===picked.id?"museum-album-item-active":"")}
        aria-pressed={item.id===picked.id} onClick={()=>select(item.id)} aria-label={awardName(item)}>
         <span className="museum-album-image">
-         {thumb?<img src={thumb} loading={index<6?"eager":"lazy"} decoding="async" alt="" onError={()=>setFailed(prev=>[...prev,thumb])}/>:<span>{item.year||"—"}</span>}
+         {thumb?<img src={thumb} loading="lazy" decoding="async" alt="" onError={()=>setFailed(prev=>[...prev,thumb])}/>:<span>{item.year||"—"}</span>}
         </span>
         <span className="museum-album-name">{awardName(item)}</span>
         <small>{item.year||"—"}</small>
