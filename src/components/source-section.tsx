@@ -1,31 +1,121 @@
+import UIIcon from "@/components/ui-icon";
 import Link from "next/link";
+import NewsArchive, {type ArchiveCategory} from "@/components/news-archive";
+import PartnersDirectory from "@/components/partners-directory";
+import UnitsDirectory from "@/components/units-directory";
+import ServiceIcon from "@/components/service-icon";
 import SourceCopy from "@/components/source-copy";
+import {ResourceIndex} from "@/components/resource-pages";
 import {home, sectionIndex, sectionPages, type Locale, type Section} from "@/lib/original-content";
 import {messageSet} from "@/lib/messages";
-import {displayTitle} from "@/lib/display-title";
+import {displayTitle} from "@/lib/site-titles";
+import {previewParagraphs} from "@/lib/present-content";
 
-export default function SourceSection({locale, section}: {locale: Locale; section: Section}) {
-  const m = messageSet(locale);
-  const index = sectionIndex(locale, section);
-  const children = sectionPages(locale, section).filter((page) => page.route !== `/${locale}/${section}/`);
-  const title = m.nav[section];
-  const isNews = section === "news";
-  const isServices = section === "services";
-  const isProjects = section === "projects";
-  const isDirectory = section === "units" || isProjects || section === "pages";
+const base=process.env.NEXT_PUBLIC_BASE_PATH||"";
+const contactLabels={
+  vi:{office:"Liên doanh Vietsovpetro",address:"105 Lê Lợi, phường Vũng Tàu, Thành phố Hồ Chí Minh, Việt Nam",phone:"Điện thoại",fax:"Fax",mail:"Email",people:"Danh bạ liên hệ",ext:"Máy lẻ"},
+  ru:{office:"Совместное предприятие «Вьетсовпетро»",address:"Вьетнам, Хошимин, квартал Вунгтау, улица Ле Лой, 105",phone:"Телефон",fax:"Факс",mail:"Почта",people:"Контактные лица",ext:"Добавочный"},
+  en:{office:"Vietsovpetro Joint Venture",address:"105 Le Loi, Vung Tau Ward, Ho Chi Minh City, Vietnam",phone:"Phone",fax:"Fax",mail:"Email",people:"Contact directory",ext:"Extension"}
+};
+const people=[
+ {name:"Vũ Mai Khanh",vi:"Tổng giám đốc",ru:"Генеральный директор",en:"General Director",ext:"2428",email:"khanhvm.pt@vietsov.com.vn"},
+ {name:"Vũ Việt Kiều",vi:"Phó bí thư Đảng ủy",ru:"Заместитель секретаря парткома",en:"Deputy Party Committee Secretary",ext:"2556",email:"kieuvv.hq@vietsov.com.vn"},
+ {name:"Hoàng Phúc Long",vi:"Chủ tịch Công đoàn",ru:"Председатель профсоюза",en:"Trade Union Chairman",ext:"2334",email:"longhp.se@vietsov.com.vn"},
+ {name:"Hoàng Thanh Bình",vi:"Bí thư Đoàn Thanh niên",ru:"Секретарь молодёжной организации",en:"Youth Union Secretary",ext:"2035",email:"binhht.hq@vietsov.com.vn"},
+ {name:"Nguyễn Thanh Tịnh",vi:"Phó Chủ tịch Hội Cựu chiến binh",ru:"Заместитель председателя совета ветеранов",en:"Deputy Veterans Association Chairman",ext:"3890",email:"tinhnt.at@vietsov.com.vn"},
+ {name:"Đới Mạnh Cường",vi:"Chánh văn phòng",ru:"Руководитель администрации",en:"Head of Administration",ext:"5151",email:"cuongdm.hq@vietsov.com.vn"}
+];
+const projectNames={
+ vi:"Các dự án đã hoàn thành",ru:"Реализованные проекты",en:"Completed projects"
+};
+function Directory({items,className=""}:{items:{route:string,title:string}[],className?:string}){
+ return <nav className={`v-directory ${className}`.trim()}>
+  {items.map((item,i)=><Link href={item.route} className="v-directory-row" key={item.route}>
+    <span className="v-directory-number">{String(i+1).padStart(2,"0")}</span>
+    <span className="v-directory-title">{item.title}</span>
+    <span className="v-directory-arrow" aria-hidden="true"><UIIcon name="up-right" size={18}/></span>
+  </Link>)}
+ </nav>;
+}
 
-  return <main id="main-content" className={`section-page section-${section} shell`}>
-    <nav className="breadcrumbs" aria-label="Breadcrumb"><Link href={`/${locale}/`}>{m.nav.home}</Link><span aria-hidden="true">/</span><span>{title}</span></nav>
-    <header className="page-heading"><h1>{title}</h1></header>
-    {isServices ? <><p className="section-lead">{home[locale].serviceIntro}</p><ol className="service-index service-index-full">{home[locale].services.map((item, index) => <li id={`service-${index + 1}`} key={item.title}><div><span className="service-number">{String(index + 1).padStart(2, "0")}</span><span>{item.title}</span><img src={item.image} alt="" loading="lazy"/></div></li>)}</ol></> : null}
-    {isProjects && <div className="project-directory">{home[locale].projects.map((item) => <Link href={item.href} key={item.href}><span className="project-directory-image">{item.image && <img src={item.image} alt="" loading="lazy"/>}</span><span>{item.title}</span><span aria-hidden="true">↗</span></Link>)}</div>}
-    {isProjects && locale === "vi" && index && index.images.length > 5 && <section className="project-partners"><h2>Các Đối Tác Tiêu Biểu</h2><div>{index.images.slice(5).map((src, index) => <img key={`${src}-${index}`} src={src} alt="" loading="lazy"/>)}</div></section>}
-    {isNews ? <div className="archive-columns">{home[locale].news.map((category, index) => {
-      const categoryPages = children.filter((page) => page.slug.endsWith(`-${index + 1}`)).sort((a, b) => Number(b.slug.split("-")[1]) - Number(a.slug.split("-")[1]));
-      const renderArticle = (page: typeof categoryPages[number]) => <li key={page.route}><Link href={page.route}>{page.date && <time>{page.date}</time>}<span>{page.title}</span><span aria-hidden="true">↗</span></Link></li>;
-      return <section key={`${category.title}-${index}`}><h2>{category.title}</h2><ul>{categoryPages.slice(0, 24).map(renderArticle)}</ul>{categoryPages.length > 24 && <details className="archive-more"><summary>{m.page.more} ({categoryPages.length - 24})</summary><ul>{categoryPages.slice(24).map(renderArticle)}</ul></details>}</section>;
-    })}</div> : null}
-    {!isNews && !isServices && !isProjects && index?.html && <div className="section-source"><SourceCopy html={index.html} headingToRemove={title}/></div>}
-    {!isNews && !isServices && !isProjects && children.length > 0 && <div className="section-directory">{!isDirectory && <h2>{m.page.contents}</h2>}<nav className="directory-list" aria-label={title}>{children.map((page) => <Link href={page.route} key={page.route}><span>{displayTitle(page)}</span><span aria-hidden="true">↗</span></Link>)}</nav></div>}
-  </main>;
+export default function SourceSection({locale,section}:{locale:Locale,section:Section}){
+ const m=messageSet(locale);
+ const index=sectionIndex(locale,section);
+ const children=sectionPages(locale,section).filter(p=>p.route!==`/${locale}/${section}/`);
+ const title=m.nav[section];
+ const companyFull=section==="company"?children.find(p=>/gioithieuct\.aspx/i.test(p.sourceUrl)):undefined;
+ const groups:ArchiveCategory[]=section==="news"?home[locale].news.map((category,i)=>({
+  label:category.title,items:children.filter(p=>p.slug.endsWith(`-${i+1}`))
+   .sort((a,b)=>Number(b.slug.split("-")[1])-Number(a.slug.split("-")[1]))
+   .map(p=>({title:p.title,route:p.route,date:p.date,image:p.images?.[0]}))
+ })):[];
+ const info=contactLabels[locale];
+ return <main className={`v-section v-section--${section}`}>
+  <div className="shell v-section-top">
+    <nav className="r-breadcrumb" aria-label="Breadcrumb">
+      <Link href={`/${locale}/`}>{m.nav.home}</Link><span aria-hidden="true">/</span><span>{title}</span>
+    </nav>
+    <h1>{title}</h1>
+  </div>
+
+  {section==="company"&&<div className="shell v-company-new">
+    <div className="v-about-feature">
+      <div className="v-about-intro">
+        <h2>{locale==="vi"?"Liên doanh Vietsovpetro":locale==="ru"?"Вьетсовпетро":"Vietsovpetro Joint Venture"}</h2>
+        {(companyFull?.html||index?.html)&&<SourceCopy html={previewParagraphs(companyFull?.html||index?.html||"",2)} title={title}/>}
+      </div>
+      <div className="v-about-photo"><img src={companyFull?.images?.[0]||index?.images?.[0]||`${base}/brand/hero-offshore-6.jpg`} alt="" loading="lazy"/></div>
+    </div>
+    <Directory items={[...children.filter(p=>p.slug!=="image").map(p=>({route:p.route,title:displayTitle(p)})),{route:`/${locale}/company/gallery/`,title:locale==="vi"?"Hình ảnh tư liệu":locale==="ru"?"Фотоархив":"Photo archive"}]} className="v-about-directory"/>
+  </div>}
+
+  {section==="units"&&<div className="shell v-units"><UnitsDirectory locale={locale} units={children}/></div>}
+
+  {section==="projects"&&<div className="shell v-projects">
+    <div className="v-projects-editorial">
+      <div className="v-projects-photo"><img src={`${base}/brand/hero-offshore-2.jpg`} alt="" loading="lazy"/></div>
+      <div className="v-projects-directory"><h2>{projectNames[locale]}</h2>
+        <Directory items={home[locale].projects.map(item=>{const p=children.find(child=>child.route===item.href);return {title:p?displayTitle(p):item.title,route:item.href||`/${locale}/projects/`};})}/>
+      </div>
+    </div>
+    <PartnersDirectory locale={locale} compact/>
+  </div>}
+
+  {section==="resources"&&<ResourceIndex locale={locale} page={index}/>}
+
+  {section==="services"&&<div className="shell v-services">
+    {home[locale].serviceIntro&&<p className="v-services-lead">{home[locale].serviceIntro}</p>}
+    <div className="v-service-grid">
+      {home[locale].services.map((item,i)=><div className="v-service" id={`service-${i+1}`} key={item.title}>
+        <ServiceIcon index={i} className="v-service-icon"/>
+        <h2>{item.title}</h2>
+      </div>)}
+    </div>
+  </div>}
+
+  {section==="news"&&<div className="shell v-news"><NewsArchive categories={groups} locale={locale}/></div>}
+
+  {section==="contact"&&<div className="shell v-contact">
+    <div className="v-contact-main">
+      <div className="v-contact-office">
+        <h2>{info.office}</h2><address>{info.address}</address>
+      </div>
+      <div className="v-contact-ways">
+        <a href="tel:+842543839871"><span>{info.phone}</span><strong>+84 254 3839 871</strong><span className="v-contact-link-arrow" aria-hidden="true"><UIIcon name="up-right" size={18}/></span></a>
+        <a href="mailto:vspadmin@vietsov.com.vn"><span>{info.mail}</span><strong>vspadmin@vietsov.com.vn</strong><span className="v-contact-link-arrow" aria-hidden="true"><UIIcon name="up-right" size={18}/></span></a>
+        <div><span>{info.fax}</span><strong>+84 254 3839 857</strong></div>
+      </div>
+    </div>
+    <h2 className="v-contact-title">{info.people}</h2>
+    <div className="v-contact-people">{people.map(person=><div className="v-contact-person" key={person.email}>
+      <h3>{person.name}</h3><p>{person[locale]}</p>
+      <div><a href={`mailto:${person.email}`}>{person.email} <UIIcon name="up-right" size={18}/></a><span>{info.ext}: {person.ext}</span></div>
+    </div>)}</div>
+  </div>}
+
+  {!["company","units","projects","resources","services","news","contact"].includes(section)&&<div className="shell v-generic">
+    {index?.html&&<SourceCopy html={index.html} title={index.title}/>}
+    {children.length>0&&<Directory items={children.map(p=>({route:p.route,title:displayTitle(p)}))} className="v-generic-index"/>}
+  </div>}
+ </main>;
 }

@@ -1,0 +1,120 @@
+/* V6 / industrial typography and a genuine unified icon system.
+   Narrow reading columns; clear hierarchies; no mixed glyphs or random icon styling. */
+:root{--font-text:16px;--line-body:1.72}
+body{font-feature-settings:"kern" 1,"liga" 1;text-rendering:optimizeLegibility}
+.v-section-top h1,.v-document-header h1{font-size:clamp(38px,4.4vw,64px);line-height:1.16;letter-spacing:-.055em;text-wrap:balance}
+.v-section-top{padding-bottom:31px}
+.v-section-top .r-breadcrumb{margin-bottom:38px}
+.v-section .source-copy,.v-document-body .source-copy,.v-company-prose-content .source-copy{
+ font-size:16px;line-height:1.78;letter-spacing:0;word-break:normal;overflow-wrap:break-word;
+}
+.source-copy{min-width:0;max-width:100%}
+.source-copy :is(p,li,blockquote){max-width:75ch;white-space:normal;line-height:inherit}
+.source-copy p:empty,.source-copy li:empty{display:none}
+.source-copy p+ p{margin-top:0}
+.source-copy :is(h1,h2,h3,h4,h5){text-wrap:pretty;max-width:30ch;line-height:1.24;letter-spacing:-.038em;font-weight:700;color:#14384b}
+.source-copy h2{font-size:clamp(24px,2vw,32px)!important;margin:39px 0 18px}
+.source-copy h3{font-size:clamp(20px,1.7vw,25px)!important;margin:28px 0 13px}
+.source-copy h4{font-size:18px!important;margin:24px 0 12px}
+.source-copy :is(ul,ol){max-width:75ch;margin:14px 0 27px;padding-left:24px}
+.source-copy li{padding-left:3px;margin:8px 0}
+.source-copy img{max-width:100%;height:auto;object-fit:contain}
+.source-copy figure{max-width:100%;overflow:hidden}
+.source-copy table{max-width:100%;font-size:14px;line-height:1.55}
+.source-copy :is(td,th){font-size:inherit;white-space:normal;vertical-align:top}
+.v-company-prose-content,.v-document-body,.v-resources-copy{min-width:0}
+.v-company-prose-content{max-width:900px}
+.v-company-prose-content .source-copy p{max-width:74ch}
+.v-company-prose-photo{height:clamp(270px,30vw,390px)}
+.v-about-feature{align-items:center}
+.v-about-intro{max-width:640px}
+.v-about-intro h2{font-size:clamp(33px,3vw,45px);line-height:1.2;letter-spacing:-.048em}
+.v-about-intro .source-copy{font-size:16px;line-height:1.8}
+.v-about-intro .source-copy p:first-of-type{font-size:17px}
+.v-about-photo{min-height:0;height:clamp(360px,37vw,500px)}
+.v-history-story p{font-size:16px;line-height:1.72}
+.v-history-photo{height:165px}
+.v-facility-content h2{font-size:clamp(24px,2.3vw,34px);line-height:1.23;max-width:25ch;text-wrap:balance}
+.v-facility-content li{font-size:15px;line-height:1.75;max-width:67ch;padding-top:14px;padding-bottom:14px}
+.v-facility-content li::before{top:25px}
+.v-facility-image{height:clamp(260px,27vw,350px)}
+.v-facility{gap:clamp(35px,5vw,76px)}
+.v-facility-content ul{max-width:100%}
+.v-resource-point p{font-size:15px;line-height:1.75;max-width:62ch}
+.v-resource-top-copy h2{font-size:clamp(34px,3.3vw,48px)}
+.v-resource-facility-link h2{font-size:clamp(25px,2.8vw,40px)}
+.v-partner-name strong{overflow-wrap:break-word}
+.r-page-title h1{letter-spacing:-.05em}
+.v-document-header{margin-bottom:50px}
+.v-directory-title{line-height:1.48;overflow-wrap:break-word}
+.v-unit h2{line-height:1.42}
+.v-leader p,.v-contact-person p{line-height:1.65}
+
+/* Service icon system: Lucide 24px glyphs. Same size, strokes and optical
+   alignment across every page; icons work in monochrome, no faux accent lines. */
+.v-service-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;border-top:1px solid #c3d2da}
+.v-service{
+ display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:23px;align-items:center;
+ min-height:140px;padding:23px 6px 23px 0;background:#fff;border:0;
+ border-bottom:1px solid #dce5e9;border-radius:0;transform:none!important;
+}
+.v-service::before{display:none}
+.v-service:hover{background:#f7f9fa;border-color:#dce5e9;transform:none}
+.v-service-icon{height:58px;width:58px;color:#24536b;stroke:currentColor;transition:color .2s ease,transform .2s ease}
+.v-service-icon:hover,.v-service:hover .v-service-icon{color:#aa3831;transform:none}
+.v-service>div{min-width:0}
+.v-service-number{font-size:10px;color:#a84a43;font-weight:800;letter-spacing:.1em}
+.v-service h2{font-size:clamp(17px,1.35vw,20px);line-height:1.45;letter-spacing:-.028em;margin:7px 0 0;max-width:34ch}
+.v-services-lead{font-size:16px;line-height:1.8;max-width:76ch}
+.r-home-service-icon{height:50px;width:50px;color:#295b73;stroke:currentColor}
+.r-home-service-card{padding:29px;min-height:280px;border-color:#e2e8ec}
+.r-home-service-card h3{max-width:27ch;line-height:1.45;font-size:clamp(17px,1.38vw,21px)}
+.r-home-service-number{padding-top:30px}
+.r-home-service-card:hover{box-shadow:0 8px 22px rgba(11,47,69,.08);transform:translateY(-2px)}
+
+/* Interface action SVGs share the same stroke geometry, never Unicode fallback. */
+:is(.r-arrow-link,.v-directory-row,.v-contact-ways a,.v-contact-person a,.v-resource-facility-link,
+ .v-resource-extra,.v-organization-link,.r-home-unit-list>a,.r-home-news-card,.r-home-projects-list a,
+ .r-header a,.vx-footer a) svg{
+ display:inline-block;vertical-align:middle;flex:0 0 auto;
+}
+.r-arrow-link>svg,.v-resource-facility-link>svg{width:18px;height:18px}
+.v-directory-arrow svg,.v-unit-arrow svg{width:19px;height:19px}
+.r-home-service-arrow svg{width:18px;height:18px}
+.r-header .r-nav-toggle svg{width:23px;height:23px}
+.r-header-nav svg{width:16px;height:16px}
+.r-news-search>span:last-child svg{width:20px;height:20px}
+.r-news-row-arrow svg{width:19px;height:19px}
+.r-news-load svg{width:18px;height:18px}
+
+/* Mobile layouts retain readable widths and do not force unwanted columns. */
+@media(max-width:820px){
+ .v-service-grid{gap:0 25px}
+ .v-service{grid-template-columns:58px minmax(0,1fr);column-gap:14px;padding:21px 0}
+ .v-service-icon{width:50px;height:50px}
+ .v-about-photo{height:340px}
+ .v-facility-image{height:280px}
+ .v-company-prose-photo{height:290px}
+}
+@media(max-width:610px){
+ .v-section-top h1,.v-document-header h1{font-size:clamp(32px,8.7vw,48px);letter-spacing:-.053em}
+ .v-section .source-copy,.v-document-body .source-copy,.v-company-prose-content .source-copy{font-size:15px;line-height:1.78}
+ .source-copy :is(p,li,blockquote){max-width:100%}
+ .source-copy h2{font-size:24px!important}
+ .source-copy h3{font-size:20px!important}
+ .v-service-grid{grid-template-columns:1fr;gap:0}
+ .v-service{min-height:113px;grid-template-columns:53px minmax(0,1fr);gap:15px;padding:20px 0}
+ .v-service-icon{width:48px;height:48px}
+ .v-service h2{font-size:17px;max-width:100%}
+ .r-home-service-icon{width:48px;height:48px}
+ .r-home-service-card{min-height:225px}
+ .v-about-photo{height:235px}
+ .v-about-intro h2{font-size:32px}
+ .v-facility-content h2{font-size:25px}
+ .v-facility-content li{font-size:14px}
+ .v-facility-image{height:220px}
+ .v-company-prose-photo{height:215px}
+}
+@media(prefers-reduced-motion:reduce){
+ .v-service-icon,.r-home-service-card{transition:none!important}
+}

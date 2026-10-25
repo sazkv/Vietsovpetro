@@ -1,0 +1,273 @@
+/* Vietsovpetro / Content-first pages
+   Section design based on real information types. No copies of original
+   pages, hidden source dumps or faux UI panels in the public interface. */
+.v-section{padding:34px 0 130px;color:var(--r-ink)}
+.v-section-top{padding-bottom:41px;border-bottom:1px solid #c7d3da}
+.v-section-top .r-breadcrumb{margin-bottom:47px}
+.v-section-top h1{font-family:Manrope,"Segoe UI",sans-serif;font-size:clamp(47px,5.4vw,78px);font-weight:680;line-height:1.08;letter-spacing:-.066em;max-width:1050px;margin:0}
+.v-company,.v-units,.v-projects,.v-resources,.v-services,.v-news,.v-contact,.v-generic{padding-top:53px}
+.v-section .source-copy{color:#29485a;font-size:16px;line-height:1.88}
+.v-section .source-copy h2,.v-section .source-copy h3{font-weight:700;letter-spacing:-.035em}
+.v-section .source-copy h2{font-size:clamp(23px,2.4vw,34px)}
+.v-section .source-copy p{margin-bottom:1.35em}
+.v-section .source-copy img{max-width:100%;height:auto}
+.v-directory{border-top:1px solid #9fb1ba;min-width:0}
+.v-directory-row{min-height:88px;display:grid;grid-template-columns:32px minmax(0,1fr) 25px;gap:18px;align-items:center;border-bottom:1px solid #d5e0e5;padding:17px 0;transition:padding-left .2s ease,color .2s ease}
+.v-directory-row:hover{padding-left:9px;color:#a2322c}
+.v-directory-number{font-size:11px;color:#b43b35;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.07em}
+.v-directory-title{font-size:clamp(16px,1.55vw,22px);font-weight:690;line-height:1.4;letter-spacing:-.026em}
+.v-directory-arrow{justify-self:end;color:var(--r-accent);font-size:21px;font-weight:400}
+/* COMPANY: original profile once, clear submenu to true detail routes */
+.v-company-image{height:445px;overflow:hidden;background:#d7e4e8;margin-bottom:80px}
+.v-company-image img{width:100%;height:100%;object-fit:cover;object-position:center 57%;transition:transform .55s ease}
+.v-company-image:hover img{transform:scale(1.018)}
+.v-company-columns{display:grid;grid-template-columns:minmax(0,1fr) 335px;gap:clamp(50px,7vw,120px);align-items:start}
+.v-company-article{min-width:0;max-width:865px}
+.v-company-article .source-copy{font-size:17px;line-height:1.92}
+.v-company-article .source-copy>p:first-of-type{font-size:19px;color:#24455a}
+.v-company-chapters{position:sticky;top:125px}
+.v-company-chapters .v-directory-row{min-height:62px;gap:9px;grid-template-columns:25px minmax(0,1fr) 19px;padding:12px 0}
+.v-company-chapters .v-directory-title{font-size:13px;font-weight:740;line-height:1.5;letter-spacing:-.01em}
+.v-company-chapters .v-directory-number{font-size:10px}
+.v-company-chapters .v-directory-arrow{font-size:17px}
+/* UNITS: all rows have exactly the same presentation. */
+.v-unit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.v-unit{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:238px;padding:28px 30px;background:#f1f4f5;border:1px solid #e5ecef;transition:background .25s ease,border-color .25s ease,color .25s ease}
+.v-unit:hover{background:#102d41;border-color:#102d41;color:#fff}
+.v-unit-number{font-size:12px;letter-spacing:.12em;color:#a2463f;font-weight:850}
+.v-unit:hover .v-unit-number{color:#efa9a1}
+.v-unit h2{font-size:clamp(18px,1.55vw,23px);font-weight:670;line-height:1.38;letter-spacing:-.035em;margin:auto 30px 20px 0;max-width:370px}
+.v-unit-arrow{position:absolute;right:28px;bottom:23px;font-size:25px;color:var(--r-accent)}
+.v-unit:hover .v-unit-arrow{color:#f0aaa4}
+/* PROJECTS: source's five categories, and a separate factual client index. */
+.v-projects-editorial{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:70px;align-items:start}
+.v-projects-photo{height:560px;overflow:hidden;background:#143b51}
+.v-projects-photo img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.v-projects-photo:hover img{transform:scale(1.025)}
+.v-projects-directory{padding-top:2px}
+.v-projects-directory h2{font-size:clamp(30px,3vw,44px);font-weight:680;letter-spacing:-.052em;line-height:1.2;margin:0 0 31px}
+.v-projects-directory .v-directory-row{min-height:96px}
+.v-projects-directory .v-directory-title{font-size:clamp(16px,1.55vw,22px)}
+.v-partner-preview{margin-top:110px;padding-top:37px;border-top:1px solid #9eb2bc}
+.v-partner-preview-head{display:flex;justify-content:space-between;align-items:center;gap:25px;margin-bottom:32px}
+.v-partner-preview-head h2{font-size:clamp(30px,3.1vw,44px);font-weight:670;letter-spacing:-.051em;line-height:1.2;margin:0}
+.v-partner-preview-head>a{font-size:12px;font-weight:800;border-bottom:1px solid #8199a5;padding-bottom:9px;white-space:nowrap}
+.v-partner-preview-head>a>span{color:#b53832;margin-left:13px;font-size:18px}
+.v-partner-preview-names{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 24px}
+.v-partner-preview-names>span{border-top:1px solid #e2e8eb;padding:22px 0;font-size:16px;font-weight:700;letter-spacing:-.02em}
+.v-partners-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.v-partner-name{min-height:190px;display:flex;flex-direction:column;justify-content:space-between;background:#f3f5f6;border:1px solid #e0e8ec;padding:26px}
+.v-partner-name>span{font-size:11px;color:#b44740;font-weight:800;letter-spacing:.12em}
+.v-partner-name strong{font-size:clamp(20px,1.9vw,29px);letter-spacing:-.043em;line-height:1.2;font-weight:750}
+.v-partners-bottom{padding-top:50px}
+.v-partners-bottom a{font-size:13px;font-weight:740;border-bottom:1px solid #a8bbc5;padding-bottom:9px}
+/* RESOURCES: source facts readable beside its own original photo. */
+.v-resources-feature{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:65px;align-items:start}
+.v-resources-copy{min-width:0}
+.v-resources-copy .source-copy{font-size:17px;line-height:1.9}
+.v-resources-copy .source-copy li{padding-left:4px;margin-bottom:13px}
+.v-resources-copy .source-copy ul,.v-resources-copy .source-copy ol{padding-left:24px}
+.v-resources-image{height:490px;overflow:hidden;background:#dce5e8}
+.v-resources-image img{height:100%;width:100%;object-fit:cover}
+.v-resources-directory{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 38px;margin-top:75px}
+.v-resources-directory .v-directory-row{min-height:100px}
+/* SERVICES: 15 unique svg icons, as requested in v3. */
+.v-services-lead{max-width:920px;font-size:17px;line-height:1.83;color:#617a88;margin:0 0 48px}
+.v-service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.v-service{scroll-margin-top:125px;display:flex;flex-direction:column;justify-content:space-between;min-height:258px;padding:32px 30px 29px;background:#f8fafa;border:1px solid #dce6ea;transition:background .22s,border-color .22s,transform .22s}
+.v-service:hover{background:#edf2f4;border-color:#b7cbd5;transform:translateY(-3px)}
+.v-service-icon{width:66px;height:66px;color:#356a82;transition:color .18s}
+.v-service:hover .v-service-icon{color:#b43d36}
+.v-service-number{font-size:11px;letter-spacing:.12em;font-weight:820;color:#b3423c}
+.v-service h2{font-size:clamp(18px,1.55vw,23px);font-weight:680;letter-spacing:-.03em;line-height:1.39;margin:11px 0 0}
+/* CONTACT: office + real administrative directory, no imported copies. */
+.v-contact-main{display:grid;grid-template-columns:1fr 1fr;min-height:345px;background:#092c40;color:white}
+.v-contact-office{padding:48px 54px;display:flex;flex-direction:column;justify-content:space-between;gap:35px;border-right:1px solid #ffffff35}
+.v-contact-office h2{font-size:clamp(29px,3vw,46px);line-height:1.18;letter-spacing:-.056em;font-weight:680;margin:0}
+.v-contact-office address{font-size:16px;color:#c5d6df;line-height:1.75;font-style:normal;max-width:430px}
+.v-contact-ways{padding:29px 48px;display:flex;flex-direction:column;justify-content:space-between}
+.v-contact-ways>a,.v-contact-ways>div{display:grid;grid-template-columns:minmax(0,1fr) 25px;gap:8px 20px;padding:16px 0;border-bottom:1px solid #ffffff31}
+.v-contact-ways>a:last-child,.v-contact-ways>div:last-child{border-bottom:0}
+.v-contact-ways span:first-child{grid-column:1/-1;font-size:11px;font-weight:600;color:#b7cbd5}
+.v-contact-ways strong{overflow-wrap:anywhere;font-size:clamp(17px,1.65vw,25px);line-height:1.32;letter-spacing:-.035em;font-weight:670}
+.v-contact-ways a:hover strong{color:#e9a8a2}
+.v-contact-link-arrow{font-size:23px;align-self:center;color:#e8a29b}
+.v-contact-title{margin:91px 0 26px;font-size:clamp(29px,3.1vw,45px);line-height:1.17;letter-spacing:-.053em;font-weight:690}
+.v-contact-people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 35px;border-top:1px solid #9db1bc}
+.v-contact-person{padding:28px 0 33px;border-bottom:1px solid #dce5e9;display:flex;flex-direction:column;min-height:215px}
+.v-contact-person h3{font-size:21px;line-height:1.3;letter-spacing:-.036em;font-weight:720;margin:0 0 9px}
+.v-contact-person>p{font-size:13px;line-height:1.55;color:#677f8c;margin:0 0 24px}
+.v-contact-person>div{display:flex;flex-direction:column;gap:6px;margin-top:auto;font-size:12px;line-height:1.6}
+.v-contact-person>div a{color:#266481;overflow-wrap:anywhere}
+.v-contact-person>div a:hover{color:#a72e29}
+.v-contact-person>div span{color:#8096a1}
+/* Remaining sections: preserve articles directly, never under "original" accordions */
+.v-generic{display:grid;grid-template-columns:minmax(0,1fr);gap:60px}
+.v-generic>.source-copy{max-width:1000px}
+.v-generic-index{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 38px}
+.v-generic-index .v-directory-row{min-height:94px}
+/* DETAIL PAGES: technical tables get the full width, never squeezed by a sidebar */
+.v-document{padding:37px 0 135px;color:var(--r-ink)}
+.v-document .r-breadcrumb{margin:0 0 55px}
+.v-document-header{padding-bottom:37px;border-bottom:1px solid #bdcbd3;margin-bottom:65px}
+.v-document-header h1{font-size:clamp(40px,5.1vw,73px);line-height:1.15;letter-spacing:-.061em;font-weight:680;margin:0;max-width:1050px}
+.v-document-header time{display:block;color:#7d909b;font-size:12px;margin-top:21px}
+.v-document-layout{display:block}
+.v-document-layout--related{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:clamp(45px,6vw,100px);align-items:start}
+.v-document-body{min-width:0;max-width:1120px}
+.v-document-body .source-copy{font-size:17px;line-height:1.88;color:#314f60;overflow-wrap:anywhere}
+.v-document-body .source-copy h1,.v-document-body .source-copy h2{font-size:clamp(25px,2.8vw,36px)}
+.v-document-body .source-copy>p:first-child{font-size:18px}
+.v-document-body .source-copy img{height:auto;max-width:100%;object-fit:contain}
+.v-document-siblings{position:sticky;top:135px;border-top:1px solid #a9bbc4;min-width:0}
+.v-document-siblings>a{display:flex;justify-content:space-between;gap:20px;align-items:start;padding:13px 0;border-bottom:1px solid #dce5e9;font-size:12px;line-height:1.55;font-weight:730}
+.v-document-siblings>a span{color:#b23e36;flex-shrink:0}
+.v-document-siblings>a:hover{color:#a5352f}
+/* Project tables: classic technical schedules, horizontal scroll only inside the article. */
+.v-document--project .v-document-body{max-width:none;overflow-x:auto;overscroll-behavior-x:contain}
+.v-document--project .source-copy{overflow-x:auto;max-width:100%}
+.v-document--project .source-copy table{display:table!important;max-width:none!important;width:max-content!important;min-width:100%;margin:34px 0 40px;border-collapse:separate;border-spacing:0;font-size:13px;line-height:1.55}
+.v-document--project .source-copy th,.v-document--project .source-copy td{padding:13px 16px!important;border-right:1px solid #d9e2e6;border-bottom:1px solid #d9e2e6;border-top:0;border-left:0;vertical-align:top;max-width:390px;white-space:normal!important;overflow-wrap:break-word;min-width:115px}
+.v-document--project .source-copy th{background:#102e41!important;color:#fff!important;font-weight:740;white-space:nowrap!important}
+.v-document--project .source-copy tr:nth-child(even) td{background:#f1f5f6}
+.v-document--project .source-copy tr:hover td{background:#e7eff2}
+.v-document--resource .source-copy li{margin-bottom:13px}
+.v-document--resource .source-copy img{margin:30px auto;display:block}
+.v-document--company .source-copy img{margin:30px auto}
+.v-leadership-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.v-leader{min-height:235px;padding:25px;background:#f3f5f6;border:1px solid #e1e9ed;display:flex;flex-direction:column;justify-content:space-between}
+.v-leader>span{font-size:11px;font-weight:800;color:#b44038;letter-spacing:.11em}
+.v-leader h2{font-size:clamp(18px,1.55vw,23px);font-weight:710;line-height:1.35;letter-spacing:-.034em;margin:0 0 10px}
+.v-leader p{font-size:13px;line-height:1.55;color:#647e8b;margin:0}
+/* PARTNERS DETAIL has deliberate typography and factual project client names. */
+.v-partners-grid{max-width:1250px}
+@media(max-width:1180px){
+ .shell{width:calc(100% - 70px)}
+ .v-company-columns{grid-template-columns:minmax(0,1fr) 260px;gap:45px}
+ .v-projects-editorial{gap:48px}
+ .v-resources-feature{gap:40px}
+ .v-unit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .v-contact-people{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .v-document-layout--related{grid-template-columns:minmax(0,1fr) 210px;gap:45px}
+}
+@media(max-width:820px){
+ .shell{width:calc(100% - 52px)}
+ .v-section{padding-top:25px;padding-bottom:95px}
+ .v-section-top h1{font-size:clamp(40px,7.2vw,62px)}
+ .v-company-image{height:350px;margin-bottom:48px}
+ .v-company-columns{grid-template-columns:1fr;gap:43px}
+ .v-company-chapters{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 25px}
+ .v-company-chapters .v-directory-row{min-height:75px}
+ .v-projects-editorial{grid-template-columns:1fr;gap:40px}
+ .v-projects-photo{height:420px}
+ .v-partner-preview{margin-top:75px}
+ .v-partner-preview-names{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .v-partners-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .v-resources-feature{grid-template-columns:1fr;gap:35px}
+ .v-resources-image{height:360px}
+ .v-resources-directory{margin-top:45px}
+ .v-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .v-contact-main{grid-template-columns:1fr}
+ .v-contact-office{gap:25px;border-right:0;border-bottom:1px solid #ffffff35}
+ .v-contact-ways{gap:7px}
+ .v-leadership-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .v-document-layout--related{grid-template-columns:1fr;gap:40px}
+ .v-document-siblings{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}
+ .v-document-siblings>a{font-size:13px}
+}
+@media(max-width:600px){
+ .shell{width:calc(100% - 38px)}
+ .v-section{padding-top:19px;padding-bottom:75px}
+ .v-section-top{padding-bottom:25px}
+ .v-section-top .r-breadcrumb{margin-bottom:33px}
+ .v-section-top h1{font-size:clamp(37px,9vw,54px)}
+ .v-company,.v-units,.v-projects,.v-resources,.v-services,.v-news,.v-contact,.v-generic{padding-top:35px}
+ .v-company-image{height:230px;margin-bottom:35px}
+ .v-company-columns{gap:30px}
+ .v-company-article .source-copy{font-size:16px}
+ .v-company-chapters{grid-template-columns:1fr}
+ .v-company-chapters .v-directory-row{min-height:68px}
+ .v-unit-grid{grid-template-columns:1fr;gap:12px}
+ .v-unit{min-height:190px;padding:22px 24px}
+ .v-unit h2{font-size:20px}
+ .v-projects-photo{height:270px}
+ .v-projects-directory h2,.v-partner-preview-head h2{font-size:30px}
+ .v-projects-directory .v-directory-row{min-height:80px}
+ .v-partner-preview{margin-top:60px}
+ .v-partner-preview-head{flex-direction:column;align-items:start;gap:16px}
+ .v-partner-preview-names{gap:0 15px}
+ .v-partner-preview-names>span{font-size:13px;padding:18px 0}
+ .v-partners-grid{grid-template-columns:1fr}
+ .v-partner-name{min-height:150px}
+ .v-resources-copy .source-copy{font-size:16px}
+ .v-resources-image{height:260px}
+ .v-resources-directory,.v-generic-index{grid-template-columns:1fr}
+ .v-services-lead{font-size:15px;margin-bottom:30px}
+ .v-service-grid{grid-template-columns:1fr;gap:12px}
+ .v-service{min-height:200px;padding:25px}
+ .v-service-icon{width:56px;height:56px}
+ .v-service h2{font-size:20px}
+ .v-contact-office,.v-contact-ways{padding:26px 25px}
+ .v-contact-office h2{font-size:31px}
+ .v-contact-office address{font-size:14px}
+ .v-contact-ways strong{font-size:19px}
+ .v-contact-title{margin:65px 0 25px;font-size:32px}
+ .v-contact-people{grid-template-columns:1fr}
+ .v-contact-person{min-height:175px}
+ .v-document{padding:23px 0 90px}
+ .v-document .r-breadcrumb{margin-bottom:36px}
+ .v-document-header{margin-bottom:36px;padding-bottom:28px}
+ .v-document-header h1{font-size:clamp(34px,8.1vw,50px)}
+ .v-document-body .source-copy{font-size:16px;line-height:1.8}
+ .v-document-siblings{grid-template-columns:1fr}
+ .v-leadership-list{grid-template-columns:1fr;gap:12px}
+ .v-leader{min-height:155px;padding:24px}
+ .v-document--project .source-copy table{font-size:12px}
+ .v-document--project .source-copy th,.v-document--project .source-copy td{padding:9px 12px!important;min-width:100px}
+}
+@media(prefers-reduced-motion:reduce){
+ .v-directory-row,.v-unit,.v-projects-photo img,.v-company-image img,.v-service,.v-service-icon{transition:none!important}
+}
+
+/* Original project records use <td> even for their header rows. */
+.v-document--project .source-copy table tr:first-child td{
+ background:#102e41!important;color:white!important;font-weight:760!important;
+}
+.v-document--project .source-copy table tr:first-child:has(td[colspan]) + tr td{
+ background:#244b60!important;color:white!important;font-weight:760!important;
+}
+.v-document--project .source-copy table tr:first-child td[colspan]{
+ text-transform:uppercase;letter-spacing:.035em;
+}
+
+
+/* News article — editorial reading layout, original photos fully visible. */
+.v-document--news{background:#fff}
+.v-document--news>.shell{max-width:1200px}
+.v-document--news .r-breadcrumb{font-size:12px}
+.v-document--news .v-news-article-header{max-width:970px;margin:0 auto 20px;padding:0 0 33px;border:0}
+.v-document--news .v-news-article-header h1{font-size:clamp(36px,4.4vw,64px);line-height:1.18;letter-spacing:-.052em;font-weight:650;max-width:940px;text-wrap:pretty}
+.v-document--news .v-news-article-header time{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#a4403a;margin-top:23px;font-weight:750}
+.v-news-article-rule{max-width:970px;border-top:1px solid #c8d8df;margin:0 auto 40px}
+.v-document--news .v-news-article-body{max-width:970px;margin:0 auto;min-width:0}
+.v-document--news .v-news-article-body .source-copy{font-size:clamp(16px,1.4vw,18px);line-height:1.88;letter-spacing:-.004em;color:#24475a;overflow-wrap:break-word}
+.v-document--news .source-copy p{margin:0 0 1.65em}
+.v-document--news .source-copy>p:first-of-type{font-size:clamp(18px,1.7vw,23px);font-weight:520;line-height:1.58;color:#17394c}
+.v-document--news .source-copy h2{font-size:clamp(26px,3vw,38px);line-height:1.25;margin:2.1em 0 .7em;letter-spacing:-.045em}
+.v-document--news .source-copy h3{font-size:clamp(22px,2.2vw,29px);line-height:1.32;margin:1.8em 0 .7em}
+.v-document--news .source-copy img{display:block;width:auto!important;height:auto!important;max-width:100%!important;max-height:none!important;object-fit:contain!important;object-position:center!important;margin:35px auto 12px!important;filter:none!important}
+.v-document--news .source-copy figure{max-width:100%;margin:38px auto;text-align:center}
+.v-document--news .source-copy figcaption{font-size:12px;color:#7a929e;line-height:1.6;margin:8px 0 25px}
+.v-document--news .source-copy iframe,.v-document--news .source-copy video{max-width:100%}
+.v-document--news .source-copy table{display:block;overflow-x:auto;max-width:100%}
+.v-news-article-footer{max-width:970px;margin:65px auto 0;padding-top:25px;border-top:1px solid #c5d5dc}
+.v-news-article-footer a{display:inline-flex;gap:22px;align-items:center;font-size:13px;font-weight:750;color:#163d52}
+.v-news-article-footer a:hover{color:#a6413a}
+@media(max-width:700px){
+.v-document--news .v-news-article-header{margin-bottom:16px;padding-bottom:21px}
+.v-document--news .v-news-article-header h1{font-size:clamp(30px,8vw,43px);letter-spacing:-.045em;line-height:1.2}
+.v-news-article-rule{margin-bottom:24px}
+.v-document--news .source-copy img{margin:24px auto 10px!important}
+.v-document--news .v-news-article-body .source-copy{font-size:16px;line-height:1.76}
+.v-news-article-footer{margin-top:42px}
+}

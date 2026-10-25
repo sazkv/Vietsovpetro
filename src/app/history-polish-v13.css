@@ -1,0 +1,19 @@
+/* V13: original RU/EN history captions can be substantially longer than VI.
+   Fit genuine source text without colliding with the stage label or controls. */
+@media(min-width:881px){
+ .hc-scene-data{bottom:108px!important;max-width:950px!important}
+ .hc-year{font-size:clamp(125px,14.5vw,205px)!important;margin:12px 0 19px!important;line-height:.91!important}
+ .hc-caption{font-size:clamp(19px,1.7vw,24px)!important;line-height:1.42!important;max-width:900px!important}
+}
+@media(min-width:601px) and (max-width:880px){
+ .hc-year{font-size:clamp(108px,16vw,150px)!important}
+ .hc-caption{font-size:clamp(18px,2.35vw,23px)!important;line-height:1.42!important}
+}
+@media(max-width:600px){
+ .hc-year{font-size:clamp(100px,25vw,129px)!important}
+ .hc-caption{font-size:clamp(16px,4.55vw,20px)!important;line-height:1.47!important}
+ .hc-scene-data{bottom:117px!important}
+}
+.ac-nav-buttons button:not(.ac-play){background:#174b63!important;color:#fff!important;border:1px solid #ffffff78!important}
+.ac-nav-buttons button:not(.ac-play):hover{background:#2f6780!important}
+.ac-nav-buttons .ac-play{background:#e1edf1!important;color:#15394b!important;font-size:10px;font-weight:800}

@@ -1,39 +1,130 @@
+import UIIcon from "@/components/ui-icon";
 import Link from "next/link";
-import OriginalHero from "@/components/original-hero";
-import {home, pages, type Locale} from "@/lib/original-content";
+import Reveal from "@/components/reveal";
+import ServiceIcon from "@/components/service-icon";
+import {home,pages,sectionPages,sectionOrder,type Locale} from "@/lib/original-content";
 import {messageSet} from "@/lib/messages";
+import {displayTitle} from "@/lib/site-titles";
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const base=process.env.NEXT_PUBLIC_BASE_PATH||"";
+const copy={
+ vi:{
+ heroTop:"Liên doanh Việt – Nga",
+ hero:"Năng lượng ngoài khơi. Năng lực vững vàng.",
+ heroCopy:"Nghiên cứu, thăm dò, khai thác dầu khí và phát triển các công trình ngoài khơi từ năm 1981.",
+ overview:"Liên doanh Vietsovpetro",
+ about:"Thành lập năm 1981, Vietsovpetro hoạt động trong lĩnh vực tìm kiếm, thăm dò, phát triển mỏ và khai thác dầu khí tại thềm lục địa Việt Nam.",
+ aboutLink:"Tìm hiểu về Vietsovpetro",serviceAll:"Xem 15 nhóm dịch vụ",projectAll:"Tất cả dự án",unitAll:"Tất cả đơn vị",newsAll:"Xem tin tức",people:"Con người và nguồn lực",peopleCopy:"Đội ngũ gần 7.000 người lao động với chuyên môn khoa học, kỹ thuật và quản lý, cùng hệ thống đào tạo và cơ sở vật chất phục vụ hoạt động ngoài khơi.",peopleLink:"Nguồn lực & đào tạo",
+ statA:"Năm thành lập",statB:"Đơn vị trực thuộc",statC:"Triệu tấn dầu thô đã khai thác",statD:"Giếng thăm dò và khai thác",projectSection:"Dự án đã thực hiện",unitSection:"Đơn vị trực thuộc",
+ },
+ ru:{
+ heroTop:"Совместное предприятие Вьетнама и России",hero:"Энергия морских месторождений.",
+ heroCopy:"Геологоразведка, добыча нефти и газа, проектирование и эксплуатация морских объектов с 1981 года.",
+ overview:"Совместное предприятие «Вьетсовпетро»",
+ about:"С 1981 года «Вьетсовпетро» занимается поиском, разведкой, освоением и эксплуатацией нефтегазовых месторождений на континентальном шельфе Вьетнама.",
+ aboutLink:"Подробнее о предприятии",serviceAll:"Все 15 направлений",projectAll:"Все проекты",unitAll:"Все подразделения",newsAll:"Все новости",people:"Люди и инфраструктура",peopleCopy:"Около 7 000 специалистов, развитая производственная база и система профессионального обучения для работы на морских объектах.",peopleLink:"Ресурсы и обучение",
+ statA:"Год основания",statB:"Подразделений",statC:"Млн тонн добытой нефти",statD:"Разведочных и добывающих скважин",projectSection:"Реализованные проекты",unitSection:"Подразделения",
+ },
+ en:{
+ heroTop:"Vietnam–Russia Joint Venture",hero:"Offshore energy. Proven expertise.",
+ heroCopy:"Exploration, oil and gas production, and offshore engineering on Vietnam's continental shelf since 1981.",
+ overview:"Vietsovpetro Joint Venture",
+ about:"Established in 1981, Vietsovpetro conducts exploration, field development and oil and gas production on the continental shelf of Vietnam.",
+ aboutLink:"Discover Vietsovpetro",serviceAll:"All 15 service groups",projectAll:"Explore all projects",unitAll:"All operating units",newsAll:"More news",people:"People and infrastructure",peopleCopy:"Nearly 7,000 skilled professionals, advanced industrial facilities and training resources supporting offshore operations.",peopleLink:"People & resources",
+ statA:"Established",statB:"Operating units",statC:"Million tonnes of crude produced",statD:"Exploration and production wells",projectSection:"Completed projects",unitSection:"Operating units",
+ }
+} as const;
+function Arrow(){return <span aria-hidden="true"><UIIcon name="up-right" size={18}/></span>}
+function getNewsDate(d:string){const p=d.match(/(\d{1,2})[\/.\-](\d{1,2})[\/.\-](20\d{2}|19\d{2})/);return p?Number(p[3])*10000+Number(p[2])*100+Number(p[1]):0}
+export default function SourceHome({locale}:{locale:Locale}){
+ const t=copy[locale],m=messageSet(locale),data=home[locale];
+ const projects=data.projects.slice(0,5);
+ const units=sectionPages(locale,"units").filter(p=>p.route!==`/${locale}/units/`).slice(0,4);
+ const articles=data.news.flatMap(g=>g.articles.map(a=>{
+  const article=pages.find(p=>p.route===a.href);
+  return {title:a.title,href:a.href,date:article?.date||"",image:article?.images?.[0]};
+ })).sort((a,b)=>getNewsDate(b.date)-getNewsDate(a.date)).slice(0,4);
+ const careerHref=sectionOrder[locale].includes("careers")?`/${locale}/careers/`:`/${locale}/resources/`;
+ return <main className="r-home">
+  <section className="r-hero">
+   <div className="r-hero-image" style={{backgroundImage:`url("${base}/brand/hero-offshore-1.jpg")`}} aria-hidden="true"/>
+   <div className="shell r-hero-content">
+    <span className="r-hero-identity">{t.heroTop}</span>
+    <h1 className={"r-hero-headline r-hero-headline--"+locale}>{locale==="en"?<><span className="r-hero-line">Offshore energy.</span><span className="r-hero-line">Proven expertise.</span></>:locale==="vi"?<><span className="r-hero-line">Năng lượng ngoài khơi.</span><span className="r-hero-line">Năng lực vững vàng.</span></>:t.hero}</h1>
+    <p>{t.heroCopy}</p>
+    <div className="r-hero-actions">
+     <Link href={`/${locale}/company/`} className="r-btn r-btn-light">{t.aboutLink}<Arrow/></Link>
+     <Link href={`/${locale}/services/`} className="r-arrow-link r-arrow-link-light">{m.nav.services}<Arrow/></Link>
+    </div>
+   </div>
+   <div className="r-hero-outline" aria-hidden="true">VIETSOVPETRO</div>
+  </section>
 
-export default function SourceHome({locale}: {locale: Locale}) {
-  const content = home[locale];
-  const m = messageSet(locale);
-  const articleImage = (href: string) => pages.find((page) => page.route === href)?.images[0];
-  const featured = content.news.flatMap((group) => group.articles).slice(0, 5);
-  const overview = pages.find((page) => page.route === `/${locale}/company/`);
-  return <main id="main-content" className="home-page">
-    <OriginalHero locale={locale}/>
-    <section className="home-overview shell" aria-labelledby="overview-title">
-      <div className="home-overview-heading"><h2 id="overview-title">{m.home.overview}</h2><p>{m.home.heroDescription}</p><Link className="text-link" href={`/${locale}/company/`}>{m.nav.company}<span aria-hidden="true">↗</span></Link></div>
-      <div className="home-overview-media"><img src={`${basePath}/brand/hero-offshore-2.jpg`} alt="" loading="lazy"/><div className="milestone"><strong>1981</strong><span>{m.home.founded}</span></div></div>
-      {overview?.sourceUrl && <a className="source-reference" href={overview.sourceUrl} target="_blank" rel="noreferrer">{m.page.source}<span aria-hidden="true">↗</span></a>}
-    </section>
+  <section className="r-proof">
+   <div className="shell r-proof-grid">
+    {[[ "1981",t.statA],["18",t.statB],["250+",t.statC],["650+",t.statD]].map(([v,l])=><div className="r-proof-cell" key={l}><strong>{v}</strong><span>{l}</span></div>)}
+   </div>
+  </section>
 
-    <section className="home-expertise" aria-labelledby="services-title"><div className="shell">
-      <div className="home-section-head"><div><h2 id="services-title">{content.serviceTitle}</h2><p>{content.serviceIntro}</p></div><Link className="text-link" href={`/${locale}/services/`}>{m.home.allServices}<span aria-hidden="true">↗</span></Link></div>
-      <div className="expertise-layout"><div className="expertise-photo"><img src={`${basePath}/brand/hero-offshore-3.jpg`} alt="" loading="lazy"/></div><ol className="expertise-index">{content.services.map((service, index) => <li key={index}><Link href={`/${locale}/services/#service-${index + 1}`}><span>{String(index + 1).padStart(2, "0")}</span><strong>{service.title}</strong><span aria-hidden="true">↗</span></Link></li>)}</ol></div>
-    </div></section>
+  <Reveal><section className="shell r-home-about">
+    <div className="r-home-about-photo"><img src={`${base}/brand/hero-offshore-6.jpg`} alt="" loading="lazy"/></div>
+    <div className="r-home-about-copy">
+      <h2>{t.overview}</h2>
+      <p>{t.about}</p>
+      <Link className="r-arrow-link" href={`/${locale}/company/`}>{t.aboutLink}<Arrow/></Link>
+      <div className="r-home-about-links">
+        {sectionPages(locale,"company").filter(p=>p.route!==`/${locale}/company/`).slice(0,4).map(p=><Link key={p.route} href={p.route}>{displayTitle(p)}<Arrow/></Link>)}
+      </div>
+    </div>
+  </section></Reveal>
 
-    <section className="home-projects shell" aria-labelledby="projects-title"><div className="home-section-head"><h2 id="projects-title">{m.home.projects}</h2><Link className="text-link" href={`/${locale}/projects/`}>{m.home.allProjects}<span aria-hidden="true">↗</span></Link></div>
-      <div className="project-editorial">{content.projects.map((project, index) => <Link key={index} href={project.href || `/${locale}/projects/`} className={index === 0 ? "project-feature" : "project-line"}>{project.image && <span className="project-photo"><img src={project.image} alt="" loading="lazy"/></span>}<span className="project-name">{project.title}</span><span className="project-open" aria-hidden="true">↗</span></Link>)}</div>
-    </section>
+  <Reveal><section className="r-home-services">
+    <div className="shell">
+     <header className="r-home-section-head"><h2>{m.nav.services}</h2><Link href={`/${locale}/services/`} className="r-arrow-link">{t.serviceAll}<Arrow/></Link></header>
+     <div className="r-home-services-grid">
+       {data.services.slice(0,6).map((item,i)=><Link key={item.title} href={`/${locale}/services/#service-${i+1}`} className="r-home-service-card">
+         <span className="r-home-service-leading"><ServiceIcon index={i} className="r-home-service-icon"/><h3>{item.title}</h3></span>
 
-    <section className="home-capability" aria-labelledby="capability-title"><div className="shell capability-inner"><div><h2 id="capability-title">{m.home.capability}</h2><Link className="text-link" href={`/${locale}/resources/`}>{m.nav.resources}<span aria-hidden="true">↗</span></Link></div><img src={`${basePath}/brand/hero-offshore-6.jpg`} alt="" loading="lazy"/></div></section>
+       </Link>)}
+     </div>
+    </div>
+  </section></Reveal>
 
-    <section className="home-news shell" aria-labelledby="news-title"><div className="home-section-head"><h2 id="news-title">{m.nav.news}</h2><Link className="text-link" href={`/${locale}/news/`}>{m.home.allNews}<span aria-hidden="true">↗</span></Link></div>
-      <div className="news-editorial">{featured.map((article, index) => {const page = pages.find((item) => item.route === article.href); const image = articleImage(article.href); return <Link className={index === 0 ? "news-lead" : "news-row"} href={article.href} key={article.href}>{index === 0 && image && <span className="news-lead-image"><img src={image} alt="" loading="lazy"/></span>}<span className="news-meta">{page?.date || ""}</span><strong>{article.title}</strong><span className="news-open" aria-hidden="true">↗</span></Link>;})}</div>
-    </section>
+  <Reveal><section className="r-home-projects">
+    <div className="shell r-home-projects-wrap">
+     <div className="r-home-projects-visual"><img src={`${base}/brand/hero-offshore-2.jpg`} alt="" loading="lazy"/></div>
+     <div className="r-home-projects-list">
+      <h2>{t.projectSection}</h2>
+      <div>{projects.map((p,i)=><Link key={p.href||p.title} href={p.href||`/${locale}/projects/`}><span>{String(i+1).padStart(2,"0")}</span><strong>{pages.find(item=>item.route===p.href)?displayTitle(pages.find(item=>item.route===p.href)!):p.title}</strong><Arrow/></Link>)}</div>
+      <Link className="r-arrow-link r-arrow-link-light" href={`/${locale}/projects/`}>{t.projectAll}<Arrow/></Link>
+     </div>
+    </div>
+  </section></Reveal>
 
-    <section className="home-people shell" aria-labelledby="people-title"><div><h2 id="people-title">{m.home.people}</h2><p>{m.home.peopleDescription}</p></div><div className="people-links"><Link href={`/${locale}/resources/`}>{m.nav.resources}<span aria-hidden="true">↗</span></Link>{locale === "vi" && <Link href={`/${locale}/careers/`}>{m.nav.careers}<span aria-hidden="true">↗</span></Link>}</div></section>
-  </main>;
+  <Reveal><section className="shell r-home-units">
+   <div className="r-home-section-head"><h2>{t.unitSection}</h2><Link href={`/${locale}/units/`} className="r-arrow-link">{t.unitAll}<Arrow/></Link></div>
+   <div className="r-home-unit-list">{units.map((unit,i)=><Link href={unit.route} key={unit.route}><span>{String(i+1).padStart(2,"0")}</span><strong>{unit.title}</strong><Arrow/></Link>)}</div>
+  </section></Reveal>
+
+  <Reveal><section className="r-home-news">
+   <div className="shell">
+    <header className="r-home-section-head"><h2>{m.nav.news}</h2><Link className="r-arrow-link" href={`/${locale}/news/`}>{t.newsAll}<Arrow/></Link></header>
+    <div className="r-home-news-grid">
+      {articles.map((item,i)=><Link href={item.href} className={i===0?"r-home-news-card r-home-news-lead":"r-home-news-card"} key={item.href}>
+        {i===0&&<div className="r-home-news-photo">{item.image?<img src={item.image} alt="" loading="lazy"/>:<img src={`${base}/brand/hero-offshore-3.jpg`} alt="" loading="lazy"/>}</div>}
+        <div className="r-home-news-text">{item.date&&<time>{item.date}</time>}<h3>{item.title}</h3><span aria-hidden="true"><UIIcon name="up-right" size={18}/></span></div>
+      </Link>)}
+    </div>
+   </div>
+  </section></Reveal>
+
+  <Reveal><section className="r-home-people">
+    <div className="r-home-people-image" style={{backgroundImage:`url("${base}/brand/hero-offshore-3.jpg")`}} aria-hidden="true"/>
+    <div className="shell r-home-people-inner">
+      <h2>{t.people}</h2>
+      <p>{t.peopleCopy}</p>
+      <Link href={careerHref} className="r-btn r-btn-light">{t.peopleLink}<Arrow/></Link>
+    </div>
+  </section></Reveal>
+ </main>;
 }
