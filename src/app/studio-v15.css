@@ -184,3 +184,22 @@
 /* Preserve full transparent medal artwork in zoom instead of thumbnail-size cap. */
 .museum-v15-modal-image img{max-height:min(610px,calc(100dvh - 206px))!important;max-width:100%!important}
 @media(max-width:700px){.museum-v15-modal-image img{max-height:calc(100dvh - 195px)!important}}
+
+
+/* Responsive lightbox: preserve entire square transparent PNG inside available viewport. */
+.museum-v15-lightbox{padding:clamp(12px,2.5vh,24px)}
+.museum-v15-modal{width:min(720px,calc(100vw - 30px));max-height:calc(100dvh - 30px);overflow:hidden}
+.museum-v15-modal-image{flex:0 1 auto;box-sizing:border-box;width:100%;height:min(60dvh,500px);min-height:0;max-height:calc(100dvh - 148px);padding:clamp(22px,4vh,44px) clamp(19px,3vw,32px) 16px;overflow:hidden}
+.museum-v15-modal-image img{width:auto!important;height:auto!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important}
+.museum-v15-modal-bottom{min-height:84px;padding:11px 24px;gap:10px}
+@media(max-width:700px){
+ .museum-v15-modal{width:min(560px,calc(100vw - 22px));max-height:calc(100dvh - 24px)}
+ .museum-v15-modal-image{height:min(55dvh,420px);max-height:calc(100dvh - 126px);padding:46px 16px 8px}
+ .museum-v15-modal-bottom{min-height:78px;padding:10px}
+ .museum-v15-modal-bottom strong{font-size:clamp(13px,4vw,18px)}
+}
+@media(max-height:560px){
+ .museum-v15-modal-image{height:min(53dvh,290px);max-height:calc(100dvh - 105px);padding:18px 54px 4px}
+ .museum-v15-close{top:6px;right:6px;width:34px;height:34px}
+ .museum-v15-modal-bottom{min-height:62px;padding:6px 12px}
+}
